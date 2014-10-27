@@ -1,3 +1,13 @@
+//
+//  main.cpp
+//  Assignment 2
+//
+//  Created by Matt Donnelly on 27/10/2014.
+//  Copyright (c) 2014 Matt Donnelly. All rights reserved.
+//
+
+#define GLM_FORCE_RADIANS
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
