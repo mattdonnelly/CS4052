@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B269B0819D18E9C008C1481 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B269B0619D18E9C008C1481 /* libGLEW.dylib */; };
 		8B269B0919D18E9C008C1481 /* libglfw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B269B0719D18E9C008C1481 /* libglfw3.dylib */; };
-		8BB60A5E19D18A6E00AF29B8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BB60A5D19D18A6E00AF29B8 /* main.cpp */; };
+		8B3FD02419EC9D2A0082E7A1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FD02319EC9D2A0082E7A1 /* main.cpp */; };
 		8BB60A6519D18A9500AF29B8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB60A6419D18A9500AF29B8 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +28,8 @@
 /* Begin PBXFileReference section */
 		8B269B0619D18E9C008C1481 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = ../../../../../../../usr/local/lib/libGLEW.dylib; sourceTree = "<group>"; };
 		8B269B0719D18E9C008C1481 /* libglfw3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.dylib; path = ../../../../../../../usr/local/lib/libglfw3.dylib; sourceTree = "<group>"; };
-		8BB60A5A19D18A6E00AF29B8 /* Assignment0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment0; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BB60A5D19D18A6E00AF29B8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8B3FD02319EC9D2A0082E7A1 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8BB60A5A19D18A6E00AF29B8 /* Assignment 0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 0"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BB60A6419D18A9500AF29B8 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -50,7 +50,7 @@
 		8BB60A5119D18A6E00AF29B8 = {
 			isa = PBXGroup;
 			children = (
-				8BB60A5C19D18A6E00AF29B8 /* Assignment0 */,
+				8BB60A5C19D18A6E00AF29B8 /* Assignment 0 */,
 				8BB60A6619D18B3300AF29B8 /* Frameworks */,
 				8BB60A5B19D18A6E00AF29B8 /* Products */,
 			);
@@ -59,18 +59,18 @@
 		8BB60A5B19D18A6E00AF29B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8BB60A5A19D18A6E00AF29B8 /* Assignment0 */,
+				8BB60A5A19D18A6E00AF29B8 /* Assignment 0 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8BB60A5C19D18A6E00AF29B8 /* Assignment0 */ = {
+		8BB60A5C19D18A6E00AF29B8 /* Assignment 0 */ = {
 			isa = PBXGroup;
 			children = (
-				8BB60A5D19D18A6E00AF29B8 /* main.cpp */,
+				8B3FD02319EC9D2A0082E7A1 /* main.cpp */,
 			);
-			path = Assignment0;
-			sourceTree = SOURCE_ROOT;
+			path = "Assignment 0";
+			sourceTree = "<group>";
 		};
 		8BB60A6619D18B3300AF29B8 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -85,9 +85,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8BB60A5919D18A6E00AF29B8 /* Assignment0 */ = {
+		8BB60A5919D18A6E00AF29B8 /* Assignment 0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8BB60A6119D18A6E00AF29B8 /* Build configuration list for PBXNativeTarget "Assignment0" */;
+			buildConfigurationList = 8BB60A6119D18A6E00AF29B8 /* Build configuration list for PBXNativeTarget "Assignment 0" */;
 			buildPhases = (
 				8BB60A5619D18A6E00AF29B8 /* Sources */,
 				8BB60A5719D18A6E00AF29B8 /* Frameworks */,
@@ -97,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = Assignment0;
+			name = "Assignment 0";
 			productName = OpenGLDemo;
-			productReference = 8BB60A5A19D18A6E00AF29B8 /* Assignment0 */;
+			productReference = 8BB60A5A19D18A6E00AF29B8 /* Assignment 0 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -116,7 +116,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8BB60A5519D18A6E00AF29B8 /* Build configuration list for PBXProject "Assignment0" */;
+			buildConfigurationList = 8BB60A5519D18A6E00AF29B8 /* Build configuration list for PBXProject "Assignment 0" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -128,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8BB60A5919D18A6E00AF29B8 /* Assignment0 */,
+				8BB60A5919D18A6E00AF29B8 /* Assignment 0 */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB60A5E19D18A6E00AF29B8 /* main.cpp in Sources */,
+				8B3FD02419EC9D2A0082E7A1 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +222,7 @@
 		8BB60A6219D18A6E00AF29B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -234,7 +235,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = Assignment0;
+				PRODUCT_NAME = "Assignment 0";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -242,6 +243,7 @@
 		8BB60A6319D18A6E00AF29B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -254,7 +256,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = Assignment0;
+				PRODUCT_NAME = "Assignment 0";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -262,7 +264,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8BB60A5519D18A6E00AF29B8 /* Build configuration list for PBXProject "Assignment0" */ = {
+		8BB60A5519D18A6E00AF29B8 /* Build configuration list for PBXProject "Assignment 0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8BB60A5F19D18A6E00AF29B8 /* Debug */,
@@ -271,7 +273,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8BB60A6119D18A6E00AF29B8 /* Build configuration list for PBXNativeTarget "Assignment0" */ = {
+		8BB60A6119D18A6E00AF29B8 /* Build configuration list for PBXNativeTarget "Assignment 0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8BB60A6219D18A6E00AF29B8 /* Debug */,
