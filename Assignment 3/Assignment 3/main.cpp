@@ -192,7 +192,7 @@ int main() {
     
     GLuint shader_programme = createShaderProgramme();
     
-    int texture_id = glGetUniformLocation(shader_programme, "tex");
+    GLint texture_id = glGetUniformLocation(shader_programme, "tex");
     assert(texture_id > -1);
     
     glEnable(GL_DEPTH_TEST);
@@ -211,6 +211,8 @@ int main() {
         glBindVertexArray(vao);
         
         glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glDeleteTextures((GLsizei)1, (const GLuint*)(&texture_id));
 
         glfwPollEvents();
         glfwSwapBuffers(window);
