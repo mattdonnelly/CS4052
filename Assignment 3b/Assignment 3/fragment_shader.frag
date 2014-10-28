@@ -1,8 +1,12 @@
 #version 400
 
-in vec3 color;
+uniform sampler2D tex;
+
+in vec2 frag_tex_coord;
+
 out vec4 frag_colour;
 
 void main() {
-    frag_colour = vec4(color, 1.0);
+    vec2 flipped_tex_coord = vec2(frag_tex_coord.x, 1.0 - frag_tex_coord.y);
+    frag_colour = texture(tex, flipped_tex_coord);
 }

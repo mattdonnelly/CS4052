@@ -160,8 +160,8 @@ int main() {
         glBindVertexArray(vao);
         
         GLfloat *vp;
-        GLfloat *vn;
         GLfloat *vt;
+        GLfloat *vn;
         assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/cube.obj", vp, vt, vn, point_count));
         
         GLuint points_vbo;
@@ -172,12 +172,22 @@ int main() {
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
         
+        GLuint tex_coords_vbo;
+        glGenBuffers(1, &tex_coords_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, tex_coords_vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * point_count, vt, GL_STATIC_DRAW);
+
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        
         delete vp;
         delete vn;
         delete vt;
     }
     
     GLuint shader_programme = createShaderProgramme();
+    
+    GLuint texture = loadTexture();
     
     int M_loc = glGetUniformLocation (shader_programme, "M");
     assert(M_loc > -1);
@@ -187,6 +197,9 @@ int main() {
     
     int P_loc = glGetUniformLocation (shader_programme, "P");
     assert(M_loc > -1);
+    
+    GLint texture_id = glGetUniformLocation(shader_programme, "tex");
+    assert(texture_id > -1);
     
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -205,6 +218,10 @@ int main() {
         
         glUseProgram(shader_programme);
         
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(texture_id, 0);
+        
         glBindVertexArray(vao);
         
         if (last_angle > 359.0f) {
@@ -222,6 +239,8 @@ int main() {
         glUniformMatrix4fv(M_loc, 1, GL_FALSE, glm::value_ptr(model));
         
         glDrawArrays(GL_TRIANGLES, 0, point_count);
+        
+        glDeleteTextures((GLsizei)1, (const GLuint*)(&texture_id));
 
         glfwPollEvents();
         glfwSwapBuffers(window);
