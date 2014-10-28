@@ -29,9 +29,9 @@ GLuint bindBufferObjects() {
     glBindVertexArray(vao);
     
     GLfloat vertices[] = {
-        0.0f, 0.5f, 0.0f,
-       -0.5f,-0.5f, 0.0f,
-        0.5f,-0.5f, 0.0f
+        0.0f,  0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f
     };
     
     GLuint vertices_vbo;
@@ -39,24 +39,22 @@ GLuint bindBufferObjects() {
     glBindBuffer(GL_ARRAY_BUFFER, vertices_vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    
     GLfloat texture_coords[] = {
         0.5f, 1.0f,
         0.0f, 0.0f,
         1.0f, 0.0f
     };
     
-    GLuint tex_coords_vbo;
-    glGenBuffers(1, &tex_coords_vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, tex_coords_vbo);
+    GLuint texture_coords_vbo;
+    glGenBuffers(1, &texture_coords_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, texture_coords_vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(texture_coords), texture_coords, GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, vertices_vbo);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, tex_coords_vbo);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
     return vao;
 }
@@ -64,7 +62,7 @@ GLuint bindBufferObjects() {
 GLuint loadTexture() {
     GLuint texture;
     
-    std::string filePath = "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/texture.png";
+    std::string filePath = "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3a/Assignment 3/texture.png";
     
     int width, height, channels;
     unsigned char* pixels = stbi_load(filePath.c_str(), &width, &height, &channels, 0);
@@ -127,10 +125,10 @@ void printShaderStatus(GLuint shader) {
 GLuint createShaderProgramme() {
     GLuint shader_programme;
     
-    std::string vertex_shader_str = readShaderFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/vertex_shader.vert");
+    std::string vertex_shader_str = readShaderFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3a/Assignment 3/vertex_shader.vert");
     GLchar const *vertex_shader_source = vertex_shader_str.c_str();
     
-    std::string fragment_shader_str = readShaderFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/fragment_shader.frag");
+    std::string fragment_shader_str = readShaderFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3a/Assignment 3/fragment_shader.frag");
     GLchar const *fragment_shader_source = fragment_shader_str.c_str();
     
     GLuint vs, fs;
