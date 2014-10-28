@@ -167,7 +167,7 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    window = glfwCreateWindow(gl_width, gl_height, "Assignment 2", NULL, NULL);
+    window = glfwCreateWindow(gl_width, gl_height, "Assignment 3", NULL, NULL);
     if (!window) {
         fprintf (stderr, "ERROR: opening OS window\n");
         return 1;
