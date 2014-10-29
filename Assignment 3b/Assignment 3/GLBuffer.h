@@ -19,7 +19,11 @@ public:
     GLBuffer();
     ~GLBuffer();
     
-    void bufferObject(GLfloat *data, size_t size, size_t count);
+    void bufferObject(GLfloat *data,
+                      GLint size,
+                      GLint count,
+                      GLint stride = 0,
+                      const GLvoid *offset = 0);
     
     GLuint object() const;
     

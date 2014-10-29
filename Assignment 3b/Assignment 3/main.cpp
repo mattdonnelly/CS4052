@@ -123,7 +123,7 @@ int main() {
         last_angle += elapsed_seconds * rotating_speed;
         
         glm::mat4 projection = glm::perspective(45.0f, 1.0f, 1.0f, 10.0f);
-        glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+        glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 2.0f, 0.0f));
         glm::mat4 model = glm::rotate(glm::mat4(1.0f), last_angle, glm::vec3(0, 1, 0));
         model = glm::scale(model, glm::vec3(0.75f));
         

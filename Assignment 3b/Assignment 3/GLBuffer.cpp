@@ -18,7 +18,7 @@ GLBuffer::~GLBuffer() {
     glDeleteVertexArrays(1, &_object);
 }
 
-void GLBuffer::bufferObject(GLfloat *data, size_t size, size_t count) {
+void GLBuffer::bufferObject(GLfloat *data, GLint size, GLint count, GLint stride, const GLvoid * pointer) {
     GLuint vbo;
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
