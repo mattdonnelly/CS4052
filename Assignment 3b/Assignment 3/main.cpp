@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "GLBuffer.h"
 #include "GLShader.h"
 #include "GLTexture.h"
 #include "GLProgram.h"
@@ -68,31 +69,17 @@ int main() {
     std::cout << "Renderer: " << renderer << std::endl;
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
+    
+    GLBuffer buffer = GLBuffer::GLBuffer();
 
     {
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
-        
         GLfloat *vp;
         GLfloat *vt;
         GLfloat *vn;
         assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/cube.obj", vp, vt, vn, point_count));
-        
-        GLuint points_vbo;
-        glGenBuffers(1, &points_vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * point_count, vp, GL_STATIC_DRAW);
-        
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        
-        GLuint tex_coords_vbo;
-        glGenBuffers(1, &tex_coords_vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, tex_coords_vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * point_count, vt, GL_STATIC_DRAW);
 
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+        buffer.bufferObject(vp, 3, sizeof(float) * 3 * point_count);
+        buffer.bufferObject(vt, 2, sizeof(float) * 3 * point_count);
         
         delete vp;
         delete vn;
@@ -136,7 +123,7 @@ int main() {
         last_angle += elapsed_seconds * rotating_speed;
         
         glm::mat4 projection = glm::perspective(45.0f, 1.0f, 1.0f, 10.0f);
-        glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
         glm::mat4 model = glm::rotate(glm::mat4(1.0f), last_angle, glm::vec3(0, 1, 0));
         model = glm::scale(model, glm::vec3(0.75f));
         

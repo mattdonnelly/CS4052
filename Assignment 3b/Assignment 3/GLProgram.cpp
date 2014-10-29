@@ -77,8 +77,9 @@ void GLProgram::stopUsing() const {
 }
 
 GLint GLProgram::attrib(const GLchar *attribName) const {
-    if (!attribName)
+    if (!attribName) {
         throw std::runtime_error("attribName was NULL");
+    }
     
     GLint attrib = glGetAttribLocation(_object, attribName);
     if (attrib == -1) {
@@ -89,8 +90,9 @@ GLint GLProgram::attrib(const GLchar *attribName) const {
 }
 
 GLint GLProgram::uniform(const GLchar *uniformName) const {
-    if(!uniformName)
+    if(!uniformName) {
         throw std::runtime_error("uniformName was NULL");
+    }
     
     GLint uniform = glGetUniformLocation(_object, uniformName);
     if (uniform == -1) {
