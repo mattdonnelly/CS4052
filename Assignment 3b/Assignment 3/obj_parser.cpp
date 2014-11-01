@@ -114,7 +114,7 @@ bool load_obj_file  (
 		} else if (line[0] == 'f') {
 			// work out if using quads instead of triangles and print a warning
 			int slashCount = 0;
-			int len = strlen (line);
+			size_t len = strlen (line);
 			for (int i = 0; i < len; i++) {
 				if (line[i] == '/') {
 					slashCount++;
