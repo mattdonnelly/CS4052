@@ -26,8 +26,8 @@ const int gl_height = 800;
 
 GLProgram createShaderProgram() {
     std::vector<GLShader> shaders;
-    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/vertex_shader.vert", GL_VERTEX_SHADER));
-    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/fragment_shader.frag", GL_FRAGMENT_SHADER));
+    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/vertex_shader.vert", GL_VERTEX_SHADER));
+    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/fragment_shader.frag", GL_FRAGMENT_SHADER));
     
     GLProgram program = GLProgram(shaders);
     
@@ -76,7 +76,7 @@ int main() {
         GLfloat *vp;
         GLfloat *vt;
         GLfloat *vn;
-        assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/cube.obj", vp, vt, vn, point_count));
+        assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/cube.obj", vp, vt, vn, point_count));
 
         buffer.bufferObject(vp, 3, sizeof(float) * 3 * point_count);
         buffer.bufferObject(vt, 2, sizeof(float) * 3 * point_count);
@@ -86,7 +86,7 @@ int main() {
         delete vt;
     }
     
-    GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3b/Assignment 3/texture.png", GL_RGBA);
+    GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/texture.png", GL_RGBA);
     
     GLProgram program = createShaderProgram();
 
