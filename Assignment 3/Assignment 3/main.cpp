@@ -95,7 +95,7 @@ int main() {
     
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
     
     GLfloat rotating_speed = 1.5f;
     GLfloat last_angle = 0.0f;
