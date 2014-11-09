@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8B13765919FF251D00C1B095 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B13765719FF251D00C1B095 /* obj_parser.cpp */; };
-		8B13765C19FFC3FD00C1B095 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B13765A19FFC3FD00C1B095 /* GLShader.cpp */; };
-		8B13765F19FFC8B900C1B095 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B13765D19FFC8B900C1B095 /* GLProgram.cpp */; };
-		8B1376621A00060300C1B095 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B1376601A00060300C1B095 /* GLTexture.cpp */; };
-		8B95B66D1A011A3B0007EA14 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B95B66B1A011A3B0007EA14 /* GLBuffer.cpp */; };
+		8B34C3B01A1001D400B981A6 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3A81A1001D400B981A6 /* GLBuffer.cpp */; };
+		8B34C3B11A1001D400B981A6 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3AA1A1001D400B981A6 /* GLProgram.cpp */; };
+		8B34C3B21A1001D400B981A6 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3AC1A1001D400B981A6 /* GLShader.cpp */; };
+		8B34C3B31A1001D400B981A6 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3AE1A1001D400B981A6 /* GLTexture.cpp */; };
 		8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0A77C19FEC8C500E8F9FD /* main.cpp */; };
 		8BE0A78419FED28400E8F9FD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0A78319FED28400E8F9FD /* OpenGL.framework */; };
 		8BE0A78C19FED41D00E8F9FD /* libGLEW.1.11.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0A78A19FED41D00E8F9FD /* libGLEW.1.11.0.dylib */; };
@@ -34,18 +34,18 @@
 		8B13765619FF249F00C1B095 /* cube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		8B13765719FF251D00C1B095 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
 		8B13765819FF251D00C1B095 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
-		8B13765A19FFC3FD00C1B095 /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLShader.cpp; sourceTree = "<group>"; };
-		8B13765B19FFC3FD00C1B095 /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
-		8B13765D19FFC8B900C1B095 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
-		8B13765E19FFC8B900C1B095 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
-		8B1376601A00060300C1B095 /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTexture.cpp; sourceTree = "<group>"; };
-		8B1376611A00060300C1B095 /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTexture.h; sourceTree = "<group>"; };
+		8B34C3A81A1001D400B981A6 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
+		8B34C3A91A1001D400B981A6 /* GLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBuffer.h; sourceTree = "<group>"; };
+		8B34C3AA1A1001D400B981A6 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
+		8B34C3AB1A1001D400B981A6 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		8B34C3AC1A1001D400B981A6 /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLShader.cpp; sourceTree = "<group>"; };
+		8B34C3AD1A1001D400B981A6 /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
+		8B34C3AE1A1001D400B981A6 /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTexture.cpp; sourceTree = "<group>"; };
+		8B34C3AF1A1001D400B981A6 /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTexture.h; sourceTree = "<group>"; };
 		8B5FF68619FEF52900E64035 /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8B5FF68719FF010700E64035 /* fragment_shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment_shader.frag; sourceTree = "<group>"; };
 		8B5FF68819FF010700E64035 /* vertex_shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex_shader.vert; sourceTree = "<group>"; };
 		8B5FF68919FF0E4D00E64035 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
-		8B95B66B1A011A3B0007EA14 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
-		8B95B66C1A011A3B0007EA14 /* GLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBuffer.h; sourceTree = "<group>"; };
 		8BE0A77919FEC8C500E8F9FD /* Assignment 3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE0A77C19FEC8C500E8F9FD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8BE0A78319FED28400E8F9FD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -67,9 +67,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B34C3A71A1001D400B981A6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8B34C3A81A1001D400B981A6 /* GLBuffer.cpp */,
+				8B34C3A91A1001D400B981A6 /* GLBuffer.h */,
+				8B34C3AA1A1001D400B981A6 /* GLProgram.cpp */,
+				8B34C3AB1A1001D400B981A6 /* GLProgram.h */,
+				8B34C3AC1A1001D400B981A6 /* GLShader.cpp */,
+				8B34C3AD1A1001D400B981A6 /* GLShader.h */,
+				8B34C3AE1A1001D400B981A6 /* GLTexture.cpp */,
+				8B34C3AF1A1001D400B981A6 /* GLTexture.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		8BE0A77019FEC8C500E8F9FD = {
 			isa = PBXGroup;
 			children = (
+				8B34C3A71A1001D400B981A6 /* Common */,
 				8BE0A77B19FEC8C500E8F9FD /* Assignment 3 */,
 				8BE0A78919FED2A800E8F9FD /* Frameworks */,
 				8BE0A77A19FEC8C500E8F9FD /* Products */,
@@ -88,14 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				8BE0A77C19FEC8C500E8F9FD /* main.cpp */,
-				8B95B66C1A011A3B0007EA14 /* GLBuffer.h */,
-				8B95B66B1A011A3B0007EA14 /* GLBuffer.cpp */,
-				8B13765E19FFC8B900C1B095 /* GLProgram.h */,
-				8B13765D19FFC8B900C1B095 /* GLProgram.cpp */,
-				8B13765B19FFC3FD00C1B095 /* GLShader.h */,
-				8B13765A19FFC3FD00C1B095 /* GLShader.cpp */,
-				8B1376611A00060300C1B095 /* GLTexture.h */,
-				8B1376601A00060300C1B095 /* GLTexture.cpp */,
 				8B5FF68619FEF52900E64035 /* stb_image.h */,
 				8B13765819FF251D00C1B095 /* obj_parser.h */,
 				8B13765719FF251D00C1B095 /* obj_parser.cpp */,
@@ -173,11 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B1376621A00060300C1B095 /* GLTexture.cpp in Sources */,
+				8B34C3B31A1001D400B981A6 /* GLTexture.cpp in Sources */,
 				8B13765919FF251D00C1B095 /* obj_parser.cpp in Sources */,
-				8B13765F19FFC8B900C1B095 /* GLProgram.cpp in Sources */,
-				8B13765C19FFC3FD00C1B095 /* GLShader.cpp in Sources */,
-				8B95B66D1A011A3B0007EA14 /* GLBuffer.cpp in Sources */,
+				8B34C3B11A1001D400B981A6 /* GLProgram.cpp in Sources */,
+				8B34C3B21A1001D400B981A6 /* GLShader.cpp in Sources */,
+				8B34C3B01A1001D400B981A6 /* GLBuffer.cpp in Sources */,
 				8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
