@@ -56,11 +56,11 @@ GLProgram::GLProgram(const std::vector<GLShader> &shaders) {
 
 GLProgram::~GLProgram() {
     if (_object != 0) {
-        glDeleteProgram(_object);
-        
         for (unsigned i = 0; i < _shaders.size(); ++i) {
             glDeleteShader(_shaders[i].object());
         }
+        
+        glDeleteProgram(_object);
     }
 }
 
