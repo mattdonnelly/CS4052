@@ -95,8 +95,23 @@ int main() {
     glDepthFunc(GL_LESS);
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
-    GLfloat rotating_speed = 1.5f;
+    const GLfloat rotating_speed = 1.5f;
     GLfloat last_angle = 0.0f;
+    
+    glm::mat4 projection = glm::perspective(45.0f, 1.0f, 1.0f, 10.0f);
+    glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 model = glm::rotate(glm::mat4(1.0f), last_angle, glm::vec3(0, 1, 0));
+    model = glm::scale(model, glm::vec3(0.75f));
+    
+    program.use();
+    
+    const int proj_mat_location = program.uniform("P");
+    const int view_mat_location = program.uniform("V");
+    const int model_mat_location = program.uniform("M");
+
+    program.setUniform(proj_mat_location, projection);
+    program.setUniform(view_mat_location, view);
+    program.setUniform(model_mat_location, model);
     
     while (!glfwWindowShouldClose(window)) {
         static GLdouble previous_seconds = glfwGetTime();
@@ -110,7 +125,7 @@ int main() {
         
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture.object());
-        program.setUniform("tex", 0);
+        program.setUniform(texture_id, 0);
 
         if (last_angle > M_PI * 2) {
             last_angle = 0.0f;
@@ -118,14 +133,10 @@ int main() {
         
         last_angle += elapsed_seconds * rotating_speed;
         
-        glm::mat4 projection = glm::perspective(45.0f, 1.0f, 1.0f, 10.0f);
-        glm::mat4 view = glm::lookAt(glm::vec3(2.5f, 2.5f, 2.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glm::mat4 model = glm::rotate(glm::mat4(1.0f), last_angle, glm::vec3(0, 1, 0));
+        model = glm::rotate(glm::mat4(1.0f), last_angle, glm::vec3(0, 1, 0));
         model = glm::scale(model, glm::vec3(0.75f));
-        
-        program.setUniform("P", projection);
-        program.setUniform("V", view);
-        program.setUniform("M", model);
+
+        program.setUniform(model_mat_location, model);
         
         vao.bind();
         
