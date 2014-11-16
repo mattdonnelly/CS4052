@@ -123,12 +123,12 @@ int main(int argc, const char * argv[]) {
     
     shader_program.use();
 
-    const int view_mat_location = shader_program.uniform("view");
     const int proj_mat_location = shader_program.uniform("projection");
+    const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
     
-    shader_program.setUniform(view_mat_location, view_mat);
     shader_program.setUniform(proj_mat_location, proj_mat);
+    shader_program.setUniform(view_mat_location, view_mat);
     shader_program.setUniform(model_mat_location, model_mat);
 
     glEnable(GL_CULL_FACE);
