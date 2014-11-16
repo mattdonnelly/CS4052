@@ -10,7 +10,7 @@
 #include <fstream>
 #include <assert.h>
 
-GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) : _object(0), _refCount(NULL) {
+GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) : _refCount(NULL) {
     // Create the shader object
     _object = glCreateShader(shaderType);
     if (_object == 0) {
@@ -51,7 +51,8 @@ GLShader::~GLShader() {
     }
 }
 
-GLShader::GLShader(const GLShader &other) : _object(other._object), _refCount(other._refCount) {
+GLShader::GLShader(const GLShader &other) : _refCount(other._refCount) {
+    _object = other._object;
     _retain();
 }
 
@@ -63,10 +64,6 @@ GLShader &GLShader::operator = (const GLShader &other) {
     return *this;
 }
 
-GLuint GLShader::object() const {
-    return _object;
-}
-
 GLShader GLShader::shaderFromFile(const std::string filePath, GLenum shaderType) {
     std::ifstream ifile(filePath);
     std::string text;
@@ -75,7 +72,7 @@ GLShader GLShader::shaderFromFile(const std::string filePath, GLenum shaderType)
         throw std::runtime_error(std::string("Failed to open file: ") + filePath);
     }
     
-    while(ifile.good()) {
+    while (ifile.good()) {
         std::string line;
         std::getline(ifile, line);
         text.append(line + "\n");

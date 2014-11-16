@@ -8,27 +8,19 @@
 
 #include "GLBuffer.h"
 
-GLBuffer::GLBuffer() {
-    glGenVertexArrays(1, &_object);
-    glBindVertexArray(_object);
-    attribCount = 0;
-}
-
-GLBuffer::~GLBuffer() {
-    glDeleteVertexArrays(1, &_object);
-}
-
-void GLBuffer::bufferObject(GLfloat *data, GLint size, GLint count, GLint stride, const GLvoid * pointer) {
-    GLuint vbo;
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, count, data, GL_STATIC_DRAW);
+GLBuffer::GLBuffer(GLfloat *data, GLint count, GLint size, GLint stride, const GLvoid *offset) {
+    _size = size;
+    _count = count;
     
-    glEnableVertexAttribArray(attribCount);
-    glVertexAttribPointer(attribCount, size, GL_FLOAT, GL_FALSE, 0, 0);
-    attribCount++;
+    glGenBuffers(1, &_object);
+    glBindBuffer(GL_ARRAY_BUFFER, _object);
+    glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 }
 
-GLuint GLBuffer::object() const {
-    return _object;
+GLint GLBuffer::size() const {
+    return _size;
+}
+
+GLint GLBuffer::count() const {
+    return _count;
 }

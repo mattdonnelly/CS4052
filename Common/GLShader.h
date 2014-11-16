@@ -8,11 +8,13 @@
 
 #pragma once
 
+#include "GLObject.h"
+
 #include <GL/glew.h>
 #include <stdio.h>
 #include <string>
 
-class GLShader {
+class GLShader: public GLObject {
 public:
     static GLShader shaderFromFile(const std::string filePath, GLenum shaderType);
     
@@ -21,13 +23,9 @@ public:
     
     GLShader(const GLShader &other);
     GLShader &operator =(const GLShader &other);
-
-    GLuint object() const;
     
 private:
-    GLuint _object;
-
-    unsigned* _refCount;
+    unsigned *_refCount;
     
     void _retain();
     void _release();

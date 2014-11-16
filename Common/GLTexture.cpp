@@ -29,10 +29,6 @@ GLTexture::~GLTexture() {
     glDeleteTextures(1, &_object);
 }
 
-GLuint GLTexture::object() const {
-    return _object;
-}
-
 GLint GLTexture::width() const {
     return _width;
 }

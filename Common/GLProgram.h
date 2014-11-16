@@ -10,18 +10,18 @@
 
 #define GLM_FORCE_RADIANS
 
+#include "GLObject.h"
+
 #include <stdio.h>
 #include <vector>
 #include <glm/glm.hpp>
 
 #include "GLShader.h"
 
-class GLProgram {
+class GLProgram: public GLObject {
 public:
     GLProgram(const std::vector<GLShader> &shaders);
     ~GLProgram();
-
-    GLuint object() const;
     
     void use() const;
     
@@ -40,6 +40,11 @@ public:
     void setUniform(const GLchar *uniformName, const glm::vec4 &v);
     void setUniform(const GLchar *uniformName, const int value);
     
-private:
-    GLuint _object;
+    void setUniform(const GLint loc, const glm::mat2 &m, GLboolean transpose=GL_FALSE);
+    void setUniform(const GLint loc, const glm::mat3 &m, GLboolean transpose=GL_FALSE);
+    void setUniform(const GLint loc, const glm::mat4 &m, GLboolean transpose=GL_FALSE);
+    void setUniform(const GLint loc, const glm::vec2 &v);
+    void setUniform(const GLint loc, const glm::vec3 &v);
+    void setUniform(const GLint loc, const glm::vec4 &v);
+    void setUniform(const GLint loc, const int value);
 };

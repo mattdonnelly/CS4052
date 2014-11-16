@@ -8,11 +8,13 @@
 
 #pragma once
 
+#include "GLObject.h"
+
 #include <GL/glew.h>
 #include <stdio.h>
 #include <string>
 
-class GLTexture {
+class GLTexture: public GLObject {
 public:
     GLTexture(const std::string filepath,
               GLint format,
@@ -20,7 +22,6 @@ public:
               GLint wrapMode = GL_CLAMP_TO_EDGE);
     ~GLTexture();
 
-    GLuint object() const;
     void bindTexture() const;
     
     GLint width() const;
@@ -28,7 +29,6 @@ public:
     GLint channels() const;
     
 private:
-    GLuint _object;
     GLint _width;
     GLint _height;
     GLint _channels;

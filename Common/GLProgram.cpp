@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <glm/gtc/type_ptr.hpp>
 
-GLProgram::GLProgram(const std::vector<GLShader> &shaders) : _object(0) {
+GLProgram::GLProgram(const std::vector<GLShader> &shaders) {
     if (shaders.size() <= 0) {
         throw std::runtime_error("Must pass at least one shader to create program");
     }
@@ -55,10 +55,6 @@ GLProgram::~GLProgram() {
     if (_object != 0) {
         glDeleteProgram(_object);
     }
-}
-
-GLuint GLProgram::object() const {
-    return _object;
 }
 
 void GLProgram::use() const {
@@ -135,4 +131,42 @@ void GLProgram::setUniform(const GLchar *name, const glm::vec4& v) {
 void GLProgram::setUniform(const GLchar *name, const int v) {
     assert(isInUse());
     glUniform1i(uniform(name), v);
+}
+
+/////////////////////////////////////
+/////////////////////////////////////
+
+void GLProgram::setUniform(const GLint loc, const glm::mat2 &m, GLboolean transpose) {
+    assert(isInUse());
+    glUniformMatrix2fv(loc, 1, transpose, glm::value_ptr(m));
+}
+
+void GLProgram::setUniform(const GLint loc, const glm::mat3 &m, GLboolean transpose) {
+    assert(isInUse());
+    glUniformMatrix3fv(loc, 1, transpose, glm::value_ptr(m));
+}
+
+void GLProgram::setUniform(const GLint loc, const glm::mat4 &m, GLboolean transpose) {
+    assert(isInUse());
+    glUniformMatrix4fv(loc, 1, transpose, glm::value_ptr(m));
+}
+
+void GLProgram::setUniform(const GLint loc, const glm::vec2 &v) {
+    assert(isInUse());
+    glUniform2fv(loc, 1, glm::value_ptr(v));
+}
+
+void GLProgram::setUniform(const GLint loc, const glm::vec3 &v) {
+    assert(isInUse());
+    glUniform3fv(loc, 1, glm::value_ptr(v));
+}
+
+void GLProgram::setUniform(const GLint loc, const glm::vec4& v) {
+    assert(isInUse());
+    glUniform4fv(loc, 1, glm::value_ptr(v));
+}
+
+void GLProgram::setUniform(const GLint loc, const int v) {
+    assert(isInUse());
+    glUniform1i(loc, v);
 }

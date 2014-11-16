@@ -8,26 +8,26 @@
 
 #pragma once
 
+#include "GLObject.h"
+
 #include <GL/glew.h>
 #include <stdio.h>
 #include <glm/glm.hpp>
 
 #include "GLProgram.h"
 
-class GLBuffer {
+class GLBuffer: public GLObject {
 public:
-    GLBuffer();
-    ~GLBuffer();
-    
-    void bufferObject(GLfloat *data,
-                      GLint size,
-                      GLint count,
-                      GLint stride = 0,
-                      const GLvoid *offset = 0);
-    
-    GLuint object() const;
+    GLBuffer(GLfloat *data,
+             GLint count,
+             GLint size,
+             GLint stride = 0,
+             const GLvoid *offset = 0);
+
+    GLint size() const;
+    GLint count() const;
     
 private:
-    GLuint _object;
-    unsigned attribCount;
+    GLint _size;
+    GLint _count;
 };
