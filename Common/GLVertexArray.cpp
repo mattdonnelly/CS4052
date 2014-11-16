@@ -8,7 +8,7 @@
 
 #include "GLVertexArray.h"
 
-GLVertexArray::GLVertexArray(std::vector<GLBuffer> buffers) {
+GLVertexArray::GLVertexArray(const std::vector<GLBuffer> &buffers) {
     if (buffers.size() <= 0) {
         throw std::runtime_error("Must pass at least one shader to create program");
     }

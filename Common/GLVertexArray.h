@@ -15,7 +15,7 @@
 
 class GLVertexArray: public  GLObject {
 public:
-    GLVertexArray(const std::vector<GLBuffer> buffers);
+    GLVertexArray(const std::vector<GLBuffer> &buffers);
     ~GLVertexArray();
     
     void bind() const;
