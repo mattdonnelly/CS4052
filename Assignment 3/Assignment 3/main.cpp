@@ -15,6 +15,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "GLBuffer.h"
+#include "GLVertexArray.h"
 #include "GLShader.h"
 #include "GLTexture.h"
 #include "GLProgram.h"
@@ -37,7 +38,6 @@ GLProgram createShaderProgram() {
 int main() {
     GLFWwindow *window = NULL;
     
-    GLuint vao;
     int point_count = 0;
     
     const GLubyte *renderer;
@@ -70,21 +70,21 @@ int main() {
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
     
-    GLBuffer buffer = GLBuffer::GLBuffer();
-
-    {
-        GLfloat *vp;
-        GLfloat *vt;
-        GLfloat *vn;
-        assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/cube.obj", vp, vt, vn, point_count));
-
-        buffer.bufferObject(vp, 3, sizeof(float) * 3 * point_count);
-        buffer.bufferObject(vt, 2, sizeof(float) * 3 * point_count);
-        
-        delete vp;
-        delete vn;
-        delete vt;
-    }
+    GLfloat *vp, *vt, *vn;
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/cube.obj", vp, vt, vn, point_count));
+    
+    GLBuffer vp_buffer = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
+    GLBuffer vt_buffer = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 3 * point_count);
+    
+    delete vp;
+    delete vn;
+    delete vt;
+    
+    std::vector<GLBuffer> buffers;
+    buffers.emplace_back(vp_buffer);
+    buffers.emplace_back(vt_buffer);
+    
+    GLVertexArray vao = GLVertexArray(buffers);
     
     GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/texture.png", GL_RGBA);
     
@@ -113,9 +113,7 @@ int main() {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture.object());
         program.setUniform("tex", 0);
-        
-        glBindVertexArray(vao);
-        
+
         if (last_angle > M_PI * 2) {
             last_angle = 0.0f;
         }
@@ -130,6 +128,8 @@ int main() {
         program.setUniform("P", projection);
         program.setUniform("V", view);
         program.setUniform("M", model);
+        
+        vao.bind();
         
         glDrawArrays(GL_TRIANGLES, 0, point_count);
         
