@@ -47,4 +47,7 @@ public:
     void setUniform(const GLint loc, const glm::vec3 &v);
     void setUniform(const GLint loc, const glm::vec4 &v);
     void setUniform(const GLint loc, const int value);
+    
+private:
+    std::vector<GLShader> _shaders;
 };

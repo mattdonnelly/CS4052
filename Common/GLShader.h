@@ -16,17 +16,8 @@
 
 class GLShader: public GLObject {
 public:
-    static GLShader shaderFromFile(const std::string filePath, GLenum shaderType);
-    
     GLShader(const std::string &shaderCode, GLenum shaderType);
     ~GLShader();
     
-    GLShader(const GLShader &other);
-    GLShader &operator =(const GLShader &other);
-    
-private:
-    unsigned *_refCount;
-    
-    void _retain();
-    void _release();
+    static GLShader shaderFromFile(const std::string filePath, GLenum shaderType);
 };

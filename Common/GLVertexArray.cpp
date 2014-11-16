@@ -9,21 +9,35 @@
 #include "GLVertexArray.h"
 
 GLVertexArray::GLVertexArray(std::vector<GLBuffer> buffers) {
-    glGenVertexArrays (1, &_object);
-    glBindVertexArray(_object);
+    if (buffers.size() <= 0) {
+        throw std::runtime_error("Must pass at least one shader to create program");
+    }
     
+    _buffers = buffers;
+    
+    // Create the vertex array object
+    glGenVertexArrays (1, &_object);
+    if (_object == 0) {
+        throw std::runtime_error("glGenVertexArrays failed");
+    }
+
+    glBindVertexArray(_object);
+
+    // Bind buffers
     for (unsigned i = 0; i < buffers.size(); ++i) {
         GLBuffer buffer = buffers[i];
         glBindBuffer(GL_ARRAY_BUFFER, buffer.object());
         glVertexAttribPointer(i, buffer.count(), GL_FLOAT, GL_FALSE, 0, NULL);
-    }
-    
-    for (unsigned i = 0; i < buffers.size(); ++i) {
         glEnableVertexAttribArray(i);
     }
 }
 
 GLVertexArray::~GLVertexArray() {
+    for (unsigned i = 0; i < _buffers.size(); ++i) {
+        GLuint obj = _buffers[i].object();
+        glDeleteBuffers(1, &obj);
+    }
+    
     glDeleteVertexArrays(1, &_object);
 }
 

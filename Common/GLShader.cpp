@@ -10,7 +10,7 @@
 #include <fstream>
 #include <assert.h>
 
-GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) : _refCount(NULL) {
+GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) {
     // Create the shader object
     _object = glCreateShader(shaderType);
     if (_object == 0) {
@@ -40,28 +40,10 @@ GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) : _refCount
         glDeleteShader(_object); _object = 0;
         throw std::runtime_error(msg);
     }
-    
-    _refCount = new unsigned;
-    *_refCount = 1;
 }
 
 GLShader::~GLShader() {
-    if (_refCount) {
-        _release();
-    }
-}
 
-GLShader::GLShader(const GLShader &other) : _refCount(other._refCount) {
-    _object = other._object;
-    _retain();
-}
-
-GLShader &GLShader::operator = (const GLShader &other) {
-    _release();
-    _object = other._object;
-    _refCount = other._refCount;
-    _retain();
-    return *this;
 }
 
 GLShader GLShader::shaderFromFile(const std::string filePath, GLenum shaderType) {
@@ -82,18 +64,4 @@ GLShader GLShader::shaderFromFile(const std::string filePath, GLenum shaderType)
     
     GLShader shader(text.c_str(), shaderType);
     return shader;
-}
-
-void GLShader::_retain() {
-    assert(_refCount);
-    *_refCount += 1;
-}
-
-void GLShader::_release() {
-    assert(_refCount && *_refCount > 0);
-    *_refCount -= 1;
-    if (*_refCount == 0){
-        glDeleteShader(_object); _object = 0;
-        delete _refCount; _refCount = NULL;
-    }
 }

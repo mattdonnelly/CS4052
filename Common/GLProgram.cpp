@@ -15,10 +15,13 @@ GLProgram::GLProgram(const std::vector<GLShader> &shaders) {
         throw std::runtime_error("Must pass at least one shader to create program");
     }
     
+    _shaders = shaders;
+    
     // Create the program object
     _object = glCreateProgram();
-    if (_object == 0)
+    if (_object == 0) {
         throw std::runtime_error("glCreateProgram failed");
+    }
     
     // Attach all the shaders
     for (unsigned i = 0; i < shaders.size(); ++i) {
@@ -54,6 +57,10 @@ GLProgram::GLProgram(const std::vector<GLShader> &shaders) {
 GLProgram::~GLProgram() {
     if (_object != 0) {
         glDeleteProgram(_object);
+        
+        for (unsigned i = 0; i < _shaders.size(); ++i) {
+            glDeleteShader(_shaders[i].object());
+        }
     }
 }
 
