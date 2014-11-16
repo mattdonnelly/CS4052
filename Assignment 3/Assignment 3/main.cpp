@@ -76,9 +76,7 @@ int main() {
     GLBuffer vp_buffer = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
     GLBuffer vt_buffer = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 3 * point_count);
     
-    delete vp;
-    delete vn;
-    delete vt;
+    delete vp; delete vn; delete vt;
     
     std::vector<GLBuffer> buffers;
     buffers.emplace_back(vp_buffer);
