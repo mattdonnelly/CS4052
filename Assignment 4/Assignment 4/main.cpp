@@ -38,6 +38,12 @@
     #define GL_HEIGHT WINDOW_HEIGHT
 #endif
 
+#if RETINA
+    #define MOUSE_SENSITIVITY 0.0056f
+#else
+    #define MOUSE_SENSITIVITY 0.02f
+#endif
+
 static Camera camera;
 static bool windowIsActive = true;
 
@@ -56,13 +62,8 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double xpos_delta;
         double ypos_delta;
 
-#if RETINA
-        xpos_delta = (last_xpos - xpos) * 0.0056f;
-        ypos_delta = (last_ypos - ypos) * 0.0056f;
-#else
-        xpos_delta = (last_xpos - xpos) * 0.02f;
-        ypos_delta = (last_ypos - ypos) * 0.02f;
-#endif
+        xpos_delta = (last_xpos - xpos) * MOUSE_SENSITIVITY;
+        ypos_delta = (last_ypos - ypos) * MOUSE_SENSITIVITY;
         
         camera.mouseUpdate(xpos_delta, ypos_delta);
     }
