@@ -49,26 +49,26 @@ bool positionInWindow(GLFWwindow *window, double mouseX, double mouseY) {
 }
 
 void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
+    static double last_xpos = xpos;
+    static double last_ypos = ypos;
+    
     if (windowIsActive && positionInWindow(window, xpos, ypos)) {
-        static double last_xpos = xpos;
-        static double last_ypos = ypos;
-        
         double xpos_delta;
         double ypos_delta;
 
 #if RETINA
-        xpos_delta = (last_xpos - xpos) * 0.0156f;
-        ypos_delta = (last_ypos - ypos) * 0.0156f;
+        xpos_delta = (last_xpos - xpos) * 0.0056f;
+        ypos_delta = (last_ypos - ypos) * 0.0056f;
 #else
-        xpos_delta = (last_xpos - xpos) * 0.03f;
-        ypos_delta = (last_ypos - ypos) * 0.03f;
+        xpos_delta = (last_xpos - xpos) * 0.02f;
+        ypos_delta = (last_ypos - ypos) * 0.02f;
 #endif
         
         camera.mouseUpdate(xpos_delta, ypos_delta);
-        
-        last_xpos = xpos;
-        last_ypos = ypos;
     }
+    
+    last_xpos = xpos;
+    last_ypos = ypos;
 }
 
 void handleCursorEnter(GLFWwindow *window, int entered) {
