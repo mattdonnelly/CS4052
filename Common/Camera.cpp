@@ -26,7 +26,10 @@ Camera::~Camera() {
 }
 
 void Camera::update() {
-    orientation = glm::angleAxis(pitch, glm::vec3(1.0f, 0.0f, 0.0f)) * glm::angleAxis(heading, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::quat x_axis = glm::angleAxis(pitch, glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::quat y_axis = glm::angleAxis(heading, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::quat z_axis = glm::angleAxis(roll, glm::vec3(0.0f, 0.0f, 1.0f));
+    orientation =  x_axis * y_axis * z_axis;
     
     glm::mat4 rotation = glm::mat4_cast(orientation);
     glm::mat4 translation = glm::translate(glm::mat4(1.0f), -position);

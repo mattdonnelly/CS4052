@@ -140,6 +140,8 @@ int main(int argc, const char * argv[]) {
     
     Camera camera = Camera(fov, aspect, near, far);
     camera.position = glm::vec3(0.0f, 0.0f, 2.0f);
+    camera.pitch = 0.2f;
+    camera.heading = 0.2f;
 
     shader_program.use();
     
