@@ -18,7 +18,9 @@ Camera::Camera(double fov, double aspect, double near, double far) {
     this->near = near;
     this->far = far;
     this->speed = 3.0f;
-    this->position = glm::vec3(0.0f, 0.0f, 1.0f);
+    this->position = glm::vec3(0.0f, 0.0f, 0.0f);
+    this->forward_direction = glm::vec3(0.0f, 0.0f, -1.0f);
+    this->up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
     this->orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
 }
 
@@ -27,17 +29,19 @@ Camera::~Camera() {
 }
 
 void Camera::update() {
-    glm::quat x_axis = glm::angleAxis(pitch, glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::vec3 axis = glm::cross(forward_direction, up_direction);
+    glm::quat x_axis = glm::angleAxis(pitch, axis);
     glm::quat y_axis = glm::angleAxis(heading, glm::vec3(0.0f, 1.0f, 0.0f));
     glm::quat z_axis = glm::angleAxis(roll, glm::vec3(0.0f, 0.0f, 1.0f));
     orientation =  x_axis * y_axis * z_axis;
     
-    glm::mat4 rotation = glm::mat4_cast(orientation);
-    glm::mat4 translation = glm::translate(glm::mat4(1.0f), -position);
-    view = rotation * translation;
+    rotation = glm::mat4_cast(orientation);
+    forward_direction = glm::mat3(rotation) * forward_direction;
+    view = glm::lookAt(position, position + forward_direction, up_direction);
 
     projection = glm::perspective(fov, aspect, near, far);
     model = glm::mat4(1.0f);
+    heading = 0.0f;
 }
 
 void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
@@ -46,17 +50,18 @@ void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
     p = model;
 }
 
-void Camera::handleKey(int key, double delta) {
-    if (key == GLFW_KEY_W) {
-        position.z -= speed * delta;
+void Camera::handleKey(int key, float delta) {
+    if (key == GLFW_KEY_W) {        
+        position += speed * delta * forward_direction;
+        //position.z -= speed * delta;
     }
     else if (key == GLFW_KEY_S) {
-        position.z += speed * delta;
+        position -= speed * delta * forward_direction;
     }
     else if (key == GLFW_KEY_A) {
-        heading -= (speed / M_PI) * delta;
+        heading += speed * delta;
     }
     else if (key == GLFW_KEY_D) {
-        heading += (speed / M_PI) * delta;
+        heading -= speed * delta;
     }
 }

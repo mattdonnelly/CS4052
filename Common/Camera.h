@@ -29,13 +29,16 @@ public:
     double fov;
     double near;
     double far;
-    double speed;
+    float speed;
     
     float roll;
     float heading;
     float pitch;
     
     glm::vec3 position;
+    glm::vec3 forward_direction;
+    glm::vec3 up_direction;
+    glm::mat4 rotation;
     glm::quat orientation;
 
     glm::mat4 projection;
@@ -46,5 +49,5 @@ public:
     void update();
     void getMatricies(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
     
-    void handleKey(int key, double delta);
+    void handleKey(int key, float delta);
 };
