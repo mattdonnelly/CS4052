@@ -11,67 +11,98 @@
 #include <GLFW/glfw3.h>
 
 Camera::Camera(double fov, double aspect, double near, double far) {
-    this->fov = fov;
-    this->aspect = aspect;
-    this->near = near;
-    this->far = far;
-    up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
-    position = glm::vec3(0.0f, 0.0f, 1.0f);
-    look_at = glm::vec3(0.0f, 0.0f, 0.0f);
-    orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
+    _fov = fov;
+    _aspect = aspect;
+    _near = near;
+    _far = far;
+    _up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
+    _position = glm::vec3(0.0f, 0.0f, 1.0f);
+    _look_at = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
 Camera::~Camera() {
     
 }
 
+double Camera::aspect() {
+    return _aspect;
+}
+
+double Camera::fov() {
+    return _fov;
+}
+
+double Camera::near() {
+    return _near;
+}
+
+double Camera::far() {
+    return _far;
+}
+
+
 void Camera::setPosition(double x, double y, double z) {
-    position.x = x;
-    position.y = y;
-    position.z = z;
+    _position.x = x;
+    _position.y = y;
+    _position.z = z;
     needsUpdate = true;
 }
 
 void Camera::setLookAt(double x, double y, double z) {
-    look_at.x = x;
-    look_at.y = y;
-    look_at.z = z;
+    _look_at.x = x;
+    _look_at.y = y;
+    _look_at.z = z;
+    needsUpdate = true;
+}
+
+void Camera::setRoll(float roll) {
+    _roll = roll;
     needsUpdate = true;
 }
 
 void Camera::setPitch(float pitch) {
-    this->pitch = pitch;
+    _pitch = pitch;
     needsUpdate = true;
 }
 
 void Camera::setHeading(float heading) {
-    this->heading = heading;
+    _heading = heading;
     needsUpdate = true;
+}
+
+float Camera::roll() {
+    return _roll;
+}
+
+float Camera::pitch() {
+    return _pitch;
+}
+
+float Camera::heading() {
+    return _heading;
 }
 
 void Camera::update() {
     if (needsUpdate) {
-        orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
+        glm::vec3 camera_direction = glm::normalize(_look_at - _position);
         
-        glm::fquat pitch_angle = glm::angleAxis(-pitch, glm::vec3(1, 0, 0));
-        orientation = pitch_angle * orientation;
-        orientation = glm::normalize(orientation);
-
-        glm::fquat heading_angle = glm::angleAxis(heading, up_direction);
-        orientation = orientation * heading_angle;
-        orientation = glm::normalize(orientation);
+        glm::vec3 axis = glm::cross(camera_direction, _up_direction);
+        glm::quat pitch_quat = glm::angleAxis(_pitch, axis);
         
-        view = glm::mat4_cast(orientation);
-        glm::vec3 m_xaxis = glm::vec3(view[0][0], view[1][0], view[2][0]);
-        glm::vec3 m_yaxis = glm::vec3(view[0][1], view[1][1], view[2][1]);
-        glm::vec3 m_zaxis = glm::vec3(view[0][2], view[1][2], view[2][2]);
+        glm::quat heading_quat = glm::angleAxis(_heading, _up_direction);
+        
+        glm::quat temp = glm::cross(pitch_quat, heading_quat);
+        temp = glm::normalize(temp);
+        
+        camera_direction = glm::rotate(temp, camera_direction);
+        
+        _look_at = _position + camera_direction;
 
-        view[3][0] = -glm::dot(m_xaxis, position);
-        view[3][1] = -glm::dot(m_yaxis, position);
-        view[3][2] = -glm::dot(m_zaxis, position);
-
-        projection = glm::perspective(fov, aspect, near, far);
+        projection = glm::perspective(_fov, _aspect, _near, _far);
+        view = glm::lookAt(_position, _look_at, _up_direction);
         model = glm::mat4(1.0f);
+        
+        needsUpdate = false;
     }
 }
 

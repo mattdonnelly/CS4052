@@ -136,9 +136,7 @@ int main(int argc, const char * argv[]) {
     Camera camera = Camera(fov, aspect, near, far);
     camera.setPosition(0.0f, 0.0f, 2.0f);
     camera.setLookAt(0.0f, 0.0f, 0.0f);
-    camera.setPitch(0.1f);
-    camera.setHeading(0.1f);
-                           
+    
     shader_program.use();
 
     glEnable(GL_CULL_FACE);
