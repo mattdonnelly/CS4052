@@ -17,6 +17,7 @@ Camera::Camera(double fov, double aspect, double near, double far) {
     this->aspect = aspect;
     this->near = near;
     this->far = far;
+    this->speed = 2.0f;
     this->position = glm::vec3(0.0f, 0.0f, 1.0f);
     this->orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
 }
@@ -43,4 +44,19 @@ void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
     m = projection;
     v = view;
     p = model;
+}
+
+void Camera::handleKey(int key, double delta) {
+    if (key == GLFW_KEY_W) {
+        position.z -= speed * delta;
+    }
+    else if (key == GLFW_KEY_S) {
+        position.z += speed * delta;
+    }
+    else if (key == GLFW_KEY_A) {
+        heading -= (speed / M_PI) * delta;
+    }
+    else if (key == GLFW_KEY_D) {
+        heading += (speed / M_PI) * delta;
+    }
 }

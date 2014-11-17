@@ -11,6 +11,7 @@
 #define GLM_FORCE_RADIANS
 
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -28,6 +29,7 @@ public:
     double fov;
     double near;
     double far;
+    double speed;
     
     float roll;
     float heading;
@@ -40,6 +42,9 @@ public:
     glm::mat4 view;
     glm::mat4 model;
     
+    void move(GLfloat vel);
     void update();
     void getMatricies(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
+    
+    void handleKey(int key, double delta);
 };

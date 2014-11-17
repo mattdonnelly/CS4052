@@ -48,34 +48,6 @@ GLProgram createShaderProgram() {
     return program;
 }
 
-/*void keyCallback(GLFWwindow *window,int key, int scan_code, int action, int mods) {
-    static double previous_seconds = glfwGetTime();
-    double current_seconds = glfwGetTime();
-    double elapsed_seconds = current_seconds - previous_seconds;
-    previous_seconds = current_seconds;
-    
-    switch (key) {
-        case GLFW_KEY_W:
-            camera.setPosition(camera.position().x, camera.position().y, camera.position().z - (movement_speed * elapsed_seconds));
-            break;
-        case GLFW_KEY_A:
-            camera.setPosition(camera.position().x - (movement_speed * elapsed_seconds), camera.position().y, camera.position().z);
-            break;
-        case GLFW_KEY_S:
-            camera.setPosition(camera.position().x, camera.position().y, camera.position().z + (movement_speed * elapsed_seconds));
-            break;
-        case GLFW_KEY_D:
-            camera.setPosition(camera.position().x + (movement_speed * elapsed_seconds), camera.position().y, camera.position().z);
-            break;
-        case GLFW_KEY_Q:
-
-            break;
-        case GLFW_KEY_E:
-
-            break;
-    }
-}*/
-
 int main(int argc, const char * argv[]) {
     GLFWwindow *window = NULL;
     
@@ -99,7 +71,6 @@ int main(int argc, const char * argv[]) {
     }
     
     glfwMakeContextCurrent(window);
-    //glfwSetKeyCallback(window, keyCallback);
     
     glewExperimental = GL_TRUE;
     glewInit();
@@ -140,8 +111,6 @@ int main(int argc, const char * argv[]) {
     
     Camera camera = Camera(fov, aspect, near, far);
     camera.position = glm::vec3(0.0f, 0.0f, 2.0f);
-    camera.pitch = 0.2f;
-    camera.heading = 0.2f;
 
     shader_program.use();
     
@@ -154,6 +123,11 @@ int main(int argc, const char * argv[]) {
     glFrontFace(GL_CW);
     
     while (!glfwWindowShouldClose(window)) {
+        static double previous_seconds = glfwGetTime();
+        double current_seconds = glfwGetTime();
+        double elapsed_seconds = current_seconds - previous_seconds;
+        previous_seconds = current_seconds;
+        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, GL_WIDTH, GL_HEIGHT);
         
@@ -176,6 +150,20 @@ int main(int argc, const char * argv[]) {
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
+        }
+        
+        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_W)) {
+            camera.handleKey(GLFW_KEY_W, elapsed_seconds);
+        }
+        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_S)) {
+            camera.handleKey(GLFW_KEY_S, elapsed_seconds);
+        }
+        
+        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_A)) {
+            camera.handleKey(GLFW_KEY_A, elapsed_seconds);
+        }
+        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_D)) {
+            camera.handleKey(GLFW_KEY_D, elapsed_seconds);
         }
 
         glfwSwapBuffers(window);
