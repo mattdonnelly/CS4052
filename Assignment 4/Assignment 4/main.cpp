@@ -38,6 +38,36 @@
     #define GL_HEIGHT WINDOW_HEIGHT
 #endif
 
+static Camera camera;
+static bool windowIsActive = true;
+
+void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
+    if (windowIsActive) {
+        static double last_xpos = xpos;
+        static double last_ypos = ypos;
+        
+        double xpos_delta;
+        double ypos_delta;
+
+#if RETINA
+        xpos_delta = (last_xpos - xpos) * (0.0256f);
+        ypos_delta = (last_ypos - ypos) * (0.0256f);
+#else
+        xpos_delta = (last_xpos - xpos) * (0.04f);
+        ypos_delta = (last_ypos - ypos) * (0.04f);
+#endif
+        
+        camera.mouseUpdate(xpos_delta, ypos_delta);
+        
+        last_xpos = xpos;
+        last_ypos = ypos;
+    }
+}
+
+void handleCursorEnter(GLFWwindow *window, int entered) {
+    windowIsActive = entered;
+}
+
 GLProgram createShaderProgram() {
     std::vector<GLShader> shaders;
     shaders.emplace_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/vertex_shader.glsl", GL_VERTEX_SHADER));
@@ -71,6 +101,8 @@ int main(int argc, const char * argv[]) {
     }
     
     glfwMakeContextCurrent(window);
+    glfwSetCursorEnterCallback(window, handleCursorEnter);
+    glfwSetCursorPosCallback(window, handleCursorPosition);
     
     glewExperimental = GL_TRUE;
     glewInit();
@@ -109,7 +141,7 @@ int main(int argc, const char * argv[]) {
     const float near = 0.1f;
     const float far = 100.0f;
     
-    Camera camera = Camera(fov, aspect, near, far);
+    camera = Camera(fov, aspect, near, far);
     camera.position = glm::vec3(0.0f, 0.0f, 2.0f);
 
     shader_program.use();
@@ -136,8 +168,7 @@ int main(int argc, const char * argv[]) {
         shader_program.use();
 
         glm::mat4 model, view, projection;
-        
-        camera.update();
+
         camera.getMatricies(projection, view, model);
         
         shader_program.setUniform(proj_mat_location, projection);
@@ -153,17 +184,10 @@ int main(int argc, const char * argv[]) {
         }
         
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_W)) {
-            camera.handleKey(GLFW_KEY_W, elapsed_seconds);
+            camera.moveUp(elapsed_seconds);
         }
         else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_S)) {
-            camera.handleKey(GLFW_KEY_S, elapsed_seconds);
-        }
-        
-        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_A)) {
-            camera.handleKey(GLFW_KEY_A, elapsed_seconds);
-        }
-        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_D)) {
-            camera.handleKey(GLFW_KEY_D, elapsed_seconds);
+            camera.moveDown(elapsed_seconds);
         }
 
         glfwSwapBuffers(window);
