@@ -175,7 +175,7 @@ int main(int argc, const char * argv[]) {
         
         shader_program.use();
         
-        texture.bindTexture();
+        texture.bindTexture(GL_TEXTURE0);
         shader_program.setUniform(texture_location, texture.index());
 
         glm::mat4 model, view, projection;

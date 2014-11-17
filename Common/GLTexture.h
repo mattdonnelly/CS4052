@@ -19,12 +19,12 @@ public:
     GLTexture(const std::string filepath,
               GLint format,
               GLint minMagFiler = GL_LINEAR,
-              GLint wrapMode = GL_CLAMP_TO_EDGE);
+              GLint wrapMode = GL_REPEAT);
     ~GLTexture();
 
     static unsigned int texture_count;
     
-    void bindTexture() const;
+    void bindTexture(GLint slot) const;
     void deleteTexture() const;
     
     GLint index() const;
@@ -34,7 +34,6 @@ public:
     
 private:
     GLint _index;
-    
     GLint _width;
     GLint _height;
     GLint _channels;

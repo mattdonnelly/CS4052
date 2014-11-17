@@ -22,8 +22,7 @@ GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, minMagFiler);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minMagFiler);
     glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_width, (GLsizei)_height, 0, format, GL_UNSIGNED_BYTE, pixels);
-    glBindTexture(GL_TEXTURE_2D, texture_count);
-    
+
     _index = texture_count;
     texture_count++;
     
@@ -31,16 +30,12 @@ GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler
 }
 
 GLTexture::~GLTexture() {
-    deleteTexture();
-}
-
-void GLTexture::bindTexture() const {
-    glActiveTexture(GL_TEXTURE0 + _index);
-    glBindTexture(GL_TEXTURE_2D, _object);
-}
-
-void GLTexture::deleteTexture() const {
     glDeleteTextures(1, &_object);
+}
+
+void GLTexture::bindTexture(GLint slot) const {
+    glActiveTexture(slot);
+    glBindTexture(GL_TEXTURE_2D, _object);
 }
 
 GLint GLTexture::index() const {
