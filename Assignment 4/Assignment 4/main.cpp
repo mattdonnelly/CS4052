@@ -13,7 +13,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <math.h>
 
 #include "Camera.h"
@@ -163,6 +162,8 @@ int main(int argc, const char * argv[]) {
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
     
+    const int frag_view_mat_location = shader_program.uniform("view_mat");
+    
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
         double current_seconds = glfwGetTime();
@@ -180,12 +181,14 @@ int main(int argc, const char * argv[]) {
         shader_program.setUniform(texture_location, texture.index());
 
         glm::mat4 model, view, projection;
-
         camera.getMatricies(projection, view, model);
+        model = glm::rotate(glm::mat4(1.0f), (float)glfwGetTime() * 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
         
         shader_program.setUniform(proj_mat_location, projection);
         shader_program.setUniform(view_mat_location, view);
         shader_program.setUniform(model_mat_location, model);
+        
+        shader_program.setUniform(frag_view_mat_location, view);
         
         vao.bind();
         
