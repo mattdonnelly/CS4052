@@ -1,8 +1,10 @@
 #version 400
 
+in vec2 frag_tex_coord;
 in vec3 position_eye, normal_eye;
 
 uniform mat4 view_mat;
+uniform sampler2D tex;
 
 vec3 light_position_world  = vec3 (0.0, 0.0, 2.0);
 vec3 Ls = vec3 (1.0, 1.0, 1.0);
@@ -34,5 +36,6 @@ void main () {
     
     vec3 Is = Ls * Ks * specular_factor;
     
-    fragment_colour = vec4 (Is + Id + Ia, 1.0);
+    vec2 flipped_tex_coord = vec2(frag_tex_coord.x, 1.0 - frag_tex_coord.y);
+    fragment_colour = vec4(Is + Id + Ia, 1.0) * texture(tex, flipped_tex_coord);
 }

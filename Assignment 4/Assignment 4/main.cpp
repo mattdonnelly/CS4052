@@ -41,8 +41,15 @@
 static Camera camera;
 static bool windowIsActive = true;
 
+bool positionInWindow(GLFWwindow *window, double mouseX, double mouseY) {
+    int windowX, windowY;
+    glfwGetWindowPos(window, &windowX, &windowY);
+    
+    return (mouseX <= GL_WIDTH / 2 && -mouseX <= GL_WIDTH / 2) && (mouseY <= GL_HEIGHT / 2 && -mouseY <= GL_HEIGHT / 2);
+}
+
 void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
-    if (windowIsActive) {
+    if (windowIsActive && positionInWindow(window, xpos, ypos)) {
         static double last_xpos = xpos;
         static double last_ypos = ypos;
         
@@ -50,11 +57,11 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double ypos_delta;
 
 #if RETINA
-        xpos_delta = (last_xpos - xpos) * 0.0256f;
-        ypos_delta = (last_ypos - ypos) * 0.0256f;
+        xpos_delta = (last_xpos - xpos) * 0.0056f;
+        ypos_delta = (last_ypos - ypos) * 0.0056f;
 #else
-        xpos_delta = (last_xpos - xpos) * 0.04f;
-        ypos_delta = (last_ypos - ypos) * 0.04f;
+        xpos_delta = (last_xpos - xpos) * 0.03f;
+        ypos_delta = (last_ypos - ypos) * 0.03f;
 #endif
         
         camera.mouseUpdate(xpos_delta, ypos_delta);
@@ -107,34 +114,39 @@ int main(int argc, const char * argv[]) {
     glewExperimental = GL_TRUE;
     glewInit();
     
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+    
     renderer = glGetString(GL_RENDERER);
     version = glGetString(GL_VERSION);
     std::cout << "Renderer: " << renderer << std::endl;
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
+    
+    int point_count = 0;
+    GLfloat *vp, *vt, *vn;
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/cube.obj", vp, vt, vn, point_count));
+    
+    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
+    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
+    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
+    
+    delete vp; delete vt; delete vn;
 
-    GLfloat points[] = {
-         0.0f,	0.5f,	0.0f,
-         0.5f, -0.5f,	0.0f,
-        -0.5f, -0.5f,	0.0f
-    };
-    
-    float normals[] = {
-        0.0f, 0.0f,  1.0f,
-        0.0f, 0.0f,  1.0f,
-        0.0f, 0.0f,  1.0f,
-    };
-    
-    GLBuffer points_vbo = GLBuffer(points, 3, 9 * sizeof(float));
-    GLBuffer normals_vbo = GLBuffer(normals, 3, 9 * sizeof(float));
-    
     std::vector<GLBuffer> buffers;
     buffers.emplace_back(points_vbo);
+    buffers.emplace_back(tex_vbo);
     buffers.emplace_back(normals_vbo);
     
     GLVertexArray vao = GLVertexArray(buffers);
     
+    GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/texture.png", GL_RGBA);
+    
     GLProgram shader_program = createShaderProgram();
+    
+    GLint texture_location = shader_program.uniform("tex");
+    assert(texture_location > -1);
     
     const float fov = 45.0f;
     const float aspect = (double)GL_WIDTH / (double)GL_HEIGHT;
@@ -142,17 +154,13 @@ int main(int argc, const char * argv[]) {
     const float far = 100.0f;
     
     camera = Camera(fov, aspect, near, far);
-    camera.position = glm::vec3(0.0f, 0.0f, 2.0f);
+    camera.position = glm::vec3(0.0f, 0.0f, 5.0f);
 
     shader_program.use();
     
     const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
-
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-    glFrontFace(GL_CW);
     
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
@@ -166,6 +174,10 @@ int main(int argc, const char * argv[]) {
         glfwPollEvents();
         
         shader_program.use();
+        
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture.object());
+        shader_program.setUniform(texture_location, 0);
 
         glm::mat4 model, view, projection;
 
@@ -177,7 +189,9 @@ int main(int argc, const char * argv[]) {
         
         vao.bind();
         
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, point_count);
+        
+        glDeleteTextures((GLsizei)1, (const GLuint*)(&texture_location));
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
