@@ -16,6 +16,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <math.h>
 
+#include "Camera.h"
 #include "GLBuffer.h"
 #include "GLVertexArray.h"
 #include "GLShader.h"
@@ -47,6 +48,29 @@ GLProgram createShaderProgram() {
     return program;
 }
 
+/*void keyCallback(GLFWwindow *window,int key, int scan_code, int action, int mods) {
+    switch (key) {
+        case GLFW_KEY_W:
+            camera.move(FORWARD);
+            break;
+        case GLFW_KEY_A:
+            camera.move(LEFT);
+            break;
+        case GLFW_KEY_S:
+            camera.move(BACK);
+            break;
+        case GLFW_KEY_D:
+            camera.move(RIGHT);
+            break;
+        case GLFW_KEY_Q:
+            camera.move(DOWN);
+            break;
+        case GLFW_KEY_E:
+            camera.move(UP);
+            break;
+    }
+}*/
+
 int main(int argc, const char * argv[]) {
     GLFWwindow *window = NULL;
     
@@ -63,13 +87,14 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Assignment 3", NULL, NULL);
+    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Assignment 4", NULL, NULL);
     if (!window) {
         fprintf (stderr, "ERROR: opening OS window\n");
         return 1;
     }
     
     glfwMakeContextCurrent(window);
+    //glfwSetKeyCallback(window, keyCallback);
     
     glewExperimental = GL_TRUE;
     glewInit();
@@ -103,48 +128,37 @@ int main(int argc, const char * argv[]) {
     
     GLProgram shader_program = createShaderProgram();
     
-    // Projection Matrix
+    const float fov = 45.0f;
+    const float aspect = (double)GL_WIDTH / (double)GL_HEIGHT;
     const float near = 0.1f;
     const float far = 100.0f;
-    const float fov = 45.0f;
-    const float aspect = (float)GL_WIDTH / (float)GL_HEIGHT;
     
-    glm::mat4 proj_mat = glm::perspective(fov, aspect, near, far);
-    
-    // View Matrix
-    const float cam_pos[] = { 0.0f, 0.0f, 2.0f };
-    float cam_angle = 0.0f;
-    glm::mat4 translation = glm::translate(glm::mat4(1.0f), glm::vec3(-cam_pos[0], -cam_pos[1], -cam_pos[2]));
-    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), cam_angle, glm::vec3(0, 1, 0));
-    glm::mat4 view_mat = rotation * translation;
-    
-    // Model Matrix
-    glm::mat4 model_mat = glm::mat4(1.0f);
-    
+    Camera camera = Camera(fov, aspect, near, far);
+    camera.setPosition(0.0f, 0.0f, 2.0f);
+    camera.setLookAt(0.0f, 0.0f, 0.0f);
+    camera.setPitch(0.1f);
+    camera.setHeading(0.1f);
+                           
     shader_program.use();
-
-    const int proj_mat_location = shader_program.uniform("projection");
-    const int view_mat_location = shader_program.uniform("view");
-    const int model_mat_location = shader_program.uniform("model");
-    
-    shader_program.setUniform(proj_mat_location, proj_mat);
-    shader_program.setUniform(view_mat_location, view_mat);
-    shader_program.setUniform(model_mat_location, model_mat);
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CW);
     
     while (!glfwWindowShouldClose(window)) {
-        double current_seconds = glfwGetTime();
-        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, GL_WIDTH, GL_HEIGHT);
         
         shader_program.use();
 
-        model_mat[3][0] = sinf(current_seconds);
-        shader_program.setUniform(model_mat_location, model_mat);
+        glm::mat4 model, view, projection;
+        
+        camera.update();
+        camera.getMatricies(projection, view, model);
+        
+        shader_program.setUniform("projection", projection);
+        shader_program.setUniform("view", view);
+        shader_program.setUniform("model", model);
         
         vao.bind();
         
