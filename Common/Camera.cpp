@@ -17,7 +17,7 @@ Camera::Camera(double fov, double aspect, double near, double far) {
     this->aspect = aspect;
     this->near = near;
     this->far = far;
-    this->speed = 2.0f;
+    this->speed = 3.0f;
     this->position = glm::vec3(0.0f, 0.0f, 1.0f);
     this->orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
 }
