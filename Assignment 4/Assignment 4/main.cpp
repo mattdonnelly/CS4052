@@ -208,10 +208,10 @@ int main(int argc, const char * argv[]) {
             camera.moveRight(elapsed_seconds);
         }
         
-        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_Q)) {
+        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_E)) {
             camera.moveUp(elapsed_seconds);
         }
-        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_E)) {
+        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_Q)) {
             camera.moveDown(elapsed_seconds);
         }
 
