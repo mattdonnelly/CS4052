@@ -50,11 +50,11 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double ypos_delta;
 
 #if RETINA
-        xpos_delta = (last_xpos - xpos) * (0.0256f);
-        ypos_delta = (last_ypos - ypos) * (0.0256f);
+        xpos_delta = (last_xpos - xpos) * 0.0256f;
+        ypos_delta = (last_ypos - ypos) * 0.0256f;
 #else
-        xpos_delta = (last_xpos - xpos) * (0.04f);
-        ypos_delta = (last_ypos - ypos) * (0.04f);
+        xpos_delta = (last_xpos - xpos) * 0.04f;
+        ypos_delta = (last_ypos - ypos) * 0.04f;
 #endif
         
         camera.mouseUpdate(xpos_delta, ypos_delta);
