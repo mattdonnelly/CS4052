@@ -49,24 +49,29 @@ GLProgram createShaderProgram() {
 }
 
 /*void keyCallback(GLFWwindow *window,int key, int scan_code, int action, int mods) {
+    static double previous_seconds = glfwGetTime();
+    double current_seconds = glfwGetTime();
+    double elapsed_seconds = current_seconds - previous_seconds;
+    previous_seconds = current_seconds;
+    
     switch (key) {
         case GLFW_KEY_W:
-            camera.move(FORWARD);
+            camera.setPosition(camera.position().x, camera.position().y, camera.position().z - (movement_speed * elapsed_seconds));
             break;
         case GLFW_KEY_A:
-            camera.move(LEFT);
+            camera.setPosition(camera.position().x - (movement_speed * elapsed_seconds), camera.position().y, camera.position().z);
             break;
         case GLFW_KEY_S:
-            camera.move(BACK);
+            camera.setPosition(camera.position().x, camera.position().y, camera.position().z + (movement_speed * elapsed_seconds));
             break;
         case GLFW_KEY_D:
-            camera.move(RIGHT);
+            camera.setPosition(camera.position().x + (movement_speed * elapsed_seconds), camera.position().y, camera.position().z);
             break;
         case GLFW_KEY_Q:
-            camera.move(DOWN);
+
             break;
         case GLFW_KEY_E:
-            camera.move(UP);
+
             break;
     }
 }*/
@@ -134,10 +139,13 @@ int main(int argc, const char * argv[]) {
     const float far = 100.0f;
     
     Camera camera = Camera(fov, aspect, near, far);
-    camera.setPosition(0.0f, 0.0f, 2.0f);
-    camera.setLookAt(0.0f, 0.0f, 0.0f);
-    
+    camera.position = glm::vec3(0.0f, 0.0f, 2.0f);
+
     shader_program.use();
+    
+    const int proj_mat_location = shader_program.uniform("projection");
+    const int view_mat_location = shader_program.uniform("view");
+    const int model_mat_location = shader_program.uniform("model");
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -147,6 +155,8 @@ int main(int argc, const char * argv[]) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, GL_WIDTH, GL_HEIGHT);
         
+        glfwPollEvents();
+        
         shader_program.use();
 
         glm::mat4 model, view, projection;
@@ -154,15 +164,13 @@ int main(int argc, const char * argv[]) {
         camera.update();
         camera.getMatricies(projection, view, model);
         
-        shader_program.setUniform("projection", projection);
-        shader_program.setUniform("view", view);
-        shader_program.setUniform("model", model);
+        shader_program.setUniform(proj_mat_location, projection);
+        shader_program.setUniform(view_mat_location, view);
+        shader_program.setUniform(model_mat_location, model);
         
         vao.bind();
         
         glDrawArrays(GL_TRIANGLES, 0, 3);
-
-        glfwPollEvents();
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
