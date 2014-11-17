@@ -44,8 +44,8 @@ static bool windowIsActive = true;
 bool positionInWindow(GLFWwindow *window, double mouseX, double mouseY) {
     int windowX, windowY;
     glfwGetWindowPos(window, &windowX, &windowY);
-    
-    return (mouseX <= GL_WIDTH / 2 && -mouseX <= GL_WIDTH / 2) && (mouseY <= GL_HEIGHT / 2 && -mouseY <= GL_HEIGHT / 2);
+
+    return (mouseX > 0 && mouseX < WINDOW_WIDTH) && (mouseY > 0 && mouseY < WINDOW_HEIGHT);
 }
 
 void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {

@@ -9,6 +9,8 @@
 #include "Camera.h"
 
 #include <GLFW/glfw3.h>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 Camera::Camera() : Camera(45.0f, 1.0f, 0.1f, 100.0f) {}
 
@@ -21,7 +23,6 @@ Camera::Camera(double fov, double aspect, double near, double far) {
     this->position = glm::vec3(0.0f, 0.0f, 0.0f);
     this->forward_direction = glm::vec3(0.0f, 0.0f, -1.0f);
     this->up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
-    this->orientation = glm::fquat(1.0f, 0.0f, 0.0f, 0.0f);
 }
 
 Camera::~Camera() {
@@ -29,11 +30,9 @@ Camera::~Camera() {
 }
 
 void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
-    view = glm::lookAt(position, position + forward_direction, up_direction);
-    
     projection = glm::perspective(fov, aspect, near, far);
+    view = glm::lookAt(position, position + forward_direction, up_direction);
     model = glm::mat4(1.0f);
-    heading = 0.0f;
     
     m = projection;
     v = view;
@@ -41,12 +40,12 @@ void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
 }
 
 void Camera::mouseUpdate(float deltaX, float deltaY) {
-    glm::vec3 axis = glm::cross(forward_direction, up_direction);
-    glm::quat x_axis = glm::angleAxis(mouseY, axis);
-    glm::quat y_axis = glm::angleAxis(mouseX, glm::vec3(0.0f, 1.0f, 0.0f));
-    orientation =  x_axis * y_axis;
+    glm::vec3 x_axis = glm::cross(forward_direction, up_direction);
+    glm::quat pitch = glm::angleAxis(deltaY, x_axis);
+    glm::quat yaw = glm::angleAxis(deltaX, up_direction);
+    glm::quat orientation =  yaw * pitch;
     
-    rotation = glm::mat4_cast(orientation);
+    glm::mat4 rotation = glm::mat4_cast(orientation);
     forward_direction = glm::mat3(rotation) * forward_direction;
 }
 

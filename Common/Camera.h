@@ -14,10 +14,6 @@
 #include <GLFW/glfw3.h>
 
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtx/quaternion.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 class Camera {
 public:
@@ -29,17 +25,12 @@ public:
     double fov;
     double near;
     double far;
-    float speed;
     
-    float roll;
-    float heading;
-    float pitch;
+    float speed;
     
     glm::vec3 position;
     glm::vec3 forward_direction;
     glm::vec3 up_direction;
-    glm::mat4 rotation;
-    glm::quat orientation;
 
     glm::mat4 projection;
     glm::mat4 view;
@@ -55,4 +46,7 @@ public:
     void moveRight(float delta);
     void moveUp(float delta);
     void moveDown(float delta);
+
+private:
+    
 };
