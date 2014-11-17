@@ -2,8 +2,8 @@
 
 in vec2 frag_tex_coord;
 in vec3 position_eye, normal_eye;
+in mat4 view_mat;
 
-uniform mat4 view_mat;
 uniform sampler2D tex;
 
 vec3 light_position_world  = vec3(5.0, 5.0, 0.0);

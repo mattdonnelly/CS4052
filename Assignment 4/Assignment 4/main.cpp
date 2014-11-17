@@ -161,9 +161,7 @@ int main(int argc, const char * argv[]) {
     const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
-    
-    const int frag_view_mat_location = shader_program.uniform("view_mat");
-    
+
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
         double current_seconds = glfwGetTime();
@@ -187,9 +185,7 @@ int main(int argc, const char * argv[]) {
         shader_program.setUniform(proj_mat_location, projection);
         shader_program.setUniform(view_mat_location, view);
         shader_program.setUniform(model_mat_location, model);
-        
-        shader_program.setUniform(frag_view_mat_location, view);
-        
+
         vao.bind();
         
         glDrawArrays(GL_TRIANGLES, 0, point_count);
