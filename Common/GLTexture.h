@@ -22,13 +22,19 @@ public:
               GLint wrapMode = GL_CLAMP_TO_EDGE);
     ~GLTexture();
 
-    void bindTexture() const;
+    static unsigned int texture_count;
     
+    void bindTexture() const;
+    void deleteTexture() const;
+    
+    GLint index() const;
     GLint width() const;
     GLint height() const;
     GLint channels() const;
     
 private:
+    GLint _index;
+    
     GLint _width;
     GLint _height;
     GLint _channels;

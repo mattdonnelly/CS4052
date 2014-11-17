@@ -45,9 +45,14 @@ public:
     glm::mat4 view;
     glm::mat4 model;
     
-    void mouseUpdate(float mouseX, float mouseY);
     void getMatricies(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
     
+    void mouseUpdate(float deltaX, float deltaY);
+    
+    void moveForward(float delta);
+    void moveBackward(float delta);
+    void moveLeft(float delta);
+    void moveRight(float delta);
     void moveUp(float delta);
     void moveDown(float delta);
 };

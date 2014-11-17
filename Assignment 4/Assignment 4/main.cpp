@@ -57,8 +57,8 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double ypos_delta;
 
 #if RETINA
-        xpos_delta = (last_xpos - xpos) * 0.0056f;
-        ypos_delta = (last_ypos - ypos) * 0.0056f;
+        xpos_delta = (last_xpos - xpos) * 0.0156f;
+        ypos_delta = (last_ypos - ypos) * 0.0156f;
 #else
         xpos_delta = (last_xpos - xpos) * 0.03f;
         ypos_delta = (last_ypos - ypos) * 0.03f;
@@ -175,9 +175,8 @@ int main(int argc, const char * argv[]) {
         
         shader_program.use();
         
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture.object());
-        shader_program.setUniform(texture_location, 0);
+        texture.bindTexture();
+        shader_program.setUniform(texture_location, texture.index());
 
         glm::mat4 model, view, projection;
 
@@ -190,17 +189,29 @@ int main(int argc, const char * argv[]) {
         vao.bind();
         
         glDrawArrays(GL_TRIANGLES, 0, point_count);
-        
-        glDeleteTextures((GLsizei)1, (const GLuint*)(&texture_location));
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
         }
         
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_W)) {
-            camera.moveUp(elapsed_seconds);
+            camera.moveForward(elapsed_seconds);
         }
         else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_S)) {
+            camera.moveBackward(elapsed_seconds);
+        }
+        
+        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_A)) {
+            camera.moveLeft(elapsed_seconds);
+        }
+        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_D)) {
+            camera.moveRight(elapsed_seconds);
+        }
+        
+        if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_Q)) {
+            camera.moveUp(elapsed_seconds);
+        }
+        else if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_E)) {
             camera.moveDown(elapsed_seconds);
         }
 
