@@ -43,6 +43,11 @@ static bool windowIsActive = true;
 
 void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
     if (windowIsActive) {
+        static const double mouse_sensitivity = 0.04f;
+        static const double retina_mouse_sensitivity = mouse_sensitivity *
+                                                       mouse_sensitivity *
+                                                       mouse_sensitivity *
+                                                       mouse_sensitivity;
         static double last_xpos = xpos;
         static double last_ypos = ypos;
         
@@ -50,11 +55,11 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double ypos_delta;
 
 #if RETINA
-        xpos_delta = (last_xpos - xpos) * (0.0256f);
-        ypos_delta = (last_ypos - ypos) * (0.0256f);
+        xpos_delta = (last_xpos - xpos) * retina_mouse_sensitivity;
+        ypos_delta = (last_ypos - ypos) * retina_mouse_sensitivity;
 #else
-        xpos_delta = (last_xpos - xpos) * (0.04f);
-        ypos_delta = (last_ypos - ypos) * (0.04f);
+        xpos_delta = (last_xpos - xpos) * mouse_sensitivity;
+        ypos_delta = (last_ypos - ypos) * mouse_sensitivity;
 #endif
         
         camera.mouseUpdate(xpos_delta, ypos_delta);
