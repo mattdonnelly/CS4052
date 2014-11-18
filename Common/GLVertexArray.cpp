@@ -8,7 +8,7 @@
 
 #include "GLVertexArray.h"
 
-GLVertexArray::GLVertexArray(const std::vector<GLBuffer> &buffers) {
+GLVertexArray::GLVertexArray(const std::vector<GLBuffer> &buffers, GLint point_count) {
     if (buffers.size() <= 0) {
         throw std::runtime_error("Must pass at least one shader to create program");
     }
@@ -30,6 +30,8 @@ GLVertexArray::GLVertexArray(const std::vector<GLBuffer> &buffers) {
         glVertexAttribPointer(i, buffer.count(), GL_FLOAT, GL_FALSE, 0, NULL);
         glEnableVertexAttribArray(i);
     }
+    
+    _point_count = point_count;
 }
 
 GLVertexArray::~GLVertexArray() {
@@ -43,4 +45,12 @@ GLVertexArray::~GLVertexArray() {
 
 void GLVertexArray::bind() const {
     glBindVertexArray(_object);
+}
+
+void GLVertexArray::draw() const {
+    glDrawArrays(GL_TRIANGLES, 0, _point_count);
+}
+
+GLint GLVertexArray::point_count() const {
+    return _point_count;
 }

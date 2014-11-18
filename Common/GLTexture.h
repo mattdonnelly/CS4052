@@ -22,12 +22,9 @@ public:
               GLint wrapMode = GL_REPEAT);
     ~GLTexture();
 
-    static unsigned int texture_count;
-    
     void bindTexture(GLint slot) const;
     void deleteTexture() const;
     
-    GLint index() const;
     GLint width() const;
     GLint height() const;
     GLint channels() const;

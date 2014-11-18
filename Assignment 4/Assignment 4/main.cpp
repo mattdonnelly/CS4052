@@ -75,6 +75,44 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
     windowIsActive = entered;
 }
 
+GLVertexArray createGroundVertexArray() {
+    int point_count = 0;
+    GLfloat *vp, *vt, *vn;
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/obj/ground.obj", vp, vt, vn, point_count));
+    
+    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
+    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
+    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
+    
+    delete vp; delete vt; delete vn;
+    
+    std::vector<GLBuffer> buffers;
+    buffers.emplace_back(points_vbo);
+    buffers.emplace_back(tex_vbo);
+    buffers.emplace_back(normals_vbo);
+    
+    return GLVertexArray(buffers, point_count);
+}
+
+GLVertexArray createCubeVertexArray() {
+    int point_count = 0;
+    GLfloat *vp, *vt, *vn;
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/obj/cube.obj", vp, vt, vn, point_count));
+    
+    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
+    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
+    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
+    
+    delete vp; delete vt; delete vn;
+    
+    std::vector<GLBuffer> buffers;
+    buffers.emplace_back(points_vbo);
+    buffers.emplace_back(tex_vbo);
+    buffers.emplace_back(normals_vbo);
+    
+    return GLVertexArray(buffers, point_count);
+}
+
 GLProgram createShaderProgram() {
     std::vector<GLShader> shaders;
     shaders.emplace_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/vertex_shader.glsl", GL_VERTEX_SHADER));
@@ -125,24 +163,11 @@ int main(int argc, const char * argv[]) {
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
     
-    int point_count = 0;
-    GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/cube.obj", vp, vt, vn, point_count));
+    GLVertexArray ground_vao = createGroundVertexArray();
+    GLVertexArray cube_vao = createCubeVertexArray();
 
-    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
-    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
-    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
-    
-    delete vp; delete vt; delete vn;
-
-    std::vector<GLBuffer> buffers;
-    buffers.emplace_back(points_vbo);
-    buffers.emplace_back(tex_vbo);
-    buffers.emplace_back(normals_vbo);
-    
-    GLVertexArray vao = GLVertexArray(buffers);
-    
-    GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/texture.png", GL_RGBA);
+    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/ground.png", GL_RGBA);
+    GLTexture cube_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/cube.png", GL_RGBA);
     
     GLProgram shader_program = createShaderProgram();
     
@@ -155,7 +180,8 @@ int main(int argc, const char * argv[]) {
     const float far = 100.0f;
     
     camera = Camera(fov, aspect, near, far);
-    camera.position = glm::vec3(0.0f, 0.0f, 5.0f);
+    camera.position = glm::vec3(0.0f, 5.0f, 5.0f);
+    camera.speed = 10.0f;
 
     shader_program.use();
     
@@ -175,21 +201,41 @@ int main(int argc, const char * argv[]) {
         glfwPollEvents();
         
         shader_program.use();
-        
-        texture.bindTexture(GL_TEXTURE0);
-        shader_program.setUniform(texture_location, texture.index());
 
         glm::mat4 model, view, projection;
         camera.getMatricies(projection, view, model);
-        model = glm::rotate(glm::mat4(1.0f), (float)glfwGetTime() * 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
         
         shader_program.setUniform(proj_mat_location, projection);
         shader_program.setUniform(view_mat_location, view);
         shader_program.setUniform(model_mat_location, model);
 
-        vao.bind();
+        ///////// GROUND /////////
         
-        glDrawArrays(GL_TRIANGLES, 0, point_count);
+        ground_texture.bindTexture(GL_TEXTURE0);
+        shader_program.setUniform(texture_location, 0);
+        
+        ground_vao.bind();
+        ground_vao.draw();
+
+        ///////// BOTTOM CUBE /////////
+        
+        cube_texture.bindTexture(GL_TEXTURE0);
+        shader_program.setUniform(texture_location, 0);
+        
+        model = glm::translate(model, glm::vec3(0.0f, 1.1f, 0.0f));
+        model = glm::rotate(model, (float)glfwGetTime() * 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+        shader_program.setUniform(model_mat_location, model);
+
+        cube_vao.bind();
+        cube_vao.draw();
+        
+        ///////// TOP CUBE /////////
+
+        model = glm::translate(model, glm::vec3(0.0f, 2.01f, 0.0f));
+        shader_program.setUniform(model_mat_location, model);
+        
+        cube_vao.bind();
+        cube_vao.draw();
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);

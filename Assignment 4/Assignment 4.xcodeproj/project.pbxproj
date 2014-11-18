@@ -58,7 +58,6 @@
 		8B8F0D841A194AE300B2B611 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8B8F0DA61A195FC900B2B611 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		8B8F0DA71A195FC900B2B611 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		8B8F0DAB1A1A8CCC00B2B611 /* cube.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +98,6 @@
 				8B34C3931A10000C00B981A6 /* main.cpp */,
 				8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */,
 				8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */,
-				8B8F0DAB1A1A8CCC00B2B611 /* cube.obj */,
 			);
 			path = "Assignment 4";
 			sourceTree = "<group>";
