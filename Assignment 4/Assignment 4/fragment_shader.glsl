@@ -6,7 +6,7 @@ in mat4 view_mat;
 
 uniform sampler2D tex;
 
-vec3 light_position_world  = vec3(5.0, 5.0, 0.0);
+vec3 light_position_world  = vec3(5.0, 5.0, 5.0);
 vec3 Ls = vec3(0.9, 0.9, 0.7);
 vec3 Ld = vec3(0.7, 0.7, 0.7);
 vec3 La = vec3(0.2, 0.2, 0.2);
