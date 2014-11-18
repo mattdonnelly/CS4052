@@ -180,7 +180,7 @@ int main(int argc, const char * argv[]) {
     const float far = 100.0f;
     
     camera = Camera(fov, aspect, near, far);
-    camera.position = glm::vec3(0.0f, 5.0f, 5.0f);
+    camera.position = glm::vec3(0.0f, 3.0f, 10.0f);
     camera.speed = 10.0f;
 
     shader_program.use();
