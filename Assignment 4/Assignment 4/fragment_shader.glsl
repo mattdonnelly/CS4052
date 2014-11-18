@@ -7,6 +7,7 @@ in mat4 view_mat;
 uniform sampler2D tex;
 
 vec3 light_position_world  = vec3(5.0, 5.0, 5.0);
+
 vec3 Ls = vec3(0.9, 0.9, 0.7);
 vec3 Ld = vec3(0.7, 0.7, 0.7);
 vec3 La = vec3(0.2, 0.2, 0.2);
@@ -14,7 +15,6 @@ vec3 La = vec3(0.2, 0.2, 0.2);
 vec3 Ks = vec3(1.0, 1.0, 1.0);
 vec3 Kd = vec3(1.0, 0.5, 0.0);
 vec3 Ka = vec3(1.0, 1.0, 1.0);
-float specular_exponent = 100.0;
 
 out vec4 fragment_colour;
 
