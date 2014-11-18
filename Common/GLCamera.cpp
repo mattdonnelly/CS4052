@@ -44,7 +44,7 @@ void GLCamera::mouseUpdate(float deltaX, float deltaY) {
     glm::quat pitch = glm::angleAxis(deltaY, x_axis);
     glm::quat yaw = glm::angleAxis(deltaX, up_direction);
     glm::quat orientation =  yaw * pitch;
-    
+
     glm::mat4 rotation = glm::mat4_cast(orientation);
     forward_direction = glm::mat3(rotation) * forward_direction;
 }
