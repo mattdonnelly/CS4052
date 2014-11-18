@@ -1,20 +1,20 @@
 //
-//  Camera.cpp
+//  GLCamera.cpp
 //  Assignment 4
 //
 //  Created by Matt Donnelly on 16/11/2014.
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#include "Camera.h"
+#include "GLCamera.h"
 
 #include <GLFW/glfw3.h>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-Camera::Camera() : Camera(45.0f, 1.0f, 0.1f, 100.0f) {}
+GLCamera::GLCamera() : GLCamera(45.0f, 1.0f, 0.1f, 100.0f) {}
 
-Camera::Camera(double fov, double aspect, double near, double far) {
+GLCamera::GLCamera(double fov, double aspect, double near, double far) {
     this->fov = fov;
     this->aspect = aspect;
     this->near = near;
@@ -25,11 +25,11 @@ Camera::Camera(double fov, double aspect, double near, double far) {
     this->up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
-Camera::~Camera() {
+GLCamera::~GLCamera() {
     
 }
 
-void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
+void GLCamera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
     projection = glm::perspective(fov, aspect, near, far);
     view = glm::lookAt(position, position + forward_direction, up_direction);
     model = glm::mat4(1.0f);
@@ -39,7 +39,7 @@ void Camera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
     p = model;
 }
 
-void Camera::mouseUpdate(float deltaX, float deltaY) {
+void GLCamera::mouseUpdate(float deltaX, float deltaY) {
     glm::vec3 x_axis = glm::cross(forward_direction, up_direction);
     glm::quat pitch = glm::angleAxis(deltaY, x_axis);
     glm::quat yaw = glm::angleAxis(deltaX, up_direction);
@@ -49,26 +49,26 @@ void Camera::mouseUpdate(float deltaX, float deltaY) {
     forward_direction = glm::mat3(rotation) * forward_direction;
 }
 
-void Camera::moveForward(float delta) {
+void GLCamera::moveForward(float delta) {
     position += speed * delta * forward_direction;
 }
 
-void Camera::moveBackward(float delta) {
+void GLCamera::moveBackward(float delta) {
     position -= speed * delta * forward_direction;
 }
 
-void Camera::moveLeft(float delta) {
+void GLCamera::moveLeft(float delta) {
     position += speed * delta * glm::cross(up_direction, forward_direction);
 }
 
-void Camera::moveRight(float delta) {
+void GLCamera::moveRight(float delta) {
     position -= speed * delta * glm::cross(up_direction, forward_direction);
 }
 
-void Camera::moveUp(float delta) {
+void GLCamera::moveUp(float delta) {
     position += speed * delta * up_direction;
 }
 
-void Camera::moveDown(float delta) {
+void GLCamera::moveDown(float delta) {
     position -= speed * delta * up_direction;
 }

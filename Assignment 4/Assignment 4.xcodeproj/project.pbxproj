@@ -18,7 +18,7 @@
 		8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7E1A194AE300B2B611 /* GLTexture.cpp */; };
 		8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */; };
 		8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D821A194AE300B2B611 /* obj_parser.cpp */; };
-		8B8F0DA81A195FC900B2B611 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0DA61A195FC900B2B611 /* Camera.cpp */; };
+		8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,8 +56,8 @@
 		8B8F0D821A194AE300B2B611 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
 		8B8F0D831A194AE300B2B611 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
 		8B8F0D841A194AE300B2B611 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
-		8B8F0DA61A195FC900B2B611 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
-		8B8F0DA71A195FC900B2B611 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCamera.cpp; sourceTree = "<group>"; };
+		8B8F0DA71A195FC900B2B611 /* GLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCamera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +115,10 @@
 		8B8F0D751A194AE300B2B611 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8B8F0DA71A195FC900B2B611 /* Camera.h */,
-				8B8F0DA61A195FC900B2B611 /* Camera.cpp */,
 				8B8F0D771A194AE300B2B611 /* GLBuffer.h */,
 				8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */,
+				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
+				8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */,
 				8B8F0D791A194AE300B2B611 /* GLObject.h */,
 				8B8F0D781A194AE300B2B611 /* GLObject.cpp */,
 				8B8F0D7B1A194AE300B2B611 /* GLProgram.h */,
@@ -197,7 +197,7 @@
 				8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */,
 				8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */,
 				8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */,
-				8B8F0DA81A195FC900B2B611 /* Camera.cpp in Sources */,
+				8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */,
 				8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */,
 				8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */,
 				8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */,

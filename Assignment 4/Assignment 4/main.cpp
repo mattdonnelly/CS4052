@@ -15,7 +15,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <math.h>
 
-#include "Camera.h"
+#include "GLCamera.h"
 #include "GLBuffer.h"
 #include "GLVertexArray.h"
 #include "GLShader.h"
@@ -43,7 +43,7 @@
     #define MOUSE_SENSITIVITY 0.02f
 #endif
 
-static Camera camera;
+static GLCamera camera;
 static bool windowIsActive = true;
 
 bool positionInWindow(GLFWwindow *window, double mouseX, double mouseY) {
@@ -179,7 +179,7 @@ int main(int argc, const char * argv[]) {
     const float near = 0.1f;
     const float far = 100.0f;
     
-    camera = Camera(fov, aspect, near, far);
+    camera = GLCamera(fov, aspect, near, far);
     camera.position = glm::vec3(0.0f, 3.0f, 10.0f);
     camera.speed = 10.0f;
 

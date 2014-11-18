@@ -1,5 +1,5 @@
 //
-//  Camera.h
+//  GLCamera.h
 //  Assignment 4
 //
 //  Created by Matt Donnelly on 16/11/2014.
@@ -15,11 +15,11 @@
 
 #include <glm/glm.hpp>
 
-class Camera {
+class GLCamera {
 public:
-    Camera();
-    Camera(double fov, double aspect, double near, double far);
-    ~Camera();
+    GLCamera();
+    GLCamera(double fov, double aspect, double near, double far);
+    ~GLCamera();
     
     double aspect;
     double fov;
