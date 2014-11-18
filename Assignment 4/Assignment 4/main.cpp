@@ -24,8 +24,8 @@
 #include "stb_image.h"
 #include "obj_parser.h"
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
 
 #define RETINA 1
 
@@ -108,6 +108,7 @@ int main(int argc, const char * argv[]) {
     }
     
     glfwMakeContextCurrent(window);
+
     glfwSetCursorEnterCallback(window, handleCursorEnter);
     glfwSetCursorPosCallback(window, handleCursorPosition);
     
@@ -127,7 +128,7 @@ int main(int argc, const char * argv[]) {
     int point_count = 0;
     GLfloat *vp, *vt, *vn;
     assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/cube.obj", vp, vt, vn, point_count));
-    
+
     GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
     GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
     GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
