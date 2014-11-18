@@ -222,9 +222,7 @@ int main(int argc, const char * argv[]) {
         cube_texture.bindTexture(GL_TEXTURE0);
         shader_program.setUniform(texture_location, 0);
         
-        float xpos = sinf(glfwGetTime()) * 6.0f;
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(xpos, 1.1f, 0.0f));
-        model = glm::rotate(model, (float)glfwGetTime() * 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(glm::mat4(1.0f), glm::vec3(sinf(glfwGetTime()) * 6.0f, 2.1f, 0.0f));
         shader_program.setUniform(model_mat_location, model);
 
         cube_vao.bind();
@@ -233,6 +231,8 @@ int main(int argc, const char * argv[]) {
         ///////// TOP CUBE /////////
 
         model = glm::translate(model, glm::vec3(0.0f, 2.01f, 0.0f));
+        model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+
         shader_program.setUniform(model_mat_location, model);
         
         cube_vao.bind();

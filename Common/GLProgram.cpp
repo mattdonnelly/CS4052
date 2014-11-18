@@ -140,9 +140,6 @@ void GLProgram::setUniform(const GLchar *name, const int v) {
     glUniform1i(uniform(name), v);
 }
 
-/////////////////////////////////////
-/////////////////////////////////////
-
 void GLProgram::setUniform(const GLint loc, const glm::mat2 &m, GLboolean transpose) {
     assert(isInUse());
     glUniformMatrix2fv(loc, 1, transpose, glm::value_ptr(m));
