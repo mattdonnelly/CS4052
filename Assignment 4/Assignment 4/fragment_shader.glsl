@@ -15,6 +15,7 @@ vec3 La = vec3(0.2, 0.2, 0.2);
 vec3 Ks = vec3(1.0, 1.0, 1.0);
 vec3 Kd = vec3(1.0, 0.5, 0.0);
 vec3 Ka = vec3(1.0, 1.0, 1.0);
+float specular_exponent = 100.0;
 
 out vec4 fragment_colour;
 
