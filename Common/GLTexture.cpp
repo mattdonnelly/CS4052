@@ -6,12 +6,19 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
+#include <mutex>
+
 #include "GLTexture.h"
 #include "stb_image.h"
+
+std::mutex mtx;
 
 GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler, GLint wrapMode) {
     unsigned char *pixels = stbi_load(filepath.c_str(), &_width, &_height, &_channels, 0);
 
+    printf("%d\n", _width);
+    printf("%d\n", _height);
+    
     glGenTextures(1, &_object);
     glBindTexture(GL_TEXTURE_2D, _object);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -21,7 +28,7 @@ GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minMagFiler);
     glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_width, (GLsizei)_height, 0, format, GL_UNSIGNED_BYTE, pixels);
     
-    delete pixels;
+    stbi_image_free(pixels);
 }
 
 GLTexture::~GLTexture() {
