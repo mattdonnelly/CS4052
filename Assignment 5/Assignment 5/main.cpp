@@ -168,14 +168,14 @@ int main(int argc, const char * argv[]) {
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
     
-    irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+    irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     
-    if (!engine) {
+    if (!audio_engine) {
         std::cout << "Error initialising audio engine" << std::endl;
         return 0;
     }
     
-    engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
+    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
     
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
@@ -226,7 +226,7 @@ int main(int argc, const char * argv[]) {
         glfwSwapBuffers(window);
     }
     
-    engine->drop();
+    audio_engine->drop();
     glfwTerminate();
     
     return 0;
