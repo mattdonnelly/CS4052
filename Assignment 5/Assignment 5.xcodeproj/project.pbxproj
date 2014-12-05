@@ -20,22 +20,32 @@
 		8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D821A194AE300B2B611 /* obj_parser.cpp */; };
 		8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */; };
 		8BCE62B81A312BBB00962A49 /* PlayerCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BCE62B61A312BBB00962A49 /* PlayerCamera.cpp */; };
+		8BE011601A31F1AE009AAEA6 /* libikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */; };
+		8BE011611A31F1AE009AAEA6 /* libikpMP3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */; };
+		8BE011621A31F1AE009AAEA6 /* libirrklang.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */; };
+		8BE011631A31F1B3009AAEA6 /* libikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */; };
+		8BE011641A31F1B3009AAEA6 /* libikpMP3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */; };
+		8BE011651A31F1B3009AAEA6 /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8B34C38E1A10000C00B981A6 /* CopyFiles */ = {
+		8B34C38E1A10000C00B981A6 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				8BE011601A31F1AE009AAEA6 /* libikpFLAC.dylib in Copy Files */,
+				8BE011611A31F1AE009AAEA6 /* libikpMP3.dylib in Copy Files */,
+				8BE011621A31F1AE009AAEA6 /* libirrklang.dylib in Copy Files */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8B34C3901A10000C00B981A6 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B34C3901A10000C00B981A6 /* Assignment 5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 5"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B34C3931A10000C00B981A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8B34C39A1A10006E00B981A6 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
 		8B34C39B1A10006E00B981A6 /* libglfw3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.dylib; path = /usr/local/lib/libglfw3.dylib; sourceTree = "<absolute>"; };
@@ -61,6 +71,9 @@
 		8B8F0DA71A195FC900B2B611 /* GLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCamera.h; sourceTree = "<group>"; };
 		8BCE62B61A312BBB00962A49 /* PlayerCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCamera.cpp; sourceTree = "<group>"; };
 		8BCE62B71A312BBB00962A49 /* PlayerCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCamera.h; sourceTree = "<group>"; };
+		8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpFLAC.dylib; path = irrKlang/lib/libikpFLAC.dylib; sourceTree = "<group>"; };
+		8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpMP3.dylib; path = irrKlang/lib/libikpMP3.dylib; sourceTree = "<group>"; };
+		8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +84,9 @@
 				8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */,
 				8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */,
 				8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */,
+				8BE011631A31F1B3009AAEA6 /* libikpFLAC.dylib in Frameworks */,
+				8BE011641A31F1B3009AAEA6 /* libikpMP3.dylib in Frameworks */,
+				8BE011651A31F1B3009AAEA6 /* libirrklang.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +106,7 @@
 		8B34C3911A10000C00B981A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B34C3901A10000C00B981A6 /* Assignment 4 */,
+				8B34C3901A10000C00B981A6 /* Assignment 5 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +129,9 @@
 				8B34C39E1A10007800B981A6 /* OpenGL.framework */,
 				8B34C39A1A10006E00B981A6 /* libGLEW.dylib */,
 				8B34C39B1A10006E00B981A6 /* libglfw3.dylib */,
+				8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */,
+				8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */,
+				8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,21 +164,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8B34C38F1A10000C00B981A6 /* Assignment 4 */ = {
+		8B34C38F1A10000C00B981A6 /* Assignment 5 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B34C3971A10000C00B981A6 /* Build configuration list for PBXNativeTarget "Assignment 4" */;
+			buildConfigurationList = 8B34C3971A10000C00B981A6 /* Build configuration list for PBXNativeTarget "Assignment 5" */;
 			buildPhases = (
 				8B34C38C1A10000C00B981A6 /* Sources */,
 				8B34C38D1A10000C00B981A6 /* Frameworks */,
-				8B34C38E1A10000C00B981A6 /* CopyFiles */,
+				8B34C38E1A10000C00B981A6 /* Copy Files */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Assignment 4";
-			productName = "Assignment 4";
-			productReference = 8B34C3901A10000C00B981A6 /* Assignment 4 */;
+			name = "Assignment 5";
+			productName = "Assignment 5";
+			productReference = 8B34C3901A10000C00B981A6 /* Assignment 5 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +207,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8B34C38F1A10000C00B981A6 /* Assignment 4 */,
+				8B34C38F1A10000C00B981A6 /* Assignment 5 */,
 			);
 		};
 /* End PBXProject section */
@@ -291,16 +310,19 @@
 		8B34C3981A10000C00B981A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/Cellar/glew/1.11.0/include,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					"\"$(SRCROOT)/irrKlang/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					"\"$(SRCROOT)/irrKlang/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -309,16 +331,19 @@
 		8B34C3991A10000C00B981A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/Cellar/glew/1.11.0/include,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					"\"$(SRCROOT)/irrKlang/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					"\"$(SRCROOT)/irrKlang/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -336,7 +361,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B34C3971A10000C00B981A6 /* Build configuration list for PBXNativeTarget "Assignment 4" */ = {
+		8B34C3971A10000C00B981A6 /* Build configuration list for PBXNativeTarget "Assignment 5" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B34C3981A10000C00B981A6 /* Debug */,

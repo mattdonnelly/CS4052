@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <math.h>
+#include <irrKlang.h>
 
 #include "PlayerCamera.h"
 #include "GLBuffer.h"
@@ -166,7 +167,16 @@ int main(int argc, const char * argv[]) {
     const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
-
+    
+    irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+    
+    if (!engine) {
+        std::cout << "Error initialising audio engine" << std::endl;
+        return 0;
+    }
+    
+    engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
+    
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
         double current_seconds = glfwGetTime();
@@ -216,6 +226,8 @@ int main(int argc, const char * argv[]) {
         glfwSwapBuffers(window);
     }
     
+    engine->drop();
     glfwTerminate();
+    
     return 0;
 }
