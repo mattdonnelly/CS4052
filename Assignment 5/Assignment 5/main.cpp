@@ -79,7 +79,26 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
 GLVertexArray createGroundVertexArray() {
     int point_count = 0;
     GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj", vp, vt, vn, point_count));
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain3.obj", vp, vt, vn, point_count));
+    
+    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
+    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
+    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
+    
+    delete vp; delete vt; delete vn;
+    
+    std::vector<GLBuffer> buffers;
+    buffers.emplace_back(points_vbo);
+    buffers.emplace_back(tex_vbo);
+    buffers.emplace_back(normals_vbo);
+    
+    return GLVertexArray(buffers, point_count);
+}
+
+GLVertexArray createGemVertexArray() {
+    int point_count = 0;
+    GLfloat *vp, *vt, *vn;
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj", vp, vt, vn, point_count));
     
     GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
     GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
@@ -146,7 +165,10 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl;
     
     GLVertexArray ground_vao = createGroundVertexArray();
-    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/terrain.png", GL_RGBA);
+    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/grass.png", GL_RGB);
+    
+    GLVertexArray gem_vao = createGemVertexArray();
+    GLTexture gem_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/gem.png", GL_RGB);
     
     GLProgram shader_program = createShaderProgram();
     
@@ -159,7 +181,8 @@ int main(int argc, const char * argv[]) {
     const float far = 1000.0f;
     
     camera = PlayerCamera(fov, aspect, near, far);
-    camera.position = glm::vec3(0.0f, 4.0f, 10.0f);
+    camera.position = glm::vec3(0.0f, 5.0f, 0.0f);
+    camera.forward_direction = glm::vec3(-1.0f, 0.0f, 0.0f);
     camera.speed = 15.0f;
 
     shader_program.use();
@@ -167,6 +190,22 @@ int main(int argc, const char * argv[]) {
     const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
     const int model_mat_location = shader_program.uniform("model");
+    
+    const int light_position_world_location = shader_program.uniform("light_position_world");
+    const int light_position_gem1_location = shader_program.uniform("light_position_gem1");
+    const int light_position_gem2_location = shader_program.uniform("light_position_gem2");
+
+    const int light_properties_world_location = shader_program.uniform("light_properties_world");
+    const int light_properties_gem_location = shader_program.uniform("light_properties_gem");
+    
+    glm::mat3 light_properties_world = glm::mat3(0.7, 0.9, 0.9,
+                                                 0.5, 0.7, 0.5,
+                                                 0.1, 0.2, 0.2);
+    
+    glm::mat3 light_properties_gem = glm::mat3(1.0, 1.0, 1.0,
+                                               7.0, 0.0, 0.0,
+                                               0.0, 0.0, 0.0);
+    
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     
@@ -177,6 +216,10 @@ int main(int argc, const char * argv[]) {
     
     audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
     
+    const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
+    const glm::vec3 gem1_position = glm::vec3( 70.0f, 4.0f,  70.f);
+    const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
+
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
         double current_seconds = glfwGetTime();
@@ -196,7 +239,7 @@ int main(int argc, const char * argv[]) {
         shader_program.setUniform(proj_mat_location, projection);
         shader_program.setUniform(view_mat_location, view);
         shader_program.setUniform(model_mat_location, model);
-
+        
         ///////// GROUND /////////
         
         ground_texture.bindTexture(GL_TEXTURE0);
@@ -204,6 +247,38 @@ int main(int argc, const char * argv[]) {
         
         ground_vao.bind();
         ground_vao.draw();
+        
+        ///////// GEMS /////////
+        
+        shader_program.setUniform(light_position_world_location, world_light_position);
+        shader_program.setUniform(light_position_gem1_location, gem1_position);
+        shader_program.setUniform(light_position_gem2_location, gem2_position);
+        
+        double oscillation = fabs(sinf(current_seconds));
+        
+        glm::mat3 light_properties_gem = glm::mat3(1.0, 1.0, 1.0,
+                                                   3.0f + (5.0f * oscillation), 0.0, 0.0,
+                                                   0.0, 0.0, 0.0);
+        
+        shader_program.setUniform(light_properties_world_location, light_properties_world);
+        shader_program.setUniform(light_properties_gem_location, light_properties_gem);
+        
+        gem_texture.bindTexture(GL_TEXTURE0);
+        shader_program.setUniform(texture_location, 0);
+        
+        model = glm::translate(glm::mat4(1.0f), gem1_position);
+        model = glm::scale(model, glm::vec3(oscillation, oscillation, oscillation));
+        shader_program.setUniform(model_mat_location, model);
+
+        gem_vao.bind();
+        gem_vao.draw();
+        
+        model = glm::translate(glm::mat4(1.0f), gem2_position);
+        model = glm::scale(model, glm::vec3(oscillation, oscillation, oscillation));
+
+        shader_program.setUniform(model_mat_location, model);
+        
+        gem_vao.draw();
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
