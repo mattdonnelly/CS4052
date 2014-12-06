@@ -32,7 +32,7 @@ public:
     double getTime();
     void presentBuffer();
     void pollEvents();
-    
+
 private:
     GLFWwindow *_window;
     double _delta;

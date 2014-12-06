@@ -23,16 +23,19 @@ const float fog_density = 0.065;
 
 out vec4 fragment_colour;
 
-vec3 create_light(vec3 position, mat3 properties) {
+vec3 create_light(vec3 position, mat3 properties, float light_reach) {
     vec3 Ls = properties[0];
     vec3 Ld = properties[1];
     vec3 La = properties[2];
-
-    vec3 Ia = La * Ka;
     
     vec3 light_position_eye = vec3(view_mat * vec4(position, 1.0));
-    vec3 distance_to_light_eye = light_position_eye - position_eye;
-    vec3 direction_to_light_eye = normalize(distance_to_light_eye);
+    vec3 direction_to_light_eye = normalize(light_position_eye - position_eye);
+    
+    float distance_from_light_to_position = length(light_position_eye - position_eye);
+    float light_intensity = min(max(1.0/pow(distance_from_light_to_position/light_reach,2.0),0.0),1.0);
+
+    vec3 Ia = La * Ka * light_intensity;
+
     float dot_prod = dot(direction_to_light_eye, normal_eye);
     dot_prod = max(dot_prod, 0.0);
     vec3 Id = Ld * Kd * dot_prod;
@@ -47,10 +50,10 @@ vec3 create_light(vec3 position, mat3 properties) {
     return Is + Id + Ia;
 }
 
-void main () {
-    vec3 light_world = create_light(light_position_world, light_properties_world);
-    vec3 light_gem1 = create_light(light_position_gem1, light_properties_gem);
-    vec3 light_gem2 = create_light(light_position_gem2, light_properties_gem);
+void main () {    
+    vec3 light_world = create_light(light_position_world, light_properties_world, 200.0);
+    vec3 light_gem1 = create_light(light_position_gem1, light_properties_gem, 30.0);
+    vec3 light_gem2 = create_light(light_position_gem2, light_properties_gem, 30.0);
     
     vec3 light = light_world + light_gem1 + light_gem2;
     

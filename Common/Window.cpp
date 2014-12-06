@@ -50,6 +50,7 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
 
 Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     _window = NULL;
+    isActive = true;
     
     const GLubyte *renderer;
     const GLubyte *version;
