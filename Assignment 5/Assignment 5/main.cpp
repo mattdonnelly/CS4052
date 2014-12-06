@@ -79,7 +79,7 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
 GLVertexArray createGroundVertexArray() {
     int point_count = 0;
     GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain3.obj", vp, vt, vn, point_count));
+    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj", vp, vt, vn, point_count));
     
     GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
     GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);

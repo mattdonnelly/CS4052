@@ -19,7 +19,7 @@ const vec3 Ka = vec3(3.0, 3.0, 3.0);
 const float specular_exponent = 100.0;
 
 const vec4 fog_color = vec4(0.05, 0.1, 0.1, 1.0);
-const float fog_density = 0.05;
+const float fog_density = 0.065;
 
 out vec4 fragment_colour;
 
