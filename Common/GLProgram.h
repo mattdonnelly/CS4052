@@ -20,7 +20,7 @@
 
 class GLProgram: public GLObject {
 public:
-    GLProgram(const std::vector<GLShader> &shaders);
+    GLProgram(const std::string vertex_shader, const std::string frag_shader);
     ~GLProgram();
     
     void use() const;

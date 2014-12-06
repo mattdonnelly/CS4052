@@ -29,18 +29,10 @@
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 
-GLProgram createShaderProgram() {
-    std::vector<GLShader> shaders;
-    shaders.emplace_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/vertex_shader.glsl", GL_VERTEX_SHADER));
-    shaders.emplace_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/fragment_shader.glsl", GL_FRAGMENT_SHADER));
-    
-    GLProgram program = GLProgram(shaders);
-    
-    return program;
-}
-
 int main(int argc, const char * argv[]) {
     Window window = Window("Assignment 5", 1280, 720);
+    
+    GLProgram shader_program = GLProgram("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/vertex_shader.glsl", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/fragment_shader.glsl");
     
     Terrain terrain = Terrain();
     
@@ -52,11 +44,6 @@ int main(int argc, const char * argv[]) {
     Gem gem2 = Gem(gem2_position);
     
     std::vector<Point> points = Point::generateRandomPoints(NUM_POINTS);
-    
-    GLProgram shader_program = createShaderProgram();
-
-    GLint texture_location = shader_program.uniform("tex");
-    assert(texture_location > -1);
     
     glm::mat4 projection = glm::perspective(45.0f, window.aspectRatio(), 0.1f, 1000.0f);
     

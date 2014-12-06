@@ -10,31 +10,26 @@
 #include <stdexcept>
 #include <glm/gtc/type_ptr.hpp>
 
-GLProgram::GLProgram(const std::vector<GLShader> &shaders) {
-    if (shaders.size() <= 0) {
-        throw std::runtime_error("Must pass at least one shader to create program");
-    }
-    
-    _shaders = shaders;
-    
+GLProgram::GLProgram(const std::string vertex_shader_path, const std::string frag_shader_path) {
     // Create the program object
     _object = glCreateProgram();
     if (_object == 0) {
         throw std::runtime_error("glCreateProgram failed");
     }
     
+    GLShader vertex_shader = GLShader::shaderFromFile(vertex_shader_path, GL_VERTEX_SHADER);
+    GLShader frag_shader = GLShader::shaderFromFile(frag_shader_path, GL_FRAGMENT_SHADER);
+    
     // Attach all the shaders
-    for (unsigned i = 0; i < shaders.size(); ++i) {
-        glAttachShader(_object, shaders[i].object());
-    }
+    glAttachShader(_object, vertex_shader.object());
+    glAttachShader(_object, frag_shader.object());
     
     // Link the shaders
     glLinkProgram(_object);
     
     // Detach all the shaders
-    for (unsigned i = 0; i < shaders.size(); ++i) {
-        glDetachShader(_object, shaders[i].object());
-    }
+    glDetachShader(_object, vertex_shader.object());
+    glDetachShader(_object, frag_shader.object());
 
     // Throw exception if linking fails
     GLint status;
