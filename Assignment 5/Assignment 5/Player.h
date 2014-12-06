@@ -10,10 +10,10 @@
 
 #include "GLCamera.h"
 
-class PlayerCamera: public GLCamera {
+class Player: public GLCamera {
 public:
-    PlayerCamera();
-    PlayerCamera(double fov, double aspect, double near, double far);
+    Player();
+    Player(double fov, double aspect, double near, double far);
     
     void moveForward(float delta);
     void moveBackward(float delta);

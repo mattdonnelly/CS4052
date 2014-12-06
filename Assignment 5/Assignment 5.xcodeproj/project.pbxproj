@@ -14,8 +14,9 @@
 		8B4975D11A33258600B300EA /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975CF1A33258600B300EA /* Terrain.cpp */; };
 		8B4975D41A33665900B300EA /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975D21A33665900B300EA /* Gem.cpp */; };
 		8B4975D91A336C0100B300EA /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975D51A336C0100B300EA /* Drawable.cpp */; };
-		8B4975DA1A336C0100B300EA /* PlayerCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975D71A336C0100B300EA /* PlayerCamera.cpp */; };
 		8B4975DD1A336C8800B300EA /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975DB1A336C8800B300EA /* Point.cpp */; };
+		8B4975E31A33775600B300EA /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E11A33775600B300EA /* Window.cpp */; };
+		8B4975E61A33A11A00B300EA /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E41A33A11A00B300EA /* Player.cpp */; };
 		8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */; };
 		8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D781A194AE300B2B611 /* GLObject.cpp */; };
 		8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7A1A194AE300B2B611 /* GLProgram.cpp */; };
@@ -60,10 +61,12 @@
 		8B4975D31A33665900B300EA /* Gem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gem.h; sourceTree = "<group>"; };
 		8B4975D51A336C0100B300EA /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawable.cpp; sourceTree = "<group>"; };
 		8B4975D61A336C0100B300EA /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
-		8B4975D71A336C0100B300EA /* PlayerCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerCamera.cpp; sourceTree = "<group>"; };
-		8B4975D81A336C0100B300EA /* PlayerCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCamera.h; sourceTree = "<group>"; };
 		8B4975DB1A336C8800B300EA /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		8B4975DC1A336C8800B300EA /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		8B4975E11A33775600B300EA /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		8B4975E21A33775600B300EA /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		8B4975E41A33A11A00B300EA /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		8B4975E51A33A11A00B300EA /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				8B34C3931A10000C00B981A6 /* main.cpp */,
 				8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */,
 				8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */,
+				8B4975E51A33A11A00B300EA /* Player.h */,
+				8B4975E41A33A11A00B300EA /* Player.cpp */,
 				8B4975D01A33258600B300EA /* Terrain.h */,
 				8B4975CF1A33258600B300EA /* Terrain.cpp */,
 				8B4975D31A33665900B300EA /* Gem.h */,
@@ -155,8 +160,8 @@
 		8B8F0D751A194AE300B2B611 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B4975D61A336C0100B300EA /* Drawable.h */,
+				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B8F0D771A194AE300B2B611 /* GLBuffer.h */,
 				8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */,
 				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
@@ -173,9 +178,9 @@
 				8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */,
 				8B8F0D831A194AE300B2B611 /* obj_parser.h */,
 				8B8F0D821A194AE300B2B611 /* obj_parser.cpp */,
-				8B4975D71A336C0100B300EA /* PlayerCamera.cpp */,
-				8B4975D81A336C0100B300EA /* PlayerCamera.h */,
 				8B8F0D841A194AE300B2B611 /* stb_image.h */,
+				8B4975E21A33775600B300EA /* Window.h */,
+				8B4975E11A33775600B300EA /* Window.cpp */,
 			);
 			name = Common;
 			path = ../Common;
@@ -238,7 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */,
-				8B4975DA1A336C0100B300EA /* PlayerCamera.cpp in Sources */,
+				8B4975E31A33775600B300EA /* Window.cpp in Sources */,
 				8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */,
 				8B4975D41A33665900B300EA /* Gem.cpp in Sources */,
 				8B4975D91A336C0100B300EA /* Drawable.cpp in Sources */,
@@ -251,6 +256,7 @@
 				8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */,
 				8B4975DD1A336C8800B300EA /* Point.cpp in Sources */,
 				8B34C3941A10000C00B981A6 /* main.cpp in Sources */,
+				8B4975E61A33A11A00B300EA /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

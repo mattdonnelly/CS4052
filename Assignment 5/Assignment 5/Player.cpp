@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#include "PlayerCamera.h"
+#include "Player.h"
 
-PlayerCamera::PlayerCamera() : GLCamera() {
+Player::Player() : GLCamera() {
     
 }
 
-void PlayerCamera::moveForward(float delta) {
+void Player::moveForward(float delta) {
     position += speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z);
 }
 
-void PlayerCamera::moveBackward(float delta) {
+void Player::moveBackward(float delta) {
     position -= speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z);
 }
