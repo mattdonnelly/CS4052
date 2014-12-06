@@ -200,12 +200,7 @@ int main(int argc, const char * argv[]) {
     
     glm::mat3 light_properties_world = glm::mat3(0.7, 0.9, 0.9,
                                                  0.5, 0.7, 0.5,
-                                                 0.1, 0.2, 0.2);
-    
-    glm::mat3 light_properties_gem = glm::mat3(1.0, 1.0, 1.0,
-                                               7.0, 0.0, 0.0,
-                                               0.0, 0.0, 0.0);
-    
+                                                 0.1, 0.2, 0.2);    
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     
