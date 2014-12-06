@@ -18,26 +18,16 @@
 class GLCamera {
 public:
     GLCamera();
-    GLCamera(double fov, double aspect, double near, double far);
     ~GLCamera();
-    
-    double aspect;
-    double fov;
-    double near;
-    double far;
     
     float speed;
     
     glm::vec3 position;
     glm::vec3 forward_direction;
     glm::vec3 up_direction;
+    
+    glm::mat4 getViewMatrix();
 
-    glm::mat4 projection;
-    glm::mat4 view;
-    glm::mat4 model;
-    
-    void getMatricies(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection);
-    
     void mouseUpdate(float deltaX, float deltaY);
     
     void moveForward(float delta);

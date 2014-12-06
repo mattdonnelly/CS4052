@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#include <mutex>
+#define STB_IMAGE_IMPLEMENTATION
 
 #include "GLTexture.h"
 #include "stb_image.h"
-
-std::mutex mtx;
 
 GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler, GLint wrapMode) {
     unsigned char *pixels = stbi_load(filepath.c_str(), &_width, &_height, &_channels, 0);

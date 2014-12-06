@@ -12,13 +12,7 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-GLCamera::GLCamera() : GLCamera(45.0f, 1.0f, 0.1f, 100.0f) {}
-
-GLCamera::GLCamera(double fov, double aspect, double near, double far) {
-    this->fov = fov;
-    this->aspect = aspect;
-    this->near = near;
-    this->far = far;
+GLCamera::GLCamera() {
     this->speed = 5.0f;
     this->position = glm::vec3(0.0f, 0.0f, 0.0f);
     this->forward_direction = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -29,14 +23,8 @@ GLCamera::~GLCamera() {
     
 }
 
-void GLCamera::getMatricies(glm::mat4 &m, glm::mat4 &v, glm::mat4 &p) {
-    projection = glm::perspective(fov, aspect, near, far);
-    view = glm::lookAt(position, position + forward_direction, up_direction);
-    model = glm::mat4(1.0f);
-    
-    m = projection;
-    v = view;
-    p = model;
+glm::mat4 GLCamera::getViewMatrix() {
+    return glm::lookAt(position, position + forward_direction, up_direction);
 }
 
 void GLCamera::mouseUpdate(float deltaX, float deltaY) {

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#define STB_IMAGE_IMPLEMENTATION
 #define GLM_FORCE_RADIANS
 
 #include <iostream>
@@ -17,13 +16,14 @@
 #include <irrKlang.h>
 
 #include "PlayerCamera.h"
-#include "GLBuffer.h"
-#include "GLVertexArray.h"
 #include "GLShader.h"
-#include "GLTexture.h"
 #include "GLProgram.h"
-#include "stb_image.h"
-#include "obj_parser.h"
+
+#include "Terrain.h"
+#include "Gem.h"
+#include "Point.h"
+
+#define NUM_POINTS 15
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
@@ -76,44 +76,6 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
     windowIsActive = entered;
 }
 
-GLVertexArray createGroundVertexArray() {
-    int point_count = 0;
-    GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj", vp, vt, vn, point_count));
-    
-    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
-    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
-    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
-    
-    delete vp; delete vt; delete vn;
-    
-    std::vector<GLBuffer> buffers;
-    buffers.emplace_back(points_vbo);
-    buffers.emplace_back(tex_vbo);
-    buffers.emplace_back(normals_vbo);
-    
-    return GLVertexArray(buffers, point_count);
-}
-
-GLVertexArray createGemVertexArray() {
-    int point_count = 0;
-    GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj", vp, vt, vn, point_count));
-    
-    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
-    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
-    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
-    
-    delete vp; delete vt; delete vn;
-    
-    std::vector<GLBuffer> buffers;
-    buffers.emplace_back(points_vbo);
-    buffers.emplace_back(tex_vbo);
-    buffers.emplace_back(normals_vbo);
-    
-    return GLVertexArray(buffers, point_count);
-}
-
 GLProgram createShaderProgram() {
     std::vector<GLShader> shaders;
     shaders.emplace_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/vertex_shader.glsl", GL_VERTEX_SHADER));
@@ -164,14 +126,19 @@ int main(int argc, const char * argv[]) {
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
     
-    GLVertexArray ground_vao = createGroundVertexArray();
-    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/grass.png", GL_RGB);
+    Terrain terrain = Terrain();
     
-    GLVertexArray gem_vao = createGemVertexArray();
-    GLTexture gem_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/gem.png", GL_RGB);
+    const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
+    const glm::vec3 gem1_position = glm::vec3( 70.0f, 4.0f,  70.f);
+    const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
+    
+    Gem gem1 = Gem(gem1_position);
+    Gem gem2 = Gem(gem2_position);
+    
+    std::vector<Point> points = Point::generateRandomPoints(NUM_POINTS);
     
     GLProgram shader_program = createShaderProgram();
-    
+
     GLint texture_location = shader_program.uniform("tex");
     assert(texture_location > -1);
     
@@ -180,7 +147,9 @@ int main(int argc, const char * argv[]) {
     const float near = 0.1f;
     const float far = 1000.0f;
     
-    camera = PlayerCamera(fov, aspect, near, far);
+    glm::mat4 projection = glm::perspective(fov, aspect, near, far);
+    
+    camera = PlayerCamera();
     camera.position = glm::vec3(0.0f, 5.0f, 0.0f);
     camera.forward_direction = glm::vec3(-1.0f, 0.0f, 0.0f);
     camera.speed = 15.0f;
@@ -189,7 +158,6 @@ int main(int argc, const char * argv[]) {
     
     const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
-    const int model_mat_location = shader_program.uniform("model");
     
     const int light_position_world_location = shader_program.uniform("light_position_world");
     const int light_position_gem1_location = shader_program.uniform("light_position_gem1");
@@ -210,10 +178,6 @@ int main(int argc, const char * argv[]) {
     }
     
     audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
-    
-    const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
-    const glm::vec3 gem1_position = glm::vec3( 70.0f, 4.0f,  70.f);
-    const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
 
     while (!glfwWindowShouldClose(window)) {
         static double previous_seconds = glfwGetTime();
@@ -228,22 +192,12 @@ int main(int argc, const char * argv[]) {
         
         shader_program.use();
 
-        glm::mat4 model, view, projection;
-        camera.getMatricies(projection, view, model);
+        glm::mat4 view = camera.getViewMatrix();
         
         shader_program.setUniform(proj_mat_location, projection);
         shader_program.setUniform(view_mat_location, view);
-        shader_program.setUniform(model_mat_location, model);
         
-        ///////// GROUND /////////
-        
-        ground_texture.bindTexture(GL_TEXTURE0);
-        shader_program.setUniform(texture_location, 0);
-        
-        ground_vao.bind();
-        ground_vao.draw();
-        
-        ///////// GEMS /////////
+        terrain.draw(shader_program);
         
         shader_program.setUniform(light_position_world_location, world_light_position);
         shader_program.setUniform(light_position_gem1_location, gem1_position);
@@ -258,22 +212,16 @@ int main(int argc, const char * argv[]) {
         shader_program.setUniform(light_properties_world_location, light_properties_world);
         shader_program.setUniform(light_properties_gem_location, light_properties_gem);
         
-        gem_texture.bindTexture(GL_TEXTURE0);
-        shader_program.setUniform(texture_location, 0);
+        gem1.scale = glm::vec3(oscillation, oscillation, oscillation);
+        gem1.draw(shader_program);
         
-        model = glm::translate(glm::mat4(1.0f), gem1_position);
-        model = glm::scale(model, glm::vec3(oscillation, oscillation, oscillation));
-        shader_program.setUniform(model_mat_location, model);
+        gem2.scale = gem1.scale;
+        gem2.draw(shader_program);
 
-        gem_vao.bind();
-        gem_vao.draw();
-        
-        model = glm::translate(glm::mat4(1.0f), gem2_position);
-        model = glm::scale(model, glm::vec3(oscillation, oscillation, oscillation));
-
-        shader_program.setUniform(model_mat_location, model);
-        
-        gem_vao.draw();
+        for (int i = 0; i < NUM_POINTS; i++) {
+            Point p = points[i];
+            p.draw(shader_program);
+        }
 
         if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
             glfwSetWindowShouldClose(window, 1);
@@ -295,7 +243,7 @@ int main(int argc, const char * argv[]) {
 
         glfwSwapBuffers(window);
     }
-    
+
     audio_engine->drop();
     glfwTerminate();
     

@@ -34,6 +34,4 @@ private:
     GLint _width;
     GLint _height;
     GLint _channels;
-
-    const GLTexture &operator=(const GLTexture&);
 };
