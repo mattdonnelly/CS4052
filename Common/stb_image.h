@@ -194,7 +194,6 @@
 // The three functions you must define are "read" (reads some bytes of data),
 // "skip" (skips some bytes of data), "eof" (reports if the stream is at the end).
 
-
 #ifndef STBI_NO_STDIO
 #include <stdio.h>
 #endif // STBI_NO_STDIO
@@ -4685,3 +4684,4 @@ STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int
              on 'test' only check type, not whether we support this variant
       0.50   first released version
 */
+

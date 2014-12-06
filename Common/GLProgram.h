@@ -23,12 +23,14 @@ public:
     GLProgram(const std::string vertex_shader, const std::string frag_shader);
     ~GLProgram();
     
+    void printStatus();
+    
     void use() const;
     
     bool isInUse() const;
     
     void stopUsing() const;
-
+    
     GLint attrib(const GLchar *attribName) const;
     GLint uniform(const GLchar *uniformName) const;
 

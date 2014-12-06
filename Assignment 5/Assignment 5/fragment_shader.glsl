@@ -34,11 +34,11 @@ vec3 create_light(vec3 position, mat3 properties, float light_reach) {
     float distance_from_light_to_position = length(light_position_eye - position_eye);
     float light_intensity = min(max(1.0/pow(distance_from_light_to_position/light_reach,2.0),0.0),1.0);
 
-    vec3 Ia = La * Ka * light_intensity;
+    vec3 Ia = La * Ka;
 
     float dot_prod = dot(direction_to_light_eye, normal_eye);
     dot_prod = max(dot_prod, 0.0);
-    vec3 Id = Ld * Kd * dot_prod;
+    vec3 Id = Ld * Kd * dot_prod * light_intensity;
     
     vec3 reflection_eye = reflect(-direction_to_light_eye, normal_eye);
     vec3 surface_to_viewer_eye = normalize(-position_eye);
@@ -52,8 +52,8 @@ vec3 create_light(vec3 position, mat3 properties, float light_reach) {
 
 void main () {    
     vec3 light_world = create_light(light_position_world, light_properties_world, 200.0);
-    vec3 light_gem1 = create_light(light_position_gem1, light_properties_gem, 30.0);
-    vec3 light_gem2 = create_light(light_position_gem2, light_properties_gem, 30.0);
+    vec3 light_gem1 = create_light(light_position_gem1, light_properties_gem, 50.0);
+    vec3 light_gem2 = create_light(light_position_gem2, light_properties_gem, 50.0);
     
     vec3 light = light_world + light_gem1 + light_gem2;
     

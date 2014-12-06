@@ -9,6 +9,7 @@
 #include "GLProgram.h"
 #include <stdexcept>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 
 GLProgram::GLProgram(const std::string vertex_shader_path, const std::string frag_shader_path) {
     // Create the program object
@@ -32,6 +33,20 @@ GLProgram::GLProgram(const std::string vertex_shader_path, const std::string fra
     glDetachShader(_object, frag_shader.object());
 
     // Throw exception if linking fails
+    printStatus();
+}
+
+GLProgram::~GLProgram() {
+    if (_object != 0) {
+        for (unsigned i = 0; i < _shaders.size(); ++i) {
+            glDeleteShader(_shaders[i].object());
+        }
+        
+        glDeleteProgram(_object);
+    }
+}
+
+void GLProgram::printStatus() {
     GLint status;
     glGetProgramiv(_object, GL_LINK_STATUS, &status);
     if (status == GL_FALSE) {
@@ -44,18 +59,9 @@ GLProgram::GLProgram(const std::string vertex_shader_path, const std::string fra
         msg += strInfoLog;
         delete[] strInfoLog;
         
-        glDeleteProgram(_object); _object = 0;
-        throw std::runtime_error(msg);
-    }
-}
-
-GLProgram::~GLProgram() {
-    if (_object != 0) {
-        for (unsigned i = 0; i < _shaders.size(); ++i) {
-            glDeleteShader(_shaders[i].object());
-        }
-        
         glDeleteProgram(_object);
+        _object = 0;
+        throw std::runtime_error(msg);
     }
 }
 
@@ -70,7 +76,6 @@ bool GLProgram::isInUse() const {
 }
 
 void GLProgram::stopUsing() const {
-    assert(isInUse());
     glUseProgram(0);
 }
 

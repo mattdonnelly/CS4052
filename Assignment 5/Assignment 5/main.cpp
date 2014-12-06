@@ -16,7 +16,7 @@
 #include <irrKlang.h>
 
 #include "Player.h"
-#include "GLShader.h"
+#include "ScoreManager.h"
 #include "GLProgram.h"
 #include "Window.h"
 
@@ -44,18 +44,13 @@ int main(int argc, const char * argv[]) {
     Gem gem2 = Gem(gem2_position);
     
     std::vector<Point> points = Point::generateRandomPoints(NUM_POINTS);
-    
-    glm::mat4 projection = glm::perspective(45.0f, window.aspectRatio(), 0.1f, 1000.0f);
-    
+
     Player player = Player();
     player.position = glm::vec3(0.0f, 5.0f, 0.0f);
     player.forward_direction = glm::vec3(-1.0f, 0.0f, 0.0f);
     player.speed = 15.0f;
     window.player = &player;
-
-    shader_program.use();
     
-    const int proj_mat_location = shader_program.uniform("projection");
     const int view_mat_location = shader_program.uniform("view");
     
     const int light_position_world_location = shader_program.uniform("light_position_world");
@@ -67,10 +62,11 @@ int main(int argc, const char * argv[]) {
     
     glm::mat3 light_properties_world = glm::mat3(0.7, 0.9, 0.9,
                                                  0.5, 0.7, 0.5,
-                                                 0.1, 0.2, 0.2);    
+                                                 0.1, 0.2, 0.2);
+    
+    ScoreManager score_manager = ScoreManager(window.width, window.height);
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
-    
     if (!audio_engine) {
         std::cout << "Error initialising audio engine" << std::endl;
         return 0;
@@ -78,12 +74,13 @@ int main(int argc, const char * argv[]) {
     
     audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
 
+    shader_program.use();
+    window.setShaderProgram(&shader_program);
+    
     while (!window.shouldClose()) {
-        shader_program.use();
-
-        glm::mat4 view = player.getViewMatrix();
+        shader_program.printStatus();
         
-        shader_program.setUniform(proj_mat_location, projection);
+        glm::mat4 view = player.getViewMatrix();
         shader_program.setUniform(view_mat_location, view);
         
         terrain.draw(shader_program);
@@ -111,6 +108,8 @@ int main(int argc, const char * argv[]) {
             Point p = points[i];
             p.draw(shader_program);
         }
+        
+        //score_manager.drawText(&shader_program);
 
         window.pollEvents();
         window.presentBuffer();

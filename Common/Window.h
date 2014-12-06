@@ -11,7 +11,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "GLCamera.h"
+#include "GLProgram.h"
 #include "Player.h"
 
 class Window {
@@ -28,6 +28,9 @@ public:
     
     Player *player;
     
+    void didResize();
+    void setShaderProgram(GLProgram *program);
+    
     bool shouldClose();
     double getTime();
     void presentBuffer();
@@ -36,4 +39,5 @@ public:
 private:
     GLFWwindow *_window;
     double _delta;
+    GLProgram *_program;
 };

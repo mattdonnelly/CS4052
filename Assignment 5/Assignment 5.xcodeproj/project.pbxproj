@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
+		8B1703FD1A33CAA80090D431 /* ikpMP3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */; };
+		8B1704001A33CAC10090D431 /* ikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
+		8B1704011A33CAC10090D431 /* ikpMP3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */; };
+		8B1704031A33CAFD0090D431 /* libirrklang.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1704021A33CAFD0090D431 /* libirrklang.dylib */; };
+		8B1704041A33CB010090D431 /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704021A33CAFD0090D431 /* libirrklang.dylib */; };
 		8B34C3941A10000C00B981A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3931A10000C00B981A6 /* main.cpp */; };
 		8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39A1A10006E00B981A6 /* libGLEW.dylib */; };
 		8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39B1A10006E00B981A6 /* libglfw3.dylib */; };
@@ -17,6 +23,8 @@
 		8B4975DD1A336C8800B300EA /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975DB1A336C8800B300EA /* Point.cpp */; };
 		8B4975E31A33775600B300EA /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E11A33775600B300EA /* Window.cpp */; };
 		8B4975E61A33A11A00B300EA /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E41A33A11A00B300EA /* Player.cpp */; };
+		8B4975EA1A33B5A600B300EA /* ScoreManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E81A33B5A600B300EA /* ScoreManager.cpp */; };
+		8B4975F61A33BE4000B300EA /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975F41A33BE4000B300EA /* text.cpp */; };
 		8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */; };
 		8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D781A194AE300B2B611 /* GLObject.cpp */; };
 		8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7A1A194AE300B2B611 /* GLProgram.cpp */; };
@@ -25,12 +33,6 @@
 		8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */; };
 		8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D821A194AE300B2B611 /* obj_parser.cpp */; };
 		8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */; };
-		8BE011601A31F1AE009AAEA6 /* libikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */; };
-		8BE011611A31F1AE009AAEA6 /* libikpMP3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */; };
-		8BE011621A31F1AE009AAEA6 /* libirrklang.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */; };
-		8BE011631A31F1B3009AAEA6 /* libikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */; };
-		8BE011641A31F1B3009AAEA6 /* libikpMP3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */; };
-		8BE011651A31F1B3009AAEA6 /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,9 +42,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				8BE011601A31F1AE009AAEA6 /* libikpFLAC.dylib in Copy Files */,
-				8BE011611A31F1AE009AAEA6 /* libikpMP3.dylib in Copy Files */,
-				8BE011621A31F1AE009AAEA6 /* libirrklang.dylib in Copy Files */,
+				8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */,
+				8B1703FD1A33CAA80090D431 /* ikpMP3.dylib in Copy Files */,
+				8B1704031A33CAFD0090D431 /* libirrklang.dylib in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +52,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpFLAC.dylib; path = irrKlang/lib/ikpFLAC.dylib; sourceTree = "<group>"; };
+		8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpMP3.dylib; path = irrKlang/lib/ikpMP3.dylib; sourceTree = "<group>"; };
+		8B1704021A33CAFD0090D431 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 		8B34C3901A10000C00B981A6 /* Assignment 5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 5"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B34C3931A10000C00B981A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8B34C39A1A10006E00B981A6 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
@@ -67,6 +72,11 @@
 		8B4975E21A33775600B300EA /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
 		8B4975E41A33A11A00B300EA /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		8B4975E51A33A11A00B300EA /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		8B4975E81A33B5A600B300EA /* ScoreManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreManager.cpp; sourceTree = "<group>"; };
+		8B4975E91A33B5A600B300EA /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
+		8B4975F01A33BE2C00B300EA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		8B4975F41A33BE4000B300EA /* text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
+		8B4975F51A33BE4000B300EA /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
@@ -83,12 +93,8 @@
 		8B8F0D811A194AE300B2B611 /* GLVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVertexArray.h; sourceTree = "<group>"; };
 		8B8F0D821A194AE300B2B611 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
 		8B8F0D831A194AE300B2B611 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
-		8B8F0D841A194AE300B2B611 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCamera.cpp; sourceTree = "<group>"; };
 		8B8F0DA71A195FC900B2B611 /* GLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCamera.h; sourceTree = "<group>"; };
-		8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpFLAC.dylib; path = irrKlang/lib/libikpFLAC.dylib; sourceTree = "<group>"; };
-		8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpMP3.dylib; path = irrKlang/lib/libikpMP3.dylib; sourceTree = "<group>"; };
-		8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +102,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B1704041A33CB010090D431 /* libirrklang.dylib in Frameworks */,
 				8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */,
 				8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */,
 				8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */,
-				8BE011631A31F1B3009AAEA6 /* libikpFLAC.dylib in Frameworks */,
-				8BE011641A31F1B3009AAEA6 /* libikpMP3.dylib in Frameworks */,
-				8BE011651A31F1B3009AAEA6 /* libirrklang.dylib in Frameworks */,
+				8B1704001A33CAC10090D431 /* ikpFLAC.dylib in Frameworks */,
+				8B1704011A33CAC10090D431 /* ikpMP3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,8 @@
 				8B4975D21A33665900B300EA /* Gem.cpp */,
 				8B4975DC1A336C8800B300EA /* Point.h */,
 				8B4975DB1A336C8800B300EA /* Point.cpp */,
+				8B4975E91A33B5A600B300EA /* ScoreManager.h */,
+				8B4975E81A33B5A600B300EA /* ScoreManager.cpp */,
 			);
 			path = "Assignment 5";
 			sourceTree = "<group>";
@@ -150,9 +158,9 @@
 				8B34C39E1A10007800B981A6 /* OpenGL.framework */,
 				8B34C39A1A10006E00B981A6 /* libGLEW.dylib */,
 				8B34C39B1A10006E00B981A6 /* libglfw3.dylib */,
-				8BE0115D1A31F1AE009AAEA6 /* libikpFLAC.dylib */,
-				8BE0115E1A31F1AE009AAEA6 /* libikpMP3.dylib */,
-				8BE0115F1A31F1AE009AAEA6 /* libirrklang.dylib */,
+				8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */,
+				8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */,
+				8B1704021A33CAFD0090D431 /* libirrklang.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,7 +186,9 @@
 				8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */,
 				8B8F0D831A194AE300B2B611 /* obj_parser.h */,
 				8B8F0D821A194AE300B2B611 /* obj_parser.cpp */,
-				8B8F0D841A194AE300B2B611 /* stb_image.h */,
+				8B4975F01A33BE2C00B300EA /* stb_image.h */,
+				8B4975F51A33BE4000B300EA /* text.h */,
+				8B4975F41A33BE4000B300EA /* text.cpp */,
 				8B4975E21A33775600B300EA /* Window.h */,
 				8B4975E11A33775600B300EA /* Window.cpp */,
 			);
@@ -250,12 +260,14 @@
 				8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */,
 				8B4975D11A33258600B300EA /* Terrain.cpp in Sources */,
 				8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */,
+				8B4975EA1A33B5A600B300EA /* ScoreManager.cpp in Sources */,
 				8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */,
 				8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */,
 				8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */,
 				8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */,
 				8B4975DD1A336C8800B300EA /* Point.cpp in Sources */,
 				8B34C3941A10000C00B981A6 /* main.cpp in Sources */,
+				8B4975F61A33BE4000B300EA /* text.cpp in Sources */,
 				8B4975E61A33A11A00B300EA /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +365,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
 					"\"$(SRCROOT)/irrKlang/lib\"",
+					"$(PROJECT_DIR)/irrKlang/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -374,6 +387,7 @@
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
 					"\"$(SRCROOT)/irrKlang/lib\"",
+					"$(PROJECT_DIR)/irrKlang/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

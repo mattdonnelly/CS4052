@@ -11,7 +11,6 @@
 #include "GLObject.h"
 
 #include <GL/glew.h>
-#include <stdio.h>
 #include <string>
 
 class GLTexture: public GLObject {

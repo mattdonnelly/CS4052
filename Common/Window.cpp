@@ -7,6 +7,7 @@
 //
 
 #include "Window.h"
+#include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
 #define RETINA
@@ -48,6 +49,11 @@ void handleCursorEnter(GLFWwindow *window, int entered) {
     win->isActive = entered;
 }
 
+void handleWindowSize(GLFWwindow *window, int width, int height) {
+    Window *win = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    win->didResize();
+}
+
 Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     _window = NULL;
     isActive = true;
@@ -74,6 +80,7 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     glfwSetWindowUserPointer(_window, this);
     glfwSetCursorEnterCallback(_window, handleCursorEnter);
     glfwSetCursorPosCallback(_window, handleCursorPosition);
+    glfwSetWindowSizeCallback(_window, handleWindowSize);
     
     glewExperimental = GL_TRUE;
     glewInit();
@@ -87,6 +94,18 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     std::cout << "Renderer: " << renderer << std::endl;
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
+}
+
+void Window::setShaderProgram(GLProgram *p) {
+    _program = p;
+    didResize();
+}
+
+void Window::didResize() {
+    int width, height;
+    glfwGetWindowSize(_window, &width, &height);
+    glm::mat4 projection = glm::perspective((float)45.0f, aspectRatio(), 0.1f, 1000.0f);
+    _program->setUniform("projection", projection);
 }
 
 float Window::aspectRatio() const {
