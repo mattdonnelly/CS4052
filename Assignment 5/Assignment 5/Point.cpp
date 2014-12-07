@@ -58,3 +58,7 @@ void Point::collide(Collidable *obj) {
 glm::vec3 Point::collidableLocation() const {
     return location;
 }
+
+bool Point::isCollidable() {
+    return !collected;
+}

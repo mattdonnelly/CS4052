@@ -24,6 +24,7 @@ public:
 
     glm::vec3 collidableLocation() const;
     void collide(Collidable *obj);
+    bool isCollidable();
     
 private:
     bool collected;

@@ -13,7 +13,6 @@
 class Collidable {
 public:
     virtual glm::vec3 collidableLocation() const { return glm::vec3(0.0f, 0.0f, 0.0f); };
-    virtual void collide(Collidable *obj) {
-    
-    };
+    virtual void collide(Collidable *obj) {};
+    virtual bool isCollidable() { return true; };
 };

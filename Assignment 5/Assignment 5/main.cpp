@@ -57,7 +57,7 @@ int main(int argc, const char * argv[]) {
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
     
-    //ScoreManager score_manager = ScoreManager(window.width, window.height);
+    ScoreManager score_manager = ScoreManager(window.width, window.height);
     
     std::vector<Collidable *> collidable_point(points.begin(), points.end());
     
@@ -100,7 +100,8 @@ int main(int argc, const char * argv[]) {
             points[i]->draw(shader_program);
         }
 
-        //score_manager.drawText(&shader_program);
+        score_manager.updateScore(player.points());
+        score_manager.drawText(&shader_program);
         collision_manager.checkCollisions(2.0f);
 
         window.pollEvents();

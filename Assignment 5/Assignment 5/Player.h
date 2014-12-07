@@ -15,7 +15,8 @@
 class Player: public GLCamera, public Collidable {
 public:
     Player();
-    Player(double fov, double aspect, double near, double far);
+    
+    int points() const;
 
     void moveForward(float delta);
     void moveBackward(float delta);
