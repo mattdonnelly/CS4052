@@ -53,16 +53,6 @@ GLProgram::GLProgram(const std::string vertex_shader_path, const std::string fra
     glUseProgram(_object);
 }
 
-GLProgram::~GLProgram() {
-    if (_object != 0) {
-        for (unsigned i = 0; i < _shaders.size(); ++i) {
-            glDeleteShader(_shaders[i].object());
-        }
-        
-        glDeleteProgram(_object);
-    }
-}
-
 void GLProgram::use() const {
     glUseProgram(_object);
 }

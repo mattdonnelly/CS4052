@@ -42,10 +42,6 @@ GLShader::GLShader(const std::string &shaderCode, GLenum shaderType) {
     }
 }
 
-GLShader::~GLShader() {
-
-}
-
 GLShader GLShader::shaderFromFile(const std::string filePath, GLenum shaderType) {
     std::ifstream ifile(filePath);
     std::string text;

@@ -16,7 +16,6 @@
 class GLShader: public GLObject {
 public:
     GLShader(const std::string &shaderCode, GLenum shaderType);
-    ~GLShader();
     
     static GLShader shaderFromFile(const std::string filePath, GLenum shaderType);
 };

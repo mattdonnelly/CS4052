@@ -15,6 +15,9 @@ Drawable::Drawable(glm::vec3 loc) {
     vao = NULL;
     texture = NULL;
     scale = glm::vec3(1.0f, 1.0f, 1.0f);
+    roll = 0.0f;
+    yaw = 0.0f;
+    pitch = 0.0f;
 }
 
 void Drawable::draw(GLProgram shader_program) {
