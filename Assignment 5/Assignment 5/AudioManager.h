@@ -18,7 +18,8 @@ public:
     ~AudioManager();
     
     void playMusic();
-    
+    void playItemPickUp();
+
 private:
     irrklang::ISoundEngine *audio_engine;
 };

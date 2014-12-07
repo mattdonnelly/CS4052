@@ -9,7 +9,9 @@
 #include "Player.h"
 
 Player::Player() : GLCamera() {
-    
+    position = glm::vec3(0.0f, 5.0f, 0.0f);
+    forward_direction = glm::vec3(-1.0f, 0.0f, 0.0f);
+    speed = 15.0f;
 }
 
 void Player::moveForward(float delta) {

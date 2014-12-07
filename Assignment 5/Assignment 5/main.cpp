@@ -42,9 +42,6 @@ int main(int argc, const char * argv[]) {
     std::vector<Point *> points = Point::generateRandomPoints(NUM_POINTS);
 
     Player player = Player();
-    player.position = glm::vec3(0.0f, 5.0f, 0.0f);
-    player.forward_direction = glm::vec3(-1.0f, 0.0f, 0.0f);
-    player.speed = 15.0f;
     window.player = &player;
     
     const int view_mat_location = shader_program.uniform("view");

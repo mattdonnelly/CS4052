@@ -20,11 +20,15 @@ AudioManager::~AudioManager() {
     audio_engine->drop();
 }
 
+AudioManager* AudioManager::sharedManager() {
+    static AudioManager *_sharedManager = new AudioManager();
+    return _sharedManager;
+}
+
 void AudioManager::playMusic() {
     audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
 }
 
-AudioManager* AudioManager::sharedManager() {
-    static AudioManager *_sharedManager = new AudioManager();
-    return _sharedManager;
+void AudioManager::playItemPickUp() {
+    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/pickup.mp3", false);
 }

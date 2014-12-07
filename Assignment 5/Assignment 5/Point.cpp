@@ -7,6 +7,8 @@
 //
 
 #include "Point.h"
+#include "AudioManager.h"
+
 #include <random>
 
 Point::Point(glm::vec3 location) : Drawable(location) {
@@ -38,6 +40,10 @@ void Point::draw(GLProgram shader_program) {
 }
 
 void Point::collide(Collidable *obj) {
+    if (!collected) {
+        AudioManager::sharedManager()->playItemPickUp();
+    }
+    
     collected = true;
 }
 
