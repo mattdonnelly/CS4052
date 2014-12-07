@@ -15,16 +15,13 @@
 
 class GLVertexArray: public  GLObject {
 public:
-    GLVertexArray(const std::vector<GLBuffer> &buffers, GLint point_count);
+    GLVertexArray(const char *filename);
     ~GLVertexArray();
-
-    void bind() const;
     
     void draw() const;
     
     GLint point_count() const;
 
 private:
-    std::vector<GLBuffer> _buffers;
     GLint _point_count;
 };

@@ -64,7 +64,7 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     if (!glfwInit()) {
         throw std::runtime_error("ERROR: could not start GLFW3\n");
     }
-    
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -84,7 +84,7 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     
     glewExperimental = GL_TRUE;
     glewInit();
-    
+
     glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
     glClearDepth(1);
     glEnable(GL_DEPTH_TEST);
@@ -120,7 +120,11 @@ double Window::getTime() {
     return glfwGetTime();
 }
 
-void Window::presentBuffer() {
+void Window::clear() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void Window::swapBuffers() {
     static double previous_seconds = getTime();
     double current_seconds = getTime();
     double elapsed_seconds = current_seconds - previous_seconds;
@@ -129,7 +133,6 @@ void Window::presentBuffer() {
     _delta = elapsed_seconds;
     
     glfwSwapBuffers(_window);
-    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Window::pollEvents() {

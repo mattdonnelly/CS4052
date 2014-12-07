@@ -6,27 +6,39 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#define STB_IMAGE_IMPLEMENTATION
-
 #include "GLTexture.h"
-#include "stb_image.h"
+
+#include <IL/il.h>
 
 GLTexture::GLTexture(const std::string filepath, GLint format, GLint minMagFiler, GLint wrapMode) {
-    unsigned char *pixels = stbi_load(filepath.c_str(), &_width, &_height, &_channels, 0);
+    GLuint imageID;
+    ilInit();
+    ilGenImages(1, &imageID);
+    ilBindImage(imageID);
+    ilEnable(IL_ORIGIN_SET);
+    ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+    
+    if (ilLoadImage(filepath.c_str()) == IL_FALSE) {
+        
+    }
+    
+    ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 
-    printf("%d\n", _width);
-    printf("%d\n", _height);
+    _width = ilGetInteger(IL_IMAGE_WIDTH);
+    _height = ilGetInteger(IL_IMAGE_HEIGHT);
     
+    glEnable(GL_TEXTURE_2D);
     glGenTextures(1, &_object);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _object);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, minMagFiler);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minMagFiler);
-    glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_width, (GLsizei)_height, 0, format, GL_UNSIGNED_BYTE, pixels);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, ilGetData());
+    glGenerateMipmap(GL_TEXTURE_2D);
     
-    stbi_image_free(pixels);
+    ilShutDown();
 }
 
 GLTexture::~GLTexture() {

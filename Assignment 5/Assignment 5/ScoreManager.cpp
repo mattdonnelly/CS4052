@@ -18,6 +18,7 @@ ScoreManager::ScoreManager(int width, int height) {
 void ScoreManager::drawText(GLProgram *shader_program) {
     draw_texts();
     shader_program->use();
+    glDisable(GL_BLEND);
 }
 
 void ScoreManager::updateScore(int s) {

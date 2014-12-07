@@ -32,8 +32,11 @@ public:
     void setShaderProgram(GLProgram *program);
     
     bool shouldClose();
+
     double getTime();
-    void presentBuffer();
+
+    void clear();
+    void swapBuffers();
     void pollEvents();
 
 private:

@@ -22,13 +22,13 @@
 
 #define NUM_POINTS 15
 
-#define FPS 25.0
+#define FPS 60.0
 
 int main(int argc, const char * argv[]) {
     Window window = Window("Assignment 5", 1280, 720);
     
     GLProgram shader_program = GLProgram("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/vertex_shader.glsl", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/fragment_shader.glsl");
-    
+
     Terrain terrain = Terrain();
     
     const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
@@ -59,7 +59,7 @@ int main(int argc, const char * argv[]) {
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
     
-    //ScoreManager score_manager = ScoreManager(window.width, window.height);
+    ScoreManager score_manager = ScoreManager(window.width, window.height);
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     if (!audio_engine) {
@@ -72,7 +72,11 @@ int main(int argc, const char * argv[]) {
     shader_program.use();
     window.setShaderProgram(&shader_program);
     
-    while (!window.shouldClose()) {        
+    double last_tick = window.getTime();
+    
+    while (!window.shouldClose()) {
+        window.clear();
+        
         glm::mat4 view = player.getViewMatrix();
         shader_program.setUniform(view_mat_location, view);
         
@@ -90,7 +94,7 @@ int main(int argc, const char * argv[]) {
         
         shader_program.setUniform(light_properties_world_location, light_properties_world);
         shader_program.setUniform(light_properties_gem_location, light_properties_gem);
-        
+
         gem1.scale = glm::vec3(oscillation, oscillation, oscillation);
         gem1.draw(shader_program);
         
@@ -102,10 +106,13 @@ int main(int argc, const char * argv[]) {
             p.draw(shader_program);
         }
         
-        //score_manager.drawText(&shader_program);
+        score_manager.drawText(&shader_program);
 
         window.pollEvents();
-        window.presentBuffer();
+        window.swapBuffers();
+        
+        while(window.getTime() < last_tick+1/FPS);
+        last_tick = window.getTime();
     }
 
     audio_engine->drop();

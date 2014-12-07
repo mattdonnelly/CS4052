@@ -7,48 +7,56 @@
 //
 
 #include "GLVertexArray.h"
+#include <IL/il.h>
 
-GLVertexArray::GLVertexArray(const std::vector<GLBuffer> &buffers, GLint point_count) {
-    if (buffers.size() <= 0) {
-        throw std::runtime_error("Must pass at least one shader to create program");
-    }
-    
-    _buffers = buffers;
-    
-    // Create the vertex array object
-    glGenVertexArrays (1, &_object);
-    if (_object == 0) {
-        throw std::runtime_error("glGenVertexArrays failed");
-    }
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
+#include <iostream>
+
+GLVertexArray::GLVertexArray(const char *filename) {
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(filename, aiProcess_Triangulate);
+    if(!scene){
+        fprintf(stderr, "%s", importer.GetErrorString());
+    }
+    std::vector<const aiMesh *> meshes(scene->mMeshes,scene->mMeshes+scene->mNumMeshes);
+    aiMesh *mesh = scene->mMeshes[0];
+    
+    GLuint buffer;
+    
+    glGenVertexArrays(1, &_object);
     glBindVertexArray(_object);
-
-    // Bind buffers
-    for (unsigned i = 0; i < buffers.size(); ++i) {
-        GLBuffer buffer = buffers[i];
-        glBindBuffer(GL_ARRAY_BUFFER, buffer.object());
-        glVertexAttribPointer(i, buffer.count(), GL_FLOAT, GL_FALSE, 0, NULL);
-        glEnableVertexAttribArray(i);
-    }
     
-    _point_count = point_count;
-}
-
-GLVertexArray::~GLVertexArray() {
-    for (unsigned i = 0; i < _buffers.size(); ++i) {
-        GLuint obj = _buffers[i].object();
-        glDeleteBuffers(1, &obj);
-    }
+    _point_count = mesh->mNumFaces * 3;
     
-    glDeleteVertexArrays(1, &_object);
-}
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 *_point_count, mesh->mVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0 , 3, GL_FLOAT, 0, 0, 0);
+    
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * _point_count, mesh->mTextureCoords, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, 0, 0, 0);
+    
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * _point_count, mesh->mNormals, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, 0, 0, 0);
 
-void GLVertexArray::bind() const {
-    glBindVertexArray(_object);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void GLVertexArray::draw() const {
+    glBindVertexArray(_object);
     glDrawArrays(GL_TRIANGLES, 0, _point_count);
+    glBindVertexArray(0);
 }
 
 GLint GLVertexArray::point_count() const {

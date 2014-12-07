@@ -17,7 +17,7 @@ class GLTexture: public GLObject {
 public:
     GLTexture(const std::string filepath,
               GLint format,
-              GLint minMagFiler = GL_LINEAR,
+              GLint minMagFiler = GL_LINEAR_MIPMAP_LINEAR,
               GLint wrapMode = GL_REPEAT);
     ~GLTexture();
 

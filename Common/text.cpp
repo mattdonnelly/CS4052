@@ -11,6 +11,8 @@
 // Sean Barrett's public domain image loader lib: stb_image.h (included)
 //
 
+#define STB_IMAGE_IMPLEMENTATION
+
 #include "text.h"
 #include "stb_image.h" // Sean Barrett's image loader
 #include <stdio.h>

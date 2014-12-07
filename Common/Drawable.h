@@ -35,4 +35,3 @@ public:
     
     GLVertexArray *loadVertexArray(const char *file_name);
 };
-

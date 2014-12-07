@@ -18,8 +18,6 @@ Drawable::Drawable(glm::vec3 loc) {
 }
 
 void Drawable::draw(GLProgram shader_program) {
-    vao->bind();
-    
     texture->bindTexture(GL_TEXTURE0);
     shader_program.setUniform("tex", 0);
     
@@ -31,20 +29,5 @@ void Drawable::draw(GLProgram shader_program) {
 }
 
 GLVertexArray * Drawable::loadVertexArray(const char *file_name) {
-    int point_count = 0;
-    GLfloat *vp, *vt, *vn;
-    assert(load_obj_file(file_name, vp, vt, vn, point_count));
-    
-    GLBuffer points_vbo = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
-    GLBuffer tex_vbo = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 2 * point_count);
-    GLBuffer normals_vbo = GLBuffer(vn, 3, sizeof(float) * 3 * point_count);
-    
-    delete vp; delete vt; delete vn;
-    
-    std::vector<GLBuffer> buffers;
-    buffers.emplace_back(points_vbo);
-    buffers.emplace_back(tex_vbo);
-    buffers.emplace_back(normals_vbo);
-    
-    return new GLVertexArray(buffers, point_count);
+    return new GLVertexArray(file_name);
 }
