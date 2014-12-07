@@ -28,7 +28,7 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
     std::vector<Point *> points;
     for (int i = 0; i < count; i++) {
         double x = dis(gen);
-        double y = ((double)rand() / (RAND_MAX)) + 4.0;
+        double y = 4.0;
         double z = dis(gen);
         Point *p = new Point(glm::vec3(x, y, z));
         points.push_back(p);
@@ -61,4 +61,8 @@ glm::vec3 Point::collidableLocation() const {
 
 bool Point::isCollidable() {
     return !collected;
+}
+
+int Point::tag() {
+    return 0;
 }

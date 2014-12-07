@@ -9,10 +9,14 @@
 #pragma once
 
 #include "Drawable.h"
+#include "Collidable.h"
 
-class Gem : public Drawable {
+class Gem : public Drawable, public Collidable {
 public:
     Gem(glm::vec3 location);
     
     void draw(GLProgram shader_program);
+    
+    glm::vec3 collidableLocation() const;
+    int tag();
 };

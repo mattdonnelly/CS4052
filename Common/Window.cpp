@@ -37,7 +37,7 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
         double xpos_delta = (last_xpos - xpos) * MOUSE_SENSITIVITY;
         double ypos_delta = (last_ypos - ypos) * MOUSE_SENSITIVITY;
         
-        win->player->mouseUpdate(xpos_delta, ypos_delta);
+        win->camera->mouseUpdate(xpos_delta, ypos_delta);
     }
     
     last_xpos = xpos;
@@ -143,16 +143,16 @@ void Window::pollEvents() {
     }
     
     if (GLFW_PRESS == glfwGetKey(_window, GLFW_KEY_W)) {
-        player->moveForward(_delta);
+        camera->moveForward(_delta);
     }
     else if (GLFW_PRESS == glfwGetKey(_window, GLFW_KEY_S)) {
-        player->moveBackward(_delta);
+        camera->moveBackward(_delta);
     }
     
     if (GLFW_PRESS == glfwGetKey(_window, GLFW_KEY_A)) {
-        player->moveLeft(_delta);
+        camera->moveLeft(_delta);
     }
     else if (GLFW_PRESS == glfwGetKey(_window, GLFW_KEY_D)) {
-        player->moveRight(_delta);
+        camera->moveRight(_delta);
     }
 }

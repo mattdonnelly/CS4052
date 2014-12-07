@@ -20,3 +20,11 @@ void Gem::draw(GLProgram shader_program) {
 
     Drawable::draw(shader_program);
 }
+
+glm::vec3 Gem::collidableLocation() const {
+    return location;
+}
+
+int Gem::tag() {
+    return 1;
+}

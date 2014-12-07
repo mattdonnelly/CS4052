@@ -28,15 +28,12 @@ public:
     
     glm::mat4 getViewMatrix();
 
-    void mouseUpdate(float deltaX, float deltaY);
+    virtual void mouseUpdate(float deltaX, float deltaY);
     
-    void moveForward(float delta);
-    void moveBackward(float delta);
-    void moveLeft(float delta);
-    void moveRight(float delta);
-    void moveUp(float delta);
-    void moveDown(float delta);
-
-private:
-    
+    virtual void moveForward(float delta);
+    virtual void moveBackward(float delta);
+    virtual void moveLeft(float delta);
+    virtual void moveRight(float delta);
+    virtual void moveUp(float delta);
+    virtual void moveDown(float delta);
 };

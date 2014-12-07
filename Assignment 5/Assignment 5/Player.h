@@ -9,12 +9,19 @@
 #pragma once
 
 #include "GLCamera.h"
+#include "GLProgram.h"
 #include "Collidable.h"
+#include "Animatable.h"
+
 #include <glm/glm.hpp>
 
-class Player: public GLCamera, public Collidable {
+class Window;
+
+class Player: public GLCamera, public Animatable, public Collidable {
 public:
-    Player();
+    Player(Window window);
+
+    void drawText(GLProgram shader_program);
     
     int points() const;
 
@@ -26,4 +33,13 @@ public:
     
 private:
     int _points;
+    int _points_text_id;
+
+    double _health;
+    int _health_text_id;
+    
+    bool regenerating;
+    
+    void update_points(int score);
+    void update_health(double health);
 };

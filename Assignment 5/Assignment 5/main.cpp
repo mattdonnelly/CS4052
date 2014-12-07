@@ -6,12 +6,7 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#define GLM_FORCE_RADIANS
-
-#include <iostream>
-
 #include "Player.h"
-#include "ScoreManager.h"
 #include "CollisionManager.h"
 #include "AudioManager.h"
 #include "GLProgram.h"
@@ -41,8 +36,8 @@ int main(int argc, const char * argv[]) {
     
     std::vector<Point *> points = Point::generateRandomPoints(NUM_POINTS);
 
-    Player player = Player();
-    window.player = &player;
+    Player player = Player(window);
+    window.camera = &player;
     
     const int view_mat_location = shader_program.uniform("view");
     
@@ -52,18 +47,24 @@ int main(int argc, const char * argv[]) {
 
     const int light_properties_world_location = shader_program.uniform("light_properties_world");
     const int light_properties_gem_location = shader_program.uniform("light_properties_gem");
-    
+
     glm::mat3 light_properties_world = glm::mat3(0.7, 0.9, 0.9,
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
+
+    std::vector<Collidable *> collidable_points(points.begin(), points.end());
     
-    ScoreManager score_manager = ScoreManager(window.width, window.height);
+    CollisionManager point_collision_manager = CollisionManager();
+    point_collision_manager.main_object = &player;
+    point_collision_manager.addCollidables(collidable_points);
     
-    std::vector<Collidable *> collidable_point(points.begin(), points.end());
+    std::vector<Collidable *> collidable_gems;
+    collidable_gems.push_back(&gem1);
+    collidable_gems.push_back(&gem2);
     
-    CollisionManager collision_manager = CollisionManager();
-    collision_manager.main_object = &player;
-    collision_manager.addCollidables(collidable_point);
+    CollisionManager gem_collision_manager = CollisionManager();
+    gem_collision_manager.main_object = &player;
+    gem_collision_manager.addCollidables(collidable_gems);
     
     AudioManager::sharedManager()->playMusic();
 
@@ -95,14 +96,15 @@ int main(int argc, const char * argv[]) {
 
         gem1.draw(shader_program);
         gem2.draw(shader_program);
+        
+        player.drawText(shader_program);
 
         for (int i = 0; i < NUM_POINTS; i++) {
             points[i]->draw(shader_program);
         }
 
-        score_manager.updateScore(player.points());
-        score_manager.drawText(&shader_program);
-        collision_manager.checkCollisions(2.0f);
+        point_collision_manager.checkCollisions(2.0f);
+        gem_collision_manager.checkCollisions(18.0f);
 
         window.pollEvents();
         window.swapBuffers();

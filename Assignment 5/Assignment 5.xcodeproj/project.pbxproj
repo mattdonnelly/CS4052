@@ -27,8 +27,8 @@
 		8B4975DD1A336C8800B300EA /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975DB1A336C8800B300EA /* Point.cpp */; };
 		8B4975E31A33775600B300EA /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E11A33775600B300EA /* Window.cpp */; };
 		8B4975E61A33A11A00B300EA /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E41A33A11A00B300EA /* Player.cpp */; };
-		8B4975EA1A33B5A600B300EA /* ScoreManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E81A33B5A600B300EA /* ScoreManager.cpp */; };
 		8B4975F61A33BE4000B300EA /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975F41A33BE4000B300EA /* text.cpp */; };
+		8B6458F01A3512B00034A437 /* Animatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6458EE1A3512B00034A437 /* Animatable.cpp */; };
 		8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D781A194AE300B2B611 /* GLObject.cpp */; };
 		8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7A1A194AE300B2B611 /* GLProgram.cpp */; };
 		8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7C1A194AE300B2B611 /* GLShader.cpp */; };
@@ -83,11 +83,11 @@
 		8B4975E21A33775600B300EA /* Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
 		8B4975E41A33A11A00B300EA /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		8B4975E51A33A11A00B300EA /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		8B4975E81A33B5A600B300EA /* ScoreManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScoreManager.cpp; sourceTree = "<group>"; };
-		8B4975E91A33B5A600B300EA /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
 		8B4975F01A33BE2C00B300EA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8B4975F41A33BE4000B300EA /* text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
 		8B4975F51A33BE4000B300EA /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
+		8B6458EE1A3512B00034A437 /* Animatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animatable.cpp; sourceTree = "<group>"; };
+		8B6458EF1A3512B00034A437 /* Animatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animatable.h; sourceTree = "<group>"; };
 		8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D781A194AE300B2B611 /* GLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLObject.cpp; sourceTree = "<group>"; };
@@ -157,8 +157,6 @@
 				8B4975D21A33665900B300EA /* Gem.cpp */,
 				8B4975DC1A336C8800B300EA /* Point.h */,
 				8B4975DB1A336C8800B300EA /* Point.cpp */,
-				8B4975E91A33B5A600B300EA /* ScoreManager.h */,
-				8B4975E81A33B5A600B300EA /* ScoreManager.cpp */,
 				8B1704151A34B84D0090D431 /* Collidable.h */,
 				8B1704121A34B7D30090D431 /* CollisionManager.h */,
 				8B1704111A34B7D30090D431 /* CollisionManager.cpp */,
@@ -188,6 +186,8 @@
 			children = (
 				8B4975D61A336C0100B300EA /* Drawable.h */,
 				8B4975D51A336C0100B300EA /* Drawable.cpp */,
+				8B6458EF1A3512B00034A437 /* Animatable.h */,
+				8B6458EE1A3512B00034A437 /* Animatable.cpp */,
 				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
 				8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */,
 				8B1704101A34B7980090D431 /* GLError.h */,
@@ -270,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B1704191A34CD8E0090D431 /* AudioManager.cpp in Sources */,
+				8B6458F01A3512B00034A437 /* Animatable.cpp in Sources */,
 				8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */,
 				8B4975E31A33775600B300EA /* Window.cpp in Sources */,
 				8B4975D41A33665900B300EA /* Gem.cpp in Sources */,
@@ -277,7 +278,6 @@
 				8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */,
 				8B4975D11A33258600B300EA /* Terrain.cpp in Sources */,
 				8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */,
-				8B4975EA1A33B5A600B300EA /* ScoreManager.cpp in Sources */,
 				8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */,
 				8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */,
 				8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */,

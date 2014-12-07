@@ -26,7 +26,7 @@ public:
     
     float aspectRatio() const;
     
-    Player *player;
+    GLCamera *camera;
     
     void didResize();
     void setShaderProgram(GLProgram *program);
