@@ -9,11 +9,11 @@
 #define GLM_FORCE_RADIANS
 
 #include <iostream>
-#include <irrKlang.h>
 
 #include "Player.h"
 #include "ScoreManager.h"
 #include "CollisionManager.h"
+#include "AudioManager.h"
 #include "GLProgram.h"
 #include "Window.h"
 
@@ -68,13 +68,7 @@ int main(int argc, const char * argv[]) {
     collision_manager.main_object = &player;
     collision_manager.addCollidables(collidable_point);
     
-    irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
-    if (!audio_engine) {
-        std::cout << "Error initialising audio engine" << std::endl;
-        return 0;
-    }
-    
-    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/music.mp3", true);
+    AudioManager::sharedManager()->playMusic();
 
     shader_program.use();
     window.setShaderProgram(&shader_program);
@@ -123,7 +117,6 @@ int main(int argc, const char * argv[]) {
         last_tick = window.getTime();
     }
 
-    audio_engine->drop();
     glfwTerminate();
     
     return 0;

@@ -25,5 +25,5 @@ glm::vec3 Player::collidableLocation() const {
 }
 
 void Player::collide(Collidable *obj) {
-    
+    _points++;
 }
