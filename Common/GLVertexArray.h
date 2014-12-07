@@ -9,14 +9,12 @@
 #pragma once
 
 #include "GLObject.h"
-#include "GLBuffer.h"
 
 #include <vector>
 
 class GLVertexArray: public  GLObject {
 public:
     GLVertexArray(const char *filename);
-    ~GLVertexArray();
     
     void draw() const;
     

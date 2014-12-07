@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B17040D1A34B4FB0090D431 /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B17040C1A34B4FB0090D431 /* libIL.dylib */; };
+		8B17040F1A34B50C0090D431 /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B17040E1A34B50C0090D431 /* libassimp.dylib */; };
 		8B34C3941A10000C00B981A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3931A10000C00B981A6 /* main.cpp */; };
 		8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39A1A10006E00B981A6 /* libGLEW.dylib */; };
 		8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39B1A10006E00B981A6 /* libglfw3.dylib */; };
 		8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39E1A10007800B981A6 /* OpenGL.framework */; };
-		8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */; };
 		8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D781A194AE300B2B611 /* GLObject.cpp */; };
 		8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7A1A194AE300B2B611 /* GLProgram.cpp */; };
 		8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7C1A194AE300B2B611 /* GLShader.cpp */; };
@@ -34,6 +35,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B17040A1A34B4E50090D431 /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
+		8B17040C1A34B4FB0090D431 /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.dylib; sourceTree = "<group>"; };
+		8B17040E1A34B50C0090D431 /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.dylib; sourceTree = "<group>"; };
 		8B34C3901A10000C00B981A6 /* Assignment 4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 4"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B34C3931A10000C00B981A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8B34C39A1A10006E00B981A6 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
@@ -41,8 +45,6 @@
 		8B34C39E1A10007800B981A6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		8B8F0D5C1A192DF600B2B611 /* vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex_shader.glsl; sourceTree = "<group>"; };
 		8B8F0D5D1A192DFF00B2B611 /* fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment_shader.glsl; sourceTree = "<group>"; };
-		8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
-		8B8F0D771A194AE300B2B611 /* GLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBuffer.h; sourceTree = "<group>"; };
 		8B8F0D781A194AE300B2B611 /* GLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLObject.cpp; sourceTree = "<group>"; };
 		8B8F0D791A194AE300B2B611 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLObject.h; sourceTree = "<group>"; };
 		8B8F0D7A1A194AE300B2B611 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
@@ -68,6 +70,8 @@
 				8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */,
 				8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */,
 				8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */,
+				8B17040D1A34B4FB0090D431 /* libIL.dylib in Frameworks */,
+				8B17040F1A34B50C0090D431 /* libassimp.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,9 @@
 		8B34C3A01A10008200B981A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B17040E1A34B50C0090D431 /* libassimp.dylib */,
+				8B17040C1A34B4FB0090D431 /* libIL.dylib */,
+				8B17040A1A34B4E50090D431 /* libassimp.3.1.1.dylib */,
 				8B34C39E1A10007800B981A6 /* OpenGL.framework */,
 				8B34C39A1A10006E00B981A6 /* libGLEW.dylib */,
 				8B34C39B1A10006E00B981A6 /* libglfw3.dylib */,
@@ -115,8 +122,6 @@
 		8B8F0D751A194AE300B2B611 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8B8F0D771A194AE300B2B611 /* GLBuffer.h */,
-				8B8F0D761A194AE300B2B611 /* GLBuffer.cpp */,
 				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
 				8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */,
 				8B8F0D791A194AE300B2B611 /* GLObject.h */,
@@ -194,7 +199,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */,
-				8B8F0D851A194AE300B2B611 /* GLBuffer.cpp in Sources */,
 				8B8F0D871A194AE300B2B611 /* GLProgram.cpp in Sources */,
 				8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */,
 				8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */,
@@ -291,10 +295,14 @@
 					/usr/local/Cellar/glew/1.11.0/include,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					/usr/local/Cellar/assimp/3.1.1/include,
+					/usr/local/Cellar/devil/1.7.8_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/devil/1.7.8_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -309,10 +317,14 @@
 					/usr/local/Cellar/glew/1.11.0/include,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					/usr/local/Cellar/assimp/3.1.1/include,
+					/usr/local/Cellar/devil/1.7.8_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/devil/1.7.8_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
