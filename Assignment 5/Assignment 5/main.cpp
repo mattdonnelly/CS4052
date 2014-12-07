@@ -93,17 +93,13 @@ int main(int argc, const char * argv[]) {
         shader_program.setUniform(light_properties_world_location, light_properties_world);
         shader_program.setUniform(light_properties_gem_location, light_properties_gem);
 
-        gem1.scale = glm::vec3(oscillation, oscillation, oscillation);
         gem1.draw(shader_program);
-        
-        gem2.scale = gem1.scale;
         gem2.draw(shader_program);
 
         for (int i = 0; i < NUM_POINTS; i++) {
-            Point *p = points[i];
-            p->draw(shader_program);
+            points[i]->draw(shader_program);
         }
-        
+
         //score_manager.drawText(&shader_program);
         collision_manager.checkCollisions(2.0f);
 

@@ -28,10 +28,12 @@ public:
     glm::vec3 location;
     glm::vec3 scale;
     
+    float roll;
+    float yaw;
+    float pitch;
+    
     GLVertexArray *vao;
     GLTexture *texture;
     
     virtual void draw(GLProgram shader_program);
-    
-    GLVertexArray *loadVertexArray(const char *file_name);
 };

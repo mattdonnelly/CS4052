@@ -9,6 +9,6 @@
 #include "Terrain.h"
 
 Terrain::Terrain() : Drawable(0.0f, 0.0f, 0.0f) {
-    vao = Drawable::loadVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj");
+    vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj");
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/grass.png", GL_RGB);
 }

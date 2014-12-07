@@ -7,8 +7,16 @@
 //
 
 #include "Gem.h"
+#include <GLFW/glfw3.h>
 
 Gem::Gem(glm::vec3 location) : Drawable(location) {
-    vao = Drawable::loadVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj");
+    vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj");
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/gem.png", GL_RGB);
+}
+
+void Gem::draw(GLProgram shader_program) {
+    double oscillation = fabs(sinf(glfwGetTime()));
+    scale = glm::vec3(oscillation, oscillation, oscillation);
+
+    Drawable::draw(shader_program);
 }

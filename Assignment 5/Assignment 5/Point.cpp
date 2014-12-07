@@ -9,10 +9,14 @@
 #include "Point.h"
 #include "AudioManager.h"
 
+#include <GLFW/glfw3.h>
 #include <random>
+#include <iostream>
 
 Point::Point(glm::vec3 location) : Drawable(location) {
-    vao = Drawable::loadVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/point.obj");
+    y = location.y + ((double)rand() / (RAND_MAX));
+    
+    vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/point.obj");
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/point.png", GL_RGB);
 }
 
@@ -24,7 +28,7 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
     std::vector<Point *> points;
     for (int i = 0; i < count; i++) {
         double x = dis(gen);
-        double y = ((double) rand() / (RAND_MAX)) + 4.0;
+        double y = ((double)rand() / (RAND_MAX)) + 4.0;
         double z = dis(gen);
         Point *p = new Point(glm::vec3(x, y, z));
         points.push_back(p);
@@ -35,6 +39,10 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
 
 void Point::draw(GLProgram shader_program) {
     if (!collected) {
+        double oscillation = sinf(glfwGetTime());
+        pitch = glfwGetTime();
+        location = glm::vec3(location.x, y + oscillation, location.z);
+
         Drawable::draw(shader_program);
     }
 }

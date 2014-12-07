@@ -13,4 +13,6 @@
 class Gem : public Drawable {
 public:
     Gem(glm::vec3 location);
+    
+    void draw(GLProgram shader_program);
 };
