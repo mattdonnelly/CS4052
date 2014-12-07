@@ -106,7 +106,7 @@ int main(int argc, const char * argv[]) {
             p.draw(shader_program);
         }
         
-        score_manager.drawText(&shader_program);
+        //score_manager.drawText(&shader_program);
 
         window.pollEvents();
         window.swapBuffers();
