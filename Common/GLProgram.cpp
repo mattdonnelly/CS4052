@@ -29,24 +29,10 @@ GLProgram::GLProgram(const std::string vertex_shader_path, const std::string fra
     glLinkProgram(_object);
     
     // Detach all the shaders
-    glDetachShader(_object, vertex_shader.object());
-    glDetachShader(_object, frag_shader.object());
+    //glDetachShader(_object, vertex_shader.object());
+    //glDetachShader(_object, frag_shader.object());
 
     // Throw exception if linking fails
-    printStatus();
-}
-
-GLProgram::~GLProgram() {
-    if (_object != 0) {
-        for (unsigned i = 0; i < _shaders.size(); ++i) {
-            glDeleteShader(_shaders[i].object());
-        }
-        
-        glDeleteProgram(_object);
-    }
-}
-
-void GLProgram::printStatus() {
     GLint status;
     glGetProgramiv(_object, GL_LINK_STATUS, &status);
     if (status == GL_FALSE) {
@@ -62,6 +48,18 @@ void GLProgram::printStatus() {
         glDeleteProgram(_object);
         _object = 0;
         throw std::runtime_error(msg);
+    }
+    
+    glUseProgram(_object);
+}
+
+GLProgram::~GLProgram() {
+    if (_object != 0) {
+        for (unsigned i = 0; i < _shaders.size(); ++i) {
+            glDeleteShader(_shaders[i].object());
+        }
+        
+        glDeleteProgram(_object);
     }
 }
 

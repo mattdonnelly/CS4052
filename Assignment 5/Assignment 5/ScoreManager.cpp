@@ -17,8 +17,6 @@ ScoreManager::ScoreManager(int width, int height) {
 
 void ScoreManager::drawText(GLProgram *shader_program) {
     draw_texts();
-    glUseProgram(0);
-    glLinkProgram(shader_program->object());
     shader_program->use();
 }
 

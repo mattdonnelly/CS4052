@@ -9,10 +9,6 @@
 #define GLM_FORCE_RADIANS
 
 #include <iostream>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm/gtc/matrix_transform.hpp>
-#include <math.h>
 #include <irrKlang.h>
 
 #include "Player.h"
@@ -26,8 +22,7 @@
 
 #define NUM_POINTS 15
 
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+#define FPS 25.0
 
 int main(int argc, const char * argv[]) {
     Window window = Window("Assignment 5", 1280, 720);
@@ -64,7 +59,7 @@ int main(int argc, const char * argv[]) {
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
     
-    ScoreManager score_manager = ScoreManager(window.width, window.height);
+    //ScoreManager score_manager = ScoreManager(window.width, window.height);
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     if (!audio_engine) {
@@ -77,9 +72,7 @@ int main(int argc, const char * argv[]) {
     shader_program.use();
     window.setShaderProgram(&shader_program);
     
-    while (!window.shouldClose()) {
-        shader_program.printStatus();
-        
+    while (!window.shouldClose()) {        
         glm::mat4 view = player.getViewMatrix();
         shader_program.setUniform(view_mat_location, view);
         

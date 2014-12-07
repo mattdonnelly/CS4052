@@ -32,7 +32,7 @@ vec3 create_light(vec3 position, mat3 properties, float light_reach) {
     vec3 direction_to_light_eye = normalize(light_position_eye - position_eye);
     
     float distance_from_light_to_position = length(light_position_eye - position_eye);
-    float light_intensity = min(max(1.0/pow(distance_from_light_to_position/light_reach,2.0),0.0),1.0);
+    float light_intensity = min(max(1.0 / pow(distance_from_light_to_position / light_reach, 2.0), 0.0), 1.0);
 
     vec3 Ia = La * Ka;
 
