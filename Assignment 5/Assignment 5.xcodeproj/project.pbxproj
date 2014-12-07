@@ -56,9 +56,9 @@
 		8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpFLAC.dylib; path = irrKlang/lib/ikpFLAC.dylib; sourceTree = "<group>"; };
 		8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpMP3.dylib; path = irrKlang/lib/ikpMP3.dylib; sourceTree = "<group>"; };
 		8B1704021A33CAFD0090D431 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
-		8B1704051A34A03F0090D431 /* GLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
 		8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		8B1704081A34A69E0090D431 /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.1.dylib; sourceTree = "<group>"; };
+		8B1704101A34B7980090D431 /* GLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
 		8B34C3901A10000C00B981A6 /* Assignment 5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 5"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B34C3931A10000C00B981A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8B34C39A1A10006E00B981A6 /* libGLEW.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.dylib; path = /usr/local/lib/libGLEW.dylib; sourceTree = "<absolute>"; };
@@ -152,7 +152,6 @@
 				8B4975DB1A336C8800B300EA /* Point.cpp */,
 				8B4975E91A33B5A600B300EA /* ScoreManager.h */,
 				8B4975E81A33B5A600B300EA /* ScoreManager.cpp */,
-				8B1704051A34A03F0090D431 /* GLError.h */,
 			);
 			path = "Assignment 5";
 			sourceTree = "<group>";
@@ -179,6 +178,7 @@
 				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
 				8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */,
+				8B1704101A34B7980090D431 /* GLError.h */,
 				8B8F0D791A194AE300B2B611 /* GLObject.h */,
 				8B8F0D781A194AE300B2B611 /* GLObject.cpp */,
 				8B8F0D7B1A194AE300B2B611 /* GLProgram.h */,

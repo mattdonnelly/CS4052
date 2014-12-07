@@ -6,14 +6,13 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#ifndef Assignment_5_GLError_h
-#define Assignment_5_GLError_h
+#pragma once
 
 #include <iostream>
 
 using namespace std;
 
-void check_gl_error() {
+static void check_gl_error() {
     GLenum err(glGetError());
 
     while(err!=GL_NO_ERROR) {
@@ -31,5 +30,3 @@ void check_gl_error() {
         err=glGetError();
     }
 }
-
-#endif
