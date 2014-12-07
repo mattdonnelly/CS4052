@@ -13,6 +13,7 @@
 
 #include "Player.h"
 #include "ScoreManager.h"
+#include "CollisionManager.h"
 #include "GLProgram.h"
 #include "Window.h"
 
@@ -38,7 +39,7 @@ int main(int argc, const char * argv[]) {
     Gem gem1 = Gem(gem1_position);
     Gem gem2 = Gem(gem2_position);
     
-    std::vector<Point> points = Point::generateRandomPoints(NUM_POINTS);
+    std::vector<Point *> points = Point::generateRandomPoints(NUM_POINTS);
 
     Player player = Player();
     player.position = glm::vec3(0.0f, 5.0f, 0.0f);
@@ -59,7 +60,13 @@ int main(int argc, const char * argv[]) {
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
     
-    ScoreManager score_manager = ScoreManager(window.width, window.height);
+    //ScoreManager score_manager = ScoreManager(window.width, window.height);
+    
+    std::vector<Collidable *> collidable_point(points.begin(), points.end());
+    
+    CollisionManager collision_manager = CollisionManager();
+    collision_manager.main_object = &player;
+    collision_manager.addCollidables(collidable_point);
     
     irrklang::ISoundEngine *audio_engine = irrklang::createIrrKlangDevice();
     if (!audio_engine) {
@@ -102,11 +109,12 @@ int main(int argc, const char * argv[]) {
         gem2.draw(shader_program);
 
         for (int i = 0; i < NUM_POINTS; i++) {
-            Point p = points[i];
-            p.draw(shader_program);
+            Point *p = points[i];
+            p->draw(shader_program);
         }
         
         //score_manager.drawText(&shader_program);
+        collision_manager.checkCollisions(2.0f);
 
         window.pollEvents();
         window.swapBuffers();

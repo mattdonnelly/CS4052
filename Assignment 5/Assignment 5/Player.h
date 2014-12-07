@@ -9,12 +9,17 @@
 #pragma once
 
 #include "GLCamera.h"
+#include "Collidable.h"
+#include <glm/glm.hpp>
 
-class Player: public GLCamera {
+class Player: public GLCamera, public Collidable {
 public:
     Player();
     Player(double fov, double aspect, double near, double far);
-    
+
     void moveForward(float delta);
     void moveBackward(float delta);
+
+    glm::vec3 collidableLocation() const;
+    void collide(Collidable *obj);
 };

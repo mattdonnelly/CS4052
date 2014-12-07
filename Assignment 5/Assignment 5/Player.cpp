@@ -19,3 +19,11 @@ void Player::moveForward(float delta) {
 void Player::moveBackward(float delta) {
     position -= speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z);
 }
+
+glm::vec3 Player::collidableLocation() const {
+    return position;
+}
+
+void Player::collide(Collidable *obj) {
+    
+}
