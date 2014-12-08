@@ -33,7 +33,7 @@ void Game::init() {
     gem1 = new Gem(gem1_position);
     gem2 = new Gem(gem2_position);
     
-    points = Point::generateRandomPoints(NUM_POINTS);
+    points = Point::generateRandomPoints(NUM_POINTS, -70, 70);
     
     std::vector<Collidable *> collidable_points(points.begin(), points.end());
     
@@ -48,7 +48,6 @@ void Game::init() {
     gem_collision_manager = new CollisionManager();
     gem_collision_manager->main_object = player;
     gem_collision_manager->addCollidables(collidable_gems);
-
 }
 
 void Game::reset() {
@@ -56,11 +55,7 @@ void Game::reset() {
     delete gem2;
     delete point_collision_manager;
     delete gem_collision_manager;
-    
-    player->position = glm::vec3(-67.0f, 5.0f, -67.0f);
-    player->forward_direction = glm::vec3(1.0f, 0.0f, 1.0f);
-    player->update_health(99.0);
-    player->update_points(0);
+    player->reset();
     
     init();
 }

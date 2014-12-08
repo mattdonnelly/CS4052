@@ -18,19 +18,20 @@ Point::Point(glm::vec3 location) : Drawable(location) {
     direction = rand() % 2 == 0 ? 1 : -1;
     
     vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/point.obj");
-    texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/point.png", GL_RGB);
+    texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/point.png");
 }
 
-std::vector<Point *> Point::generateRandomPoints(const int count) {
+std::vector<Point *> Point::generateRandomPoints(const int count, int min, int max) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
-    static std::uniform_int_distribution<int> dis(-70, 70);
+    static std::uniform_int_distribution<int> dis(min, max);
     
     std::vector<Point *> points;
-    for (int i = 0; i <= count; i++) {
+    for (int i = 0; i < count; i++) {
         double x = dis(gen);
         double y = 4.5;
         double z = dis(gen);
+        std::cout << "X = " << x << ", Y = " << y << ", Z = " << z << std::endl;
         Point *p = new Point(glm::vec3(x, y, z));
         points.push_back(p);
     }

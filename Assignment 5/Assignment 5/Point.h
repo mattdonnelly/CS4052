@@ -16,7 +16,7 @@ public:
     Point(glm::vec3 location);
     double speed;
     
-    static std::vector<Point *> generateRandomPoints(const int count);
+    static std::vector<Point *> generateRandomPoints(const int count, int min, int max);
     
     void draw(GLProgram *shader_program);
 

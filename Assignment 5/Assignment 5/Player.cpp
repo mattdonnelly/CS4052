@@ -11,6 +11,8 @@
 #include "AudioManager.h"
 #include <iostream>
 
+#define MAX_HEALTH 100.0f
+
 Player::Player(double minX, double minZ, double maxX, double maxZ) : GLCamera(), Animatable() {
     _minX = minX;
     _minZ = minZ;
@@ -24,10 +26,10 @@ Player::Player(double minX, double minZ, double maxX, double maxZ) : GLCamera(),
     regenerating = false;
     
     _points = 0;
-    _health = 100.0f;
+    _health = MAX_HEALTH;
     
     _points_text_id = add_text("Points: 000", 0.55f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-    _health_text_id = add_text("Health: 99", -0.95f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+    _health_text_id = add_text("Health: 100", -0.95f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
     
     healthUpSound = AudioManager::sharedManager()->playHealthUp();
 }
@@ -48,7 +50,7 @@ void Player::drawText(GLProgram *shader_program) {
     if (regenerating) {
         update_health(_health + 20.0f * delta());
 
-        if (_health > 99) {
+        if (_health > MAX_HEALTH) {
             regenerating = false;
             healthUpSound->setIsPaused(true);
             healthUpSound->setPlayPosition(0.0);
@@ -115,10 +117,17 @@ void Player::update_points(int points) {
 }
 
 void Player::update_health(double health) {
-    if (health > 0 && health < 100) {
+    if (health > 0 && health < MAX_HEALTH + 1) {
         _health = health;
         char tmp[20];
-        sprintf(tmp, "Health: %02d\n", (int)_health);
+        sprintf(tmp, "Health: %d\n", (int)_health);
         update_text(_health_text_id, tmp);
     }
+}
+
+void Player::reset() {
+    position = glm::vec3(-67.0f, 5.0f, -67.0f);
+    forward_direction = glm::vec3(1.0f, 0.0f, 1.0f);
+    update_health(MAX_HEALTH);
+    update_points(0);
 }

@@ -10,5 +10,5 @@
 
 Terrain::Terrain() : Drawable(0.0f, 0.0f, 0.0f) {
     vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/terrain.obj");
-    texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/grass.png", GL_RGB);
+    texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/grass.png");
 }

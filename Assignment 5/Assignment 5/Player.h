@@ -28,6 +28,7 @@ public:
 
     void update_points(int score);
     void update_health(double health);
+    void reset();
 
     void moveForward(float delta);
     void moveBackward(float delta);
