@@ -30,19 +30,29 @@ bool positionInWindow(GLFWwindow *window, double mouseX, double mouseY) {
 
 void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
     Window *win = static_cast<Window*>(glfwGetWindowUserPointer(window));
-    
+
     static double last_xpos = xpos;
     static double last_ypos = ypos;
     
-    if (win->isActive && positionInWindow(window, xpos, ypos)) {
-        double xpos_delta = (last_xpos - xpos) * MOUSE_SENSITIVITY;
-        double ypos_delta = (last_ypos - ypos) * MOUSE_SENSITIVITY;
-        
-        win->camera->mouseUpdate(xpos_delta, ypos_delta);
-    }
+    double xpos_delta = (last_xpos - xpos) * MOUSE_SENSITIVITY;
+    double ypos_delta = (last_ypos - ypos) * MOUSE_SENSITIVITY;
     
-    last_xpos = xpos;
-    last_ypos = ypos;
+    std::cout << xpos_delta << std::endl;
+    
+    win->camera->mouseUpdate(xpos_delta, ypos_delta);
+    
+    if (!positionInWindow(window, xpos, ypos)) {
+        int centerX = win->width / 2;
+        int centerY = win->height / 2;
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+        glfwSetCursorPos(window, centerX, centerY);
+        last_xpos = centerX;
+        last_ypos = centerY;
+    }
+    else {
+        last_xpos = xpos;
+        last_ypos = ypos;
+    }
 }
 
 void handleCursorEnter(GLFWwindow *window, int entered) {
@@ -82,9 +92,12 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     glfwSetCursorEnterCallback(_window, handleCursorEnter);
     glfwSetCursorPosCallback(_window, handleCursorPosition);
     glfwSetWindowSizeCallback(_window, handleWindowSize);
-    
+    glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
     glewExperimental = GL_TRUE;
     glewInit();
+    
+    glfwSetCursorPos(_window, width / 2, height / 2);
 
     glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
     glClearDepth(1);
@@ -105,7 +118,6 @@ void Window::setShaderProgram(GLProgram *p) {
 }
 
 void Window::didResize() {
-    int width, height;
     glfwGetWindowSize(_window, &width, &height);
     glm::mat4 projection = glm::perspective((float)45.0f, aspectRatio(), 0.1f, 1000.0f);
     _program->setUniform("projection", projection);

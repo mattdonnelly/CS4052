@@ -19,8 +19,8 @@ public:
     Window(const char *t, int w, int h);
     
     const char *title;
-    const int width;
-    const int height;
+    int width;
+    int height;
     
     bool isActive;
     
