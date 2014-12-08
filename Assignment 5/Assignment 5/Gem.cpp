@@ -14,7 +14,7 @@ Gem::Gem(glm::vec3 location) : Drawable(location) {
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/gem.png", GL_RGB);
 }
 
-void Gem::draw(GLProgram shader_program) {
+void Gem::draw(GLProgram *shader_program) {
     double oscillation = fabs(sinf(glfwGetTime()));
     scale = glm::vec3(oscillation, oscillation, oscillation);
 

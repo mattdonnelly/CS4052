@@ -14,7 +14,8 @@
 #include <iostream>
 
 Point::Point(glm::vec3 location) : Drawable(location) {
-    y = location.y + ((double)rand() / (RAND_MAX));
+    y = location.y;
+    direction = rand() % 2 == 0 ? 1 : -1;
     
     vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/point.obj");
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/point.png", GL_RGB);
@@ -28,7 +29,7 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
     std::vector<Point *> points;
     for (int i = 0; i < count; i++) {
         double x = dis(gen);
-        double y = 4.0;
+        double y = 4.5;
         double z = dis(gen);
         Point *p = new Point(glm::vec3(x, y, z));
         points.push_back(p);
@@ -37,9 +38,9 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
     return points;
 }
 
-void Point::draw(GLProgram shader_program) {
+void Point::draw(GLProgram *shader_program) {
     if (!collected) {
-        double oscillation = sinf(glfwGetTime());
+        double oscillation = direction * sinf(glfwGetTime()) * 0.5f;
         pitch = glfwGetTime();
         location = glm::vec3(location.x, y + oscillation, location.z);
 

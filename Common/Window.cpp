@@ -7,6 +7,7 @@
 //
 
 #include "Window.h"
+#include "text.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
@@ -94,6 +95,8 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     std::cout << "Renderer: " << renderer << std::endl;
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
+    
+    init_text_rendering("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/fonts/freemono.png", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/fonts/freemono.meta", width, height);
 }
 
 void Window::setShaderProgram(GLProgram *p) {

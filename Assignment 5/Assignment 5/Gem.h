@@ -15,7 +15,7 @@ class Gem : public Drawable, public Collidable {
 public:
     Gem(glm::vec3 location);
     
-    void draw(GLProgram shader_program);
+    void draw(GLProgram *shader_program);
     
     glm::vec3 collidableLocation() const;
     int tag();

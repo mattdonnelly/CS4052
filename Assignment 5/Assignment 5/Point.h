@@ -14,13 +14,11 @@
 class Point : public Drawable, public Collidable {
 public:
     Point(glm::vec3 location);
-    
-    double y;
     double speed;
     
     static std::vector<Point *> generateRandomPoints(const int count);
     
-    void draw(GLProgram shader_program);
+    void draw(GLProgram *shader_program);
 
     glm::vec3 collidableLocation() const;
     void collide(Collidable *obj);
@@ -29,4 +27,6 @@ public:
     
 private:
     bool collected;
+    double y;
+    double direction;
 };

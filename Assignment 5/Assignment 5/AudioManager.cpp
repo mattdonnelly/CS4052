@@ -36,3 +36,7 @@ void AudioManager::playItemPickUp() {
 irrklang::ISound *AudioManager::playHealthUp() {
     return audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/health.mp3", true, true);
 }
+
+void AudioManager::playGameOver() {
+    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/dead.mp3", false);
+}

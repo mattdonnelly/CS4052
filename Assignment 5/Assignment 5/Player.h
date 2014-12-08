@@ -16,15 +16,18 @@
 
 #include <glm/glm.hpp>
 
-class Window;
-
 class Player: public GLCamera, public Animatable, public Collidable {
 public:
-    Player(Window window);
+    Player();
 
-    void drawText(GLProgram shader_program);
+    void drawText(GLProgram *shader_program);
     
     int points() const;
+    int health() const;
+    bool dead() const;
+
+    void update_points(int score);
+    void update_health(double health);
 
     void moveForward(float delta);
     void moveBackward(float delta);
@@ -42,7 +45,4 @@ private:
     int _health_text_id;
     
     bool regenerating;
-    
-    void update_points(int score);
-    void update_health(double health);
 };

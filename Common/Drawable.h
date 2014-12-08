@@ -35,5 +35,5 @@ public:
     GLVertexArray *vao;
     GLTexture *texture;
     
-    virtual void draw(GLProgram shader_program);
+    virtual void draw(GLProgram *shader_program);
 };
