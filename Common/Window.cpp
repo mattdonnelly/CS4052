@@ -36,9 +36,7 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
     
     double xpos_delta = (last_xpos - xpos) * MOUSE_SENSITIVITY;
     double ypos_delta = (last_ypos - ypos) * MOUSE_SENSITIVITY;
-    
-    std::cout << xpos_delta << std::endl;
-    
+
     win->camera->mouseUpdate(xpos_delta, ypos_delta);
     
     if (!positionInWindow(window, xpos, ypos)) {

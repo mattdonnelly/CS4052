@@ -83,7 +83,7 @@ void Game::start() {
     glm::mat3 light_properties_world = glm::mat3(0.7, 0.9, 0.9,
                                                  0.5, 0.7, 0.5,
                                                  0.1, 0.2, 0.2);
-    
+
     AudioManager::sharedManager()->playMusic();
     
     shader_program->use();
