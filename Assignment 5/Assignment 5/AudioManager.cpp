@@ -30,7 +30,7 @@ void AudioManager::playMusic() {
 }
 
 void AudioManager::playItemPickUp() {
-    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/pickup.mp3", false);
+    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/point.mp3", false);
 }
 
 irrklang::ISound *AudioManager::playHealthUp() {
