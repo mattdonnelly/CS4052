@@ -19,6 +19,7 @@ public:
     
     void playMusic();
     void playItemPickUp();
+    irrklang::ISound *playHealthUp();
 
 private:
     irrklang::ISoundEngine *audio_engine;

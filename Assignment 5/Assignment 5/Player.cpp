@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "text.h"
 #include "Window.h"
+#include "AudioManager.h"
 #include <iostream>
 
 Player::Player(Window window) : GLCamera(), Animatable() {
@@ -25,6 +26,9 @@ Player::Player(Window window) : GLCamera(), Animatable() {
     
     _points_text_id = add_text("Points: 000", 0.55f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
     _health_text_id = add_text("Health: 99", -0.95f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+    
+    healthUpSound = AudioManager::sharedManager()->playHealthUp();
+    healthUpSound->setVolume(0.2);
 }
 
 int Player::points() const {
@@ -34,11 +38,17 @@ int Player::points() const {
 void Player::drawText(GLProgram shader_program) {
     if (regenerating) {
         update_health(_health + 10.0f * delta());
-        regenerating = false;
+
+        if (_health > 99) {
+            regenerating = false;
+            healthUpSound->setIsPaused(true);
+            healthUpSound->setPlayPosition(0.0);
+        }
     }
     else {
         update_health(_health - 7.0f * delta());
     }
+
     draw_texts();
     shader_program.use();
 }
@@ -61,6 +71,9 @@ void Player::collide(Collidable *obj) {
     }
     else if (obj->tag() == 1) {
         regenerating = true;
+        if (healthUpSound->getIsPaused()) {
+            healthUpSound->setIsPaused(false);
+        }
     }
 }
 

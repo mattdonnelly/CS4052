@@ -12,6 +12,7 @@
 #include "GLProgram.h"
 #include "Collidable.h"
 #include "Animatable.h"
+#include <irrKlang.h>
 
 #include <glm/glm.hpp>
 
@@ -32,6 +33,8 @@ public:
     void collide(Collidable *obj);
     
 private:
+    irrklang::ISound *healthUpSound;
+    
     int _points;
     int _points_text_id;
 
