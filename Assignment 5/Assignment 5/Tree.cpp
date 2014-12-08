@@ -32,5 +32,5 @@ std::vector<Tree *> Tree::generateRandomTrees(const int count, int min, int max)
 }
 
 bool Tree::locationWillCollide(glm::vec3 obj_loc) const {
-    return glm::distance(location, obj_loc) < 6.0f;
+    return glm::distance(location, obj_loc) < 7.0f;
 }
