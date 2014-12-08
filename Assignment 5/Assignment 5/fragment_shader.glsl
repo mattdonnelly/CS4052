@@ -57,8 +57,7 @@ void main () {
     
     vec3 light = light_world + light_gem1 + light_gem2;
     
-    vec2 flipped_tex_coord = vec2(frag_tex_coord.x, 1.0 - frag_tex_coord.y);
-    vec4 texture_light = vec4(light, 1.0) * texture(tex, flipped_tex_coord);
+    vec4 texture_light = vec4(light, 1.0) * texture(tex, frag_tex_coord);
     
     float dist = length(-position_eye);
     

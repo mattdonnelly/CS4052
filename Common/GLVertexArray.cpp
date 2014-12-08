@@ -37,9 +37,16 @@ GLVertexArray::GLVertexArray(const char *filename) {
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0 , 3, GL_FLOAT, 0, 0, 0);
     
+    float *tex_coords = new float[_point_count * 2];
+    
+    for(int i = 0; i < meshes[0]->mNumVertices; i++) {
+        tex_coords[i * 2]   = mesh->mTextureCoords[0][i].x;
+        tex_coords[i * 2 + 1] = mesh->mTextureCoords[0][i].y;
+    }
+    
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * _point_count, mesh->mTextureCoords, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * _point_count, tex_coords, GL_STATIC_DRAW);
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, 0, 0, 0);
     

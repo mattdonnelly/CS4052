@@ -117,8 +117,8 @@ int main(int argc, const char * argv[]) {
     GLVertexArray ground_vao = GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/obj/ground.obj");
     GLVertexArray cube_vao = GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/obj/cube.obj");
 
-    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/ground.png", GL_RGBA);
-    GLTexture cube_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/cube.png", GL_RGBA);
+    GLTexture ground_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/ground.png");
+    GLTexture cube_texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/tex/cube.png");
     
     GLProgram shader_program = GLProgram("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/vertex_shader.glsl", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 4/Assignment 4/fragment_shader.glsl");
     

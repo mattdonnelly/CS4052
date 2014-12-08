@@ -36,6 +36,5 @@ void main () {
     float specular_factor = pow(dot_prod_specular, specular_exponent);
     vec3 Is = Ls * Ks * specular_factor;
 
-    vec2 flipped_tex_coord = vec2(frag_tex_coord.x, 1.0 - frag_tex_coord.y);
-    fragment_colour = vec4(Is + Id + Ia, 1.0) * texture(tex, flipped_tex_coord);
+    fragment_colour = vec4(Is + Id + Ia, 1.0) * texture(tex, frag_tex_coord);
 }
