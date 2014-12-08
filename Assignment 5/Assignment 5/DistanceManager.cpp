@@ -6,29 +6,28 @@
 //  Copyright (c) 2014 Matt Donnelly. All rights reserved.
 //
 
-#include "CollisionManager.h"
+#include "DistanceManager.h"
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
-CollisionManager::CollisionManager() {
+DistanceManager::DistanceManager() {
     
 }
 
-void CollisionManager::addCollidable(Collidable *c) {
+void DistanceManager::addCollidable(Collidable *c) {
     _collidables.push_back(c);
 }
 
-void CollisionManager::addCollidables(std::vector<Collidable *> collidables) {
+void DistanceManager::addCollidables(std::vector<Collidable *> collidables) {
     _collidables.insert(_collidables.end(), collidables.begin(), collidables.end());
 }
 
-void CollisionManager::checkCollisions(double delta) {
+void DistanceManager::checkCollisions() {
     for (unsigned i = 0; i < _collidables.size(); i++) {
         Collidable *obj = _collidables[i];
         
         if (main_object->isCollidable() && obj->isCollidable()) {
-            float dist = glm::distance(main_object->collidableLocation(), obj->collidableLocation());
-            if (dist <= delta) {
+            if (obj->locationWillCollide(main_object->collidableLocation())) {
                 main_object->collide(obj);
                 obj->collide(main_object);
             }

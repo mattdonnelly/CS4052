@@ -12,8 +12,11 @@
 
 class Collidable {
 public:
-    virtual glm::vec3 collidableLocation() const { return glm::vec3(0.0f, 0.0f, 0.0f); };
+    virtual bool locationWillCollide(glm::vec3 location) const { return false; };
+    
+    virtual glm::vec3 collidableLocation() const { return glm::vec3(0.0, 0.0, 0.0); };
     virtual void collide(Collidable *obj) {};
     virtual bool isCollidable() { return true; };
+    
     virtual int tag() { return -1; };
 };

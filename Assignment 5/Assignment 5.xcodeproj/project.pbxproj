@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0FF6081A36336700A0E3A8 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6061A36336700A0E3A8 /* Tree.cpp */; };
+		8B0FF60B1A363C8100A0E3A8 /* DistanceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */; };
 		8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
 		8B1703FD1A33CAA80090D431 /* ikpMP3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */; };
 		8B1704001A33CAC10090D431 /* ikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
@@ -15,7 +17,6 @@
 		8B1704041A33CB010090D431 /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704021A33CAFD0090D431 /* libirrklang.dylib */; };
 		8B1704071A34A6860090D431 /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */; };
 		8B1704091A34A69E0090D431 /* libIL.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704081A34A69E0090D431 /* libIL.1.dylib */; };
-		8B1704131A34B7D30090D431 /* CollisionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B1704111A34B7D30090D431 /* CollisionManager.cpp */; };
 		8B1704191A34CD8E0090D431 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B1704171A34CD8E0090D431 /* AudioManager.cpp */; };
 		8B34C3941A10000C00B981A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B34C3931A10000C00B981A6 /* main.cpp */; };
 		8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B34C39A1A10006E00B981A6 /* libGLEW.dylib */; };
@@ -55,14 +56,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B0FF6061A36336700A0E3A8 /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
+		8B0FF6071A36336700A0E3A8 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
+		8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceManager.cpp; sourceTree = "<group>"; };
+		8B0FF60A1A363C8100A0E3A8 /* DistanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceManager.h; sourceTree = "<group>"; };
 		8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpFLAC.dylib; path = irrKlang/lib/ikpFLAC.dylib; sourceTree = "<group>"; };
 		8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpMP3.dylib; path = irrKlang/lib/ikpMP3.dylib; sourceTree = "<group>"; };
 		8B1704021A33CAFD0090D431 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 		8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		8B1704081A34A69E0090D431 /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.1.dylib; sourceTree = "<group>"; };
 		8B1704101A34B7980090D431 /* GLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
-		8B1704111A34B7D30090D431 /* CollisionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionManager.cpp; sourceTree = "<group>"; };
-		8B1704121A34B7D30090D431 /* CollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionManager.h; sourceTree = "<group>"; };
 		8B1704151A34B84D0090D431 /* Collidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collidable.h; sourceTree = "<group>"; };
 		8B1704171A34CD8E0090D431 /* AudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioManager.cpp; sourceTree = "<group>"; };
 		8B1704181A34CD8E0090D431 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
@@ -155,13 +158,15 @@
 				8B4975E41A33A11A00B300EA /* Player.cpp */,
 				8B4975D01A33258600B300EA /* Terrain.h */,
 				8B4975CF1A33258600B300EA /* Terrain.cpp */,
+				8B0FF6071A36336700A0E3A8 /* Tree.h */,
+				8B0FF6061A36336700A0E3A8 /* Tree.cpp */,
 				8B4975D31A33665900B300EA /* Gem.h */,
 				8B4975D21A33665900B300EA /* Gem.cpp */,
 				8B4975DC1A336C8800B300EA /* Point.h */,
 				8B4975DB1A336C8800B300EA /* Point.cpp */,
 				8B1704151A34B84D0090D431 /* Collidable.h */,
-				8B1704121A34B7D30090D431 /* CollisionManager.h */,
-				8B1704111A34B7D30090D431 /* CollisionManager.cpp */,
+				8B0FF60A1A363C8100A0E3A8 /* DistanceManager.h */,
+				8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */,
 				8B1704181A34CD8E0090D431 /* AudioManager.h */,
 				8B1704171A34CD8E0090D431 /* AudioManager.cpp */,
 			);
@@ -280,12 +285,13 @@
 				8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */,
 				8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */,
 				8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */,
+				8B0FF6081A36336700A0E3A8 /* Tree.cpp in Sources */,
 				8B6458F31A352B5F0034A437 /* Game.cpp in Sources */,
 				8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */,
 				8B4975DD1A336C8800B300EA /* Point.cpp in Sources */,
+				8B0FF60B1A363C8100A0E3A8 /* DistanceManager.cpp in Sources */,
 				8B34C3941A10000C00B981A6 /* main.cpp in Sources */,
 				8B4975F61A33BE4000B300EA /* text.cpp in Sources */,
-				8B1704131A34B7D30090D431 /* CollisionManager.cpp in Sources */,
 				8B4975E61A33A11A00B300EA /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

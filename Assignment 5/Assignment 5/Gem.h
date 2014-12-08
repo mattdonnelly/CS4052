@@ -18,5 +18,6 @@ public:
     void draw(GLProgram *shader_program);
     
     glm::vec3 collidableLocation() const;
+    bool locationWillCollide(glm::vec3 location) const;
     int tag();
 };

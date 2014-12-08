@@ -8,6 +8,7 @@
 
 #include "Gem.h"
 #include <GLFW/glfw3.h>
+#include <iostream>
 
 Gem::Gem(glm::vec3 location) : Drawable(location) {
     vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj");
@@ -23,6 +24,10 @@ void Gem::draw(GLProgram *shader_program) {
 
 glm::vec3 Gem::collidableLocation() const {
     return location;
+}
+
+bool Gem::locationWillCollide(glm::vec3 obj_loc) const {
+    return glm::distance(location, obj_loc) < 18.0f;
 }
 
 int Gem::tag() {

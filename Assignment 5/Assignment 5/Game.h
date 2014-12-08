@@ -12,7 +12,8 @@
 #include "Point.h"
 #include "Gem.h"
 #include "Terrain.h"
-#include "CollisionManager.h"
+#include "Tree.h"
+#include "DistanceManager.h"
 #include "GLProgram.h"
 
 class Game {
@@ -30,10 +31,11 @@ private:
     Terrain *terrain;
     Gem *gem1;
     Gem *gem2;
+    std::vector<Tree *> trees;
     std::vector<Point *> points;
     
-    CollisionManager *point_collision_manager;
-    CollisionManager *gem_collision_manager;
+    DistanceManager *point_collision_manager;
+    DistanceManager *gem_collision_manager;
     
     GLProgram *shader_program;
     

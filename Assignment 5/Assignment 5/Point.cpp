@@ -11,7 +11,6 @@
 
 #include <GLFW/glfw3.h>
 #include <random>
-#include <iostream>
 
 Point::Point(glm::vec3 location) : Drawable(location) {
     y = location.y;
@@ -58,6 +57,11 @@ void Point::collide(Collidable *obj) {
 
 glm::vec3 Point::collidableLocation() const {
     return location;
+}
+
+bool Point::locationWillCollide(glm::vec3 obj_loc) const {
+    
+    return glm::distance(location, obj_loc) < 3.0f;
 }
 
 bool Point::isCollidable() {

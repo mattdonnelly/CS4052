@@ -13,14 +13,9 @@
 
 #define MAX_HEALTH 100.0f
 
-Player::Player(int win_points, double minX, double minZ, double maxX, double maxZ) : GLCamera(), Animatable() {
+Player::Player(int win_points) : GLCamera(), Animatable() {
     _orig_win_points = win_points;
     _win_points = win_points;
-
-    _minX = minX;
-    _minZ = minZ;
-    _maxX = maxX;
-    _maxZ = maxZ;
     
     position = glm::vec3(-67.0f, 5.0f, -67.0f);
     forward_direction = glm::vec3(1.0f, 0.0f, 1.0f);
@@ -74,10 +69,17 @@ void Player::drawText(GLProgram *shader_program) {
 }
 
 void Player::update_position_in_bounds(glm::vec3 new_position) {
-    if (new_position.x > _minX && new_position.x < _maxX) {
-        position = glm::vec3(new_position.x, position.y, position.z);
+    bool collided = false;
+    for (unsigned i = 0; i < collidables.size(); i++) {
+        Collidable *obj = collidables[i];
+        
+        if (obj->locationWillCollide(new_position)) {
+            collided = true;
+        }
     }
-    if (new_position.z > _minZ && new_position.z < _maxZ) {
+    
+    if (!collided) {
+        position = glm::vec3(new_position.x, position.y, position.z);
         position = glm::vec3(position.x, position.y, new_position.z);
     }
 }

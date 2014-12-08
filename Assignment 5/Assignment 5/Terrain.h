@@ -9,8 +9,11 @@
 #pragma once
 
 #include "Drawable.h"
+#include "Collidable.h"
 
-class Terrain : public Drawable {
+class Terrain : public Drawable, public Collidable {
 public:
     Terrain();
+    
+    bool locationWillCollide(glm::vec3 location) const;
 };

@@ -21,6 +21,7 @@ public:
     void draw(GLProgram *shader_program);
 
     glm::vec3 collidableLocation() const;
+    bool locationWillCollide(glm::vec3 location) const;
     void collide(Collidable *obj);
     bool isCollidable();
     int tag();

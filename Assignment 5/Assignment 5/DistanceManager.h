@@ -11,15 +11,15 @@
 #include "Drawable.h"
 #include "Collidable.h"
 
-class CollisionManager {
+class DistanceManager {
 public:
-    CollisionManager();
+    DistanceManager();
     
     Collidable *main_object;
     void addCollidable(Collidable *c);
     void addCollidables(std::vector<Collidable *> collidables);
 
-    void checkCollisions(double delta);
+    void checkCollisions();
 
 private:
     std::vector<Collidable *> _collidables;

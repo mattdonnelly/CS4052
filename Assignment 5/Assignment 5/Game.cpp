@@ -9,8 +9,10 @@
 #include "Game.h"
 #include "AudioManager.h"
 
-#define NUM_POINTS 8
 #define FPS 60
+
+#define NUM_POINTS 8
+#define NUM_TREES 20
 
 const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
 const glm::vec3 gem1_position = glm::vec3( 70.0f, 4.0f,  70.f);
@@ -19,10 +21,15 @@ const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
 Game::Game() {
     window = new Window("Assignment 5", 1280, 720);
     
-    player = new Player(NUM_POINTS, -75.0f, -75.0f, 75.0f, 75.0f);
+    player = new Player(NUM_POINTS);
     window->camera = player;
 
     terrain = new Terrain();
+
+    trees = Tree::generateRandomTrees(NUM_TREES, -70, 70);
+
+    player->collidables.push_back(terrain);
+    player->collidables.insert(player->collidables.end(), trees.begin(), trees.end());
     
     shader_program = new GLProgram("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/vertex_shader.glsl", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/Assignment 5/fragment_shader.glsl");
     
@@ -37,7 +44,7 @@ void Game::init() {
     collidable_gems.push_back(gem1);
     collidable_gems.push_back(gem2);
     
-    gem_collision_manager = new CollisionManager();
+    gem_collision_manager = new DistanceManager();
     gem_collision_manager->main_object = player;
     gem_collision_manager->addCollidables(collidable_gems);
     
@@ -48,7 +55,7 @@ void Game::next_wave() {
     points = Point::generateRandomPoints(NUM_POINTS, -70, 70);
     std::vector<Collidable *> collidable_points(points.begin(), points.end());
     
-    point_collision_manager = new CollisionManager();
+    point_collision_manager = new DistanceManager();
     point_collision_manager->main_object = player;
     point_collision_manager->addCollidables(collidable_points);
 }
@@ -92,6 +99,10 @@ void Game::start() {
         
         terrain->draw(shader_program);
         
+        for (int i = 0; i < NUM_TREES; i++) {
+            trees[i]->draw(shader_program);
+        }
+        
         shader_program->setUniform(light_position_world_location, world_light_position);
         shader_program->setUniform(light_position_gem1_location, gem1_position);
         shader_program->setUniform(light_position_gem2_location, gem2_position);
@@ -114,8 +125,8 @@ void Game::start() {
             points[i]->draw(shader_program);
         }
         
-        point_collision_manager->checkCollisions(3.0f);
-        gem_collision_manager->checkCollisions(18.0f);
+        point_collision_manager->checkCollisions();
+        gem_collision_manager->checkCollisions();
         
         if (player->dead()) {
             AudioManager::sharedManager()->playGameOver();
@@ -129,7 +140,7 @@ void Game::start() {
         window->pollEvents();
         window->swapBuffers();
         
-        while(window->getTime() < last_tick+1/FPS);
+        while (window->getTime() < last_tick + 1 / FPS);
         last_tick = window->getTime();
     }
     
