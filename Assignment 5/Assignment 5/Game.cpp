@@ -19,7 +19,7 @@ const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
 Game::Game() {
     window = new Window("Assignment 5", 1280, 720);
     
-    player = new Player();
+    player = new Player(-75.0f, -75.0f, 75.0f, 75.0f);
     window->camera = player;
 
     terrain = new Terrain();

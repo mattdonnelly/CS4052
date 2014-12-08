@@ -11,7 +11,12 @@
 #include "AudioManager.h"
 #include <iostream>
 
-Player::Player() : GLCamera(), Animatable() {
+Player::Player(double minX, double minZ, double maxX, double maxZ) : GLCamera(), Animatable() {
+    _minX = minX;
+    _minZ = minZ;
+    _maxX = maxX;
+    _maxZ = maxZ;
+    
     position = glm::vec3(-67.0f, 5.0f, -67.0f);
     forward_direction = glm::vec3(1.0f, 0.0f, 1.0f);
     speed = 15.0f;
@@ -59,11 +64,31 @@ void Player::drawText(GLProgram *shader_program) {
 }
 
 void Player::moveForward(float delta) {
-    position += speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z);
+    glm::vec3 new_position = position + (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
+    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
+        position = new_position;
+    }
 }
 
 void Player::moveBackward(float delta) {
-    position -= speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z);
+    glm::vec3 new_position = position - (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
+    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
+        position = new_position;
+    }
+}
+
+void Player::moveLeft(float delta) {
+    glm::vec3 new_position = position + (speed * delta * glm::cross(up_direction, forward_direction));
+    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
+        position = new_position;
+    }
+}
+
+void Player::moveRight(float delta) {
+    glm::vec3 new_position = position - (speed * delta * glm::cross(up_direction, forward_direction));
+    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
+        position = new_position;
+    }
 }
 
 glm::vec3 Player::collidableLocation() const {

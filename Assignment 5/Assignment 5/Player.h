@@ -18,7 +18,7 @@
 
 class Player: public GLCamera, public Animatable, public Collidable {
 public:
-    Player();
+    Player(double minX, double minZ, double maxX, double maxZ);
 
     void drawText(GLProgram *shader_program);
     
@@ -31,12 +31,19 @@ public:
 
     void moveForward(float delta);
     void moveBackward(float delta);
-
+    void moveLeft(float delta);
+    void moveRight(float delta);
+    
     glm::vec3 collidableLocation() const;
     void collide(Collidable *obj);
     
 private:
     irrklang::ISound *healthUpSound;
+    
+    double _minX;
+    double _minZ;
+    double _maxX;
+    double _maxZ;
     
     int _points;
     int _points_text_id;
