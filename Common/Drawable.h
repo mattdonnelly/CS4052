@@ -18,7 +18,6 @@
 #include "GLVertexArray.h"
 #include "GLTexture.h"
 #include "GLProgram.h"
-#include "obj_parser.h"
 
 class Drawable {
 public:
