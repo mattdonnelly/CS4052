@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B8F0D9C1A194BF600B2B611 /* GLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D8D1A194BF600B2B611 /* GLBuffer.cpp */; };
 		8B8F0D9D1A194BF600B2B611 /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D8F1A194BF600B2B611 /* GLObject.cpp */; };
 		8B8F0D9E1A194BF600B2B611 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D911A194BF600B2B611 /* GLProgram.cpp */; };
 		8B8F0D9F1A194BF600B2B611 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D931A194BF600B2B611 /* GLShader.cpp */; };
 		8B8F0DA01A194BF600B2B611 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D951A194BF600B2B611 /* GLTexture.cpp */; };
 		8B8F0DA11A194BF600B2B611 /* GLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D971A194BF600B2B611 /* GLVertexArray.cpp */; };
 		8B8F0DA21A194BF600B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D991A194BF600B2B611 /* obj_parser.cpp */; };
+		8BAB62531A354DA4009F778D /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAB62521A354DA4009F778D /* libassimp.dylib */; };
+		8BAB62551A354DB2009F778D /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAB62541A354DB2009F778D /* libIL.dylib */; };
 		8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0A77C19FEC8C500E8F9FD /* main.cpp */; };
 		8BE0A78419FED28400E8F9FD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0A78319FED28400E8F9FD /* OpenGL.framework */; };
 		8BE0A78C19FED41D00E8F9FD /* libGLEW.1.11.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE0A78A19FED41D00E8F9FD /* libGLEW.1.11.0.dylib */; };
@@ -37,8 +38,6 @@
 		8B5FF68719FF010700E64035 /* fragment_shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = fragment_shader.frag; sourceTree = "<group>"; };
 		8B5FF68819FF010700E64035 /* vertex_shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vertex_shader.vert; sourceTree = "<group>"; };
 		8B5FF68919FF0E4D00E64035 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
-		8B8F0D8D1A194BF600B2B611 /* GLBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBuffer.cpp; sourceTree = "<group>"; };
-		8B8F0D8E1A194BF600B2B611 /* GLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBuffer.h; sourceTree = "<group>"; };
 		8B8F0D8F1A194BF600B2B611 /* GLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLObject.cpp; sourceTree = "<group>"; };
 		8B8F0D901A194BF600B2B611 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLObject.h; sourceTree = "<group>"; };
 		8B8F0D911A194BF600B2B611 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
@@ -52,6 +51,8 @@
 		8B8F0D991A194BF600B2B611 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
 		8B8F0D9A1A194BF600B2B611 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
 		8B8F0D9B1A194BF600B2B611 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		8BAB62521A354DA4009F778D /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.dylib; sourceTree = "<group>"; };
+		8BAB62541A354DB2009F778D /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.dylib; sourceTree = "<group>"; };
 		8BE0A77919FEC8C500E8F9FD /* Assignment 3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Assignment 3"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE0A77C19FEC8C500E8F9FD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8BE0A78319FED28400E8F9FD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -67,6 +68,8 @@
 				8BE0A78C19FED41D00E8F9FD /* libGLEW.1.11.0.dylib in Frameworks */,
 				8BE0A78D19FED41D00E8F9FD /* libglfw3.3.0.dylib in Frameworks */,
 				8BE0A78419FED28400E8F9FD /* OpenGL.framework in Frameworks */,
+				8BAB62531A354DA4009F778D /* libassimp.dylib in Frameworks */,
+				8BAB62551A354DB2009F778D /* libIL.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +79,6 @@
 		8B8F0D8C1A194BF600B2B611 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8B8F0D8E1A194BF600B2B611 /* GLBuffer.h */,
-				8B8F0D8D1A194BF600B2B611 /* GLBuffer.cpp */,
 				8B8F0D901A194BF600B2B611 /* GLObject.h */,
 				8B8F0D8F1A194BF600B2B611 /* GLObject.cpp */,
 				8B8F0D921A194BF600B2B611 /* GLProgram.h */,
@@ -129,6 +130,8 @@
 		8BE0A78919FED2A800E8F9FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BAB62541A354DB2009F778D /* libIL.dylib */,
+				8BAB62521A354DA4009F778D /* libassimp.dylib */,
 				8BE0A78319FED28400E8F9FD /* OpenGL.framework */,
 				8BE0A78A19FED41D00E8F9FD /* libGLEW.1.11.0.dylib */,
 				8BE0A78B19FED41D00E8F9FD /* libglfw3.3.0.dylib */,
@@ -197,7 +200,6 @@
 				8B8F0DA11A194BF600B2B611 /* GLVertexArray.cpp in Sources */,
 				8B8F0DA21A194BF600B2B611 /* obj_parser.cpp in Sources */,
 				8B8F0D9F1A194BF600B2B611 /* GLShader.cpp in Sources */,
-				8B8F0D9C1A194BF600B2B611 /* GLBuffer.cpp in Sources */,
 				8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */,
 				8B8F0D9D1A194BF600B2B611 /* GLObject.cpp in Sources */,
 			);
@@ -289,11 +291,15 @@
 					/usr/local/Cellar/glew/1.11.0/include/,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					/usr/local/Cellar/assimp/3.1.1/include,
+					/usr/local/Cellar/devil/1.7.8_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/devil/1.7.8_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -309,11 +315,15 @@
 					/usr/local/Cellar/glew/1.11.0/include/,
 					/usr/local/Cellar/glfw3/3.0.4/include,
 					/usr/local/Cellar/glm/0.9.5.4/include,
+					/usr/local/Cellar/assimp/3.1.1/include,
+					/usr/local/Cellar/devil/1.7.8_1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glew/1.11.0/lib,
 					/usr/local/Cellar/glfw3/3.0.4/lib,
+					/usr/local/Cellar/assimp/3.1.1/lib,
+					/usr/local/Cellar/devil/1.7.8_1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

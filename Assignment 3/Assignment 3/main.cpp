@@ -14,7 +14,6 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "GLBuffer.h"
 #include "GLVertexArray.h"
 #include "GLShader.h"
 #include "GLTexture.h"
@@ -25,21 +24,9 @@
 const int gl_width = 800;
 const int gl_height = 800;
 
-GLProgram createShaderProgram() {
-    std::vector<GLShader> shaders;
-    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/vertex_shader.vert", GL_VERTEX_SHADER));
-    shaders.push_back(GLShader::shaderFromFile("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/fragment_shader.frag", GL_FRAGMENT_SHADER));
-    
-    GLProgram program = GLProgram(shaders);
-    
-    return program;
-}
-
 int main() {
     GLFWwindow *window = NULL;
-    
-    int point_count = 0;
-    
+
     const GLubyte *renderer;
     const GLubyte *version;
     
@@ -70,27 +57,15 @@ int main() {
     std::cout << "OpenGL version supported " << version << std::endl;
     std::cout << std::endl;
     
-    GLfloat *vp, *vt, *vn;
-    assert(load_obj_file("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/cube.obj", vp, vt, vn, point_count));
-    
-    GLBuffer vp_buffer = GLBuffer::GLBuffer(vp, 3, sizeof(float) * 3 * point_count);
-    GLBuffer vt_buffer = GLBuffer::GLBuffer(vt, 2, sizeof(float) * 3 * point_count);
-    
-    delete vp; delete vn; delete vt;
-    
-    std::vector<GLBuffer> buffers;
-    buffers.emplace_back(vp_buffer);
-    buffers.emplace_back(vt_buffer);
-    
-    GLVertexArray vao = GLVertexArray(buffers);
+    GLVertexArray vao = GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/cube.obj");
     
     GLTexture texture = GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/texture.png", GL_RGBA);
     
-    GLProgram program = createShaderProgram();
+    GLProgram program = GLProgram("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/vertex_shader.vert", "/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 3/Assignment 3/fragment_shader.frag");
 
     GLint texture_id = program.uniform("tex");
     assert(texture_id > -1);
-    
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -138,11 +113,7 @@ int main() {
 
         program.setUniform(model_mat_location, model);
         
-        vao.bind();
-        
-        glDrawArrays(GL_TRIANGLES, 0, point_count);
-        
-        glDeleteTextures((GLsizei)1, (const GLuint*)(&texture_id));
+        vao.draw();
 
         glfwPollEvents();
         glfwSwapBuffers(window);
