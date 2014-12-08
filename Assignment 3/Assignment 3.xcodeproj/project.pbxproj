@@ -12,7 +12,6 @@
 		8B8F0D9F1A194BF600B2B611 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D931A194BF600B2B611 /* GLShader.cpp */; };
 		8B8F0DA01A194BF600B2B611 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D951A194BF600B2B611 /* GLTexture.cpp */; };
 		8B8F0DA11A194BF600B2B611 /* GLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D971A194BF600B2B611 /* GLVertexArray.cpp */; };
-		8B8F0DA21A194BF600B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D991A194BF600B2B611 /* obj_parser.cpp */; };
 		8BAB62531A354DA4009F778D /* libassimp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAB62521A354DA4009F778D /* libassimp.dylib */; };
 		8BAB62551A354DB2009F778D /* libIL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAB62541A354DB2009F778D /* libIL.dylib */; };
 		8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BE0A77C19FEC8C500E8F9FD /* main.cpp */; };
@@ -48,8 +47,6 @@
 		8B8F0D961A194BF600B2B611 /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTexture.h; sourceTree = "<group>"; };
 		8B8F0D971A194BF600B2B611 /* GLVertexArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVertexArray.cpp; sourceTree = "<group>"; };
 		8B8F0D981A194BF600B2B611 /* GLVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVertexArray.h; sourceTree = "<group>"; };
-		8B8F0D991A194BF600B2B611 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
-		8B8F0D9A1A194BF600B2B611 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
 		8B8F0D9B1A194BF600B2B611 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8BAB62521A354DA4009F778D /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.dylib; sourceTree = "<group>"; };
 		8BAB62541A354DB2009F778D /* libIL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.dylib; sourceTree = "<group>"; };
@@ -89,8 +86,6 @@
 				8B8F0D951A194BF600B2B611 /* GLTexture.cpp */,
 				8B8F0D981A194BF600B2B611 /* GLVertexArray.h */,
 				8B8F0D971A194BF600B2B611 /* GLVertexArray.cpp */,
-				8B8F0D9A1A194BF600B2B611 /* obj_parser.h */,
-				8B8F0D991A194BF600B2B611 /* obj_parser.cpp */,
 				8B8F0D9B1A194BF600B2B611 /* stb_image.h */,
 			);
 			name = Common;
@@ -198,7 +193,6 @@
 				8B8F0DA01A194BF600B2B611 /* GLTexture.cpp in Sources */,
 				8B8F0D9E1A194BF600B2B611 /* GLProgram.cpp in Sources */,
 				8B8F0DA11A194BF600B2B611 /* GLVertexArray.cpp in Sources */,
-				8B8F0DA21A194BF600B2B611 /* obj_parser.cpp in Sources */,
 				8B8F0D9F1A194BF600B2B611 /* GLShader.cpp in Sources */,
 				8BE0A77D19FEC8C500E8F9FD /* main.cpp in Sources */,
 				8B8F0D9D1A194BF600B2B611 /* GLObject.cpp in Sources */,
