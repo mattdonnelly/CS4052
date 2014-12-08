@@ -13,7 +13,10 @@
 
 #define MAX_HEALTH 100.0f
 
-Player::Player(double minX, double minZ, double maxX, double maxZ) : GLCamera(), Animatable() {
+Player::Player(int win_points, double minX, double minZ, double maxX, double maxZ) : GLCamera(), Animatable() {
+    _orig_win_points = win_points;
+    _win_points = win_points;
+
     _minX = minX;
     _minZ = minZ;
     _maxX = maxX;
@@ -42,6 +45,10 @@ int Player::health() const {
     return _health;
 }
 
+bool Player::won() const {
+    return _won;
+}
+
 bool Player::dead() const {
     return _health < 1;
 }
@@ -62,6 +69,8 @@ void Player::drawText(GLProgram *shader_program) {
 
     draw_texts();
     shader_program->use();
+    
+    _won = false;
 }
 
 void Player::update_position_in_bounds(glm::vec3 new_position) {
@@ -100,6 +109,10 @@ glm::vec3 Player::collidableLocation() const {
 void Player::collide(Collidable *obj) {
     if (obj->tag() == 0) {
         update_points(_points + 1);
+        if (_points >= _win_points) {
+            _won = true;
+            _win_points += _orig_win_points;
+        }
     }
     else if (obj->tag() == 1) {
         regenerating = true;

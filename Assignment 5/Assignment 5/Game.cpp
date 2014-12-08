@@ -9,7 +9,7 @@
 #include "Game.h"
 #include "AudioManager.h"
 
-#define NUM_POINTS 15
+#define NUM_POINTS 8
 #define FPS 60
 
 const glm::vec3 world_light_position = glm::vec3(0, 15.0f, 0.0f);
@@ -19,7 +19,7 @@ const glm::vec3 gem2_position = glm::vec3(-70.0f, 4.0f, -70.f);
 Game::Game() {
     window = new Window("Assignment 5", 1280, 720);
     
-    player = new Player(-75.0f, -75.0f, 75.0f, 75.0f);
+    player = new Player(NUM_POINTS, -75.0f, -75.0f, 75.0f, 75.0f);
     window->camera = player;
 
     terrain = new Terrain();
@@ -32,15 +32,7 @@ Game::Game() {
 void Game::init() {
     gem1 = new Gem(gem1_position);
     gem2 = new Gem(gem2_position);
-    
-    points = Point::generateRandomPoints(NUM_POINTS, -70, 70);
-    
-    std::vector<Collidable *> collidable_points(points.begin(), points.end());
-    
-    point_collision_manager = new CollisionManager();
-    point_collision_manager->main_object = player;
-    point_collision_manager->addCollidables(collidable_points);
-    
+
     std::vector<Collidable *> collidable_gems;
     collidable_gems.push_back(gem1);
     collidable_gems.push_back(gem2);
@@ -48,6 +40,17 @@ void Game::init() {
     gem_collision_manager = new CollisionManager();
     gem_collision_manager->main_object = player;
     gem_collision_manager->addCollidables(collidable_gems);
+    
+    next_wave();
+}
+
+void Game::next_wave() {
+    points = Point::generateRandomPoints(NUM_POINTS, -70, 70);
+    std::vector<Collidable *> collidable_points(points.begin(), points.end());
+    
+    point_collision_manager = new CollisionManager();
+    point_collision_manager->main_object = player;
+    point_collision_manager->addCollidables(collidable_points);
 }
 
 void Game::reset() {
@@ -80,7 +83,7 @@ void Game::start() {
     window->setShaderProgram(shader_program);
     
     double last_tick = window->getTime();
-    
+
     while (!window->shouldClose()) {
         window->clear();
         
@@ -117,6 +120,10 @@ void Game::start() {
         if (player->dead()) {
             AudioManager::sharedManager()->playGameOver();
             reset();
+        }
+        else if (player->won()) {
+            next_wave();
+            AudioManager::sharedManager()->playWon();
         }
         
         window->pollEvents();

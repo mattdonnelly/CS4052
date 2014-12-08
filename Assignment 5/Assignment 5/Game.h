@@ -20,6 +20,7 @@ public:
     Game();
     
     void start();
+    void next_wave();
     void reset();
     
 private:

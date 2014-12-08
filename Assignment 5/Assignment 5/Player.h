@@ -18,12 +18,14 @@
 
 class Player: public GLCamera, public Animatable, public Collidable {
 public:
-    Player(double minX, double minZ, double maxX, double maxZ);
+    Player(int win_points, double minX, double minZ, double maxX, double maxZ);
 
     void drawText(GLProgram *shader_program);
     
     int points() const;
     int health() const;
+    
+    bool won() const;
     bool dead() const;
 
     void update_points(int score);
@@ -41,6 +43,10 @@ public:
 private:
     irrklang::ISound *healthUpSound;
     
+    int _orig_win_points;
+    int _win_points;
+    bool _won;
+
     double _minX;
     double _minZ;
     double _maxX;

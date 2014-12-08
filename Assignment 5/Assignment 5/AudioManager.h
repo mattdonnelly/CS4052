@@ -20,6 +20,7 @@ public:
     void playMusic();
     void playItemPickUp();
     irrklang::ISound *playHealthUp();
+    void playWon();
     void playGameOver();
 
 private:

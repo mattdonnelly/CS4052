@@ -41,6 +41,10 @@ irrklang::ISound *AudioManager::playHealthUp() {
     return sound;
 }
 
+void AudioManager::playWon() {
+    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/won.mp3", false);
+}
+
 void AudioManager::playGameOver() {
     audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/dead.mp3", false);
 }
