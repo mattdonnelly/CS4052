@@ -30,7 +30,6 @@ Player::Player(double minX, double minZ, double maxX, double maxZ) : GLCamera(),
     _health_text_id = add_text("Health: 99", -0.95f, -0.8f, 100.0f, 1.0f, 1.0f, 1.0f, 1.0f);
     
     healthUpSound = AudioManager::sharedManager()->playHealthUp();
-    healthUpSound->setVolume(0.2);
 }
 
 int Player::points() const {
@@ -63,32 +62,33 @@ void Player::drawText(GLProgram *shader_program) {
     shader_program->use();
 }
 
+void Player::update_position_in_bounds(glm::vec3 new_position) {
+    if (new_position.x > _minX && new_position.x < _maxX) {
+        position = glm::vec3(new_position.x, position.y, position.z);
+    }
+    if (new_position.z > _minZ && new_position.z < _maxZ) {
+        position = glm::vec3(position.x, position.y, new_position.z);
+    }
+}
+
 void Player::moveForward(float delta) {
     glm::vec3 new_position = position + (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
-    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
-        position = new_position;
-    }
+    update_position_in_bounds(new_position);
 }
 
 void Player::moveBackward(float delta) {
     glm::vec3 new_position = position - (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
-    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
-        position = new_position;
-    }
+    update_position_in_bounds(new_position);
 }
 
 void Player::moveLeft(float delta) {
     glm::vec3 new_position = position + (speed * delta * glm::cross(up_direction, forward_direction));
-    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
-        position = new_position;
-    }
+    update_position_in_bounds(new_position);
 }
 
 void Player::moveRight(float delta) {
     glm::vec3 new_position = position - (speed * delta * glm::cross(up_direction, forward_direction));
-    if (new_position.x > _minX && new_position.x < _maxX && new_position.z > _minZ && new_position.z < _maxZ) {
-        position = new_position;
-    }
+    update_position_in_bounds(new_position);
 }
 
 glm::vec3 Player::collidableLocation() const {

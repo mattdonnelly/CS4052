@@ -30,11 +30,15 @@ void AudioManager::playMusic() {
 }
 
 void AudioManager::playItemPickUp() {
-    audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/point.mp3", false);
+    irrklang::ISound *sound = audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/point.mp3", false, true);
+    sound->setVolume(0.4);
+    sound->setIsPaused(false);
 }
 
 irrklang::ISound *AudioManager::playHealthUp() {
-    return audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/health.mp3", true, true);
+    irrklang::ISound *sound = audio_engine->play2D("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/audio/health.mp3", true, true);
+    sound->setVolume(0.4);
+    return sound;
 }
 
 void AudioManager::playGameOver() {

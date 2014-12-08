@@ -45,6 +45,8 @@ private:
     double _maxX;
     double _maxZ;
     
+    void update_position_in_bounds(glm::vec3 new_position);
+    
     int _points;
     int _points_text_id;
 
