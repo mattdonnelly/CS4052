@@ -27,7 +27,7 @@ std::vector<Point *> Point::generateRandomPoints(const int count) {
     static std::uniform_int_distribution<int> dis(-70, 70);
     
     std::vector<Point *> points;
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i <= count; i++) {
         double x = dis(gen);
         double y = 4.5;
         double z = dis(gen);
