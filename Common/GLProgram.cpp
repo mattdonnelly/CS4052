@@ -29,8 +29,8 @@ GLProgram::GLProgram(const std::string vertex_shader_path, const std::string fra
     glLinkProgram(_object);
     
     // Detach all the shaders
-    //glDetachShader(_object, vertex_shader.object());
-    //glDetachShader(_object, frag_shader.object());
+    glDetachShader(_object, vertex_shader.object());
+    glDetachShader(_object, frag_shader.object());
 
     // Throw exception if linking fails
     GLint status;

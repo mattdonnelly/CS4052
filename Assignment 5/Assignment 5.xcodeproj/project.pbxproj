@@ -35,7 +35,6 @@
 		8B8F0D881A194AE300B2B611 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7C1A194AE300B2B611 /* GLShader.cpp */; };
 		8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D7E1A194AE300B2B611 /* GLTexture.cpp */; };
 		8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */; };
-		8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0D821A194AE300B2B611 /* obj_parser.cpp */; };
 		8B8F0DA81A195FC900B2B611 /* GLCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */; };
 /* End PBXBuildFile section */
 
@@ -103,8 +102,6 @@
 		8B8F0D7F1A194AE300B2B611 /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTexture.h; sourceTree = "<group>"; };
 		8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVertexArray.cpp; sourceTree = "<group>"; };
 		8B8F0D811A194AE300B2B611 /* GLVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLVertexArray.h; sourceTree = "<group>"; };
-		8B8F0D821A194AE300B2B611 /* obj_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = obj_parser.cpp; sourceTree = "<group>"; };
-		8B8F0D831A194AE300B2B611 /* obj_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = obj_parser.h; sourceTree = "<group>"; };
 		8B8F0DA61A195FC900B2B611 /* GLCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCamera.cpp; sourceTree = "<group>"; };
 		8B8F0DA71A195FC900B2B611 /* GLCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCamera.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,8 +203,6 @@
 				8B8F0D7E1A194AE300B2B611 /* GLTexture.cpp */,
 				8B8F0D811A194AE300B2B611 /* GLVertexArray.h */,
 				8B8F0D801A194AE300B2B611 /* GLVertexArray.cpp */,
-				8B8F0D831A194AE300B2B611 /* obj_parser.h */,
-				8B8F0D821A194AE300B2B611 /* obj_parser.cpp */,
 				8B4975F01A33BE2C00B300EA /* stb_image.h */,
 				8B4975F51A33BE4000B300EA /* text.h */,
 				8B4975F41A33BE4000B300EA /* text.cpp */,
@@ -287,7 +282,6 @@
 				8B8F0D8A1A194AE300B2B611 /* GLVertexArray.cpp in Sources */,
 				8B6458F31A352B5F0034A437 /* Game.cpp in Sources */,
 				8B8F0D861A194AE300B2B611 /* GLObject.cpp in Sources */,
-				8B8F0D8B1A194AE300B2B611 /* obj_parser.cpp in Sources */,
 				8B4975DD1A336C8800B300EA /* Point.cpp in Sources */,
 				8B34C3941A10000C00B981A6 /* main.cpp in Sources */,
 				8B4975F61A33BE4000B300EA /* text.cpp in Sources */,

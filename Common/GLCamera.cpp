@@ -19,10 +19,6 @@ GLCamera::GLCamera() {
     this->up_direction = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
-GLCamera::~GLCamera() {
-    
-}
-
 glm::mat4 GLCamera::getViewMatrix() {
     return glm::lookAt(position, position + forward_direction, up_direction);
 }
