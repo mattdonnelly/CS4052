@@ -19,7 +19,7 @@ GLTexture::GLTexture(const std::string filepath, GLint minMagFilter, GLint wrapM
     ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 
     if (ilLoadImage(filepath.c_str()) == IL_FALSE) {
-        
+        throw std::runtime_error("Failed to load image");
     }
 
     ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
