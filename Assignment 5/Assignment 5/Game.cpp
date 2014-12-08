@@ -26,7 +26,7 @@ Game::Game() {
 
     terrain = new Terrain();
 
-    trees = Tree::generateRandomTrees(NUM_TREES, -70, 70);
+    trees = Tree::generateRandomTrees(NUM_TREES, -67, 67);
 
     player->collidables.push_back(terrain);
     player->collidables.insert(player->collidables.end(), trees.begin(), trees.end());

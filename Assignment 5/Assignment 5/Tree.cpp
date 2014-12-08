@@ -21,9 +21,25 @@ std::vector<Tree *> Tree::generateRandomTrees(const int count, int min, int max)
     
     std::vector<Tree *> trees;
     for (int i = 0; i < count; i++) {
-        double x = dis(gen);
-        double y = 0.0;
-        double z = dis(gen);
+        bool try_again = false;
+        double x, y, z;
+        
+        do {
+            try_again = false;
+            x = dis(gen);
+            y = 0.0;
+            z = dis(gen);
+
+            for (int j = 0; j < trees.size(); j++) {
+                Tree *t = trees[j];
+                if (fabs(t->location.x - x) < 10.0 && fabs(t->location.z - z) < 10.0) {
+                    try_again = true;
+                    break;
+                }
+            }
+            
+        } while (try_again);
+
         Tree *t = new Tree(glm::vec3(x, y, z));
         trees.push_back(t);
     }
