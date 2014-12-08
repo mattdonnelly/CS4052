@@ -116,7 +116,7 @@ void Game::start() {
             points[i]->draw(shader_program);
         }
         
-        point_collision_manager->checkCollisions(2.0f);
+        point_collision_manager->checkCollisions(3.0f);
         gem_collision_manager->checkCollisions(18.0f);
         
         if (player->dead()) {
