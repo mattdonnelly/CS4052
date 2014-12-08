@@ -31,7 +31,6 @@ std::vector<Point *> Point::generateRandomPoints(const int count, int min, int m
         double x = dis(gen);
         double y = 4.5;
         double z = dis(gen);
-        std::cout << "X = " << x << ", Y = " << y << ", Z = " << z << std::endl;
         Point *p = new Point(glm::vec3(x, y, z));
         points.push_back(p);
     }
