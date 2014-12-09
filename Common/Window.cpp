@@ -39,18 +39,8 @@ void handleCursorPosition(GLFWwindow *window, double xpos, double ypos) {
 
     win->camera->mouseUpdate(xpos_delta, ypos_delta);
     
-    if (!positionInWindow(window, xpos, ypos)) {
-        int centerX = win->width / 2;
-        int centerY = win->height / 2;
-        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-        glfwSetCursorPos(window, centerX, centerY);
-        last_xpos = centerX;
-        last_ypos = centerY;
-    }
-    else {
-        last_xpos = xpos;
-        last_ypos = ypos;
-    }
+    last_xpos = xpos;
+    last_ypos = ypos;
 }
 
 void handleCursorEnter(GLFWwindow *window, int entered) {
@@ -90,12 +80,10 @@ Window::Window(const char *t, int w, int h) : title(t), width(w), height(h) {
     glfwSetCursorEnterCallback(_window, handleCursorEnter);
     glfwSetCursorPosCallback(_window, handleCursorPosition);
     glfwSetWindowSizeCallback(_window, handleWindowSize);
-    glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glewExperimental = GL_TRUE;
     glewInit();
-    
-    glfwSetCursorPos(_window, width / 2, height / 2);
 
     glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
     glClearDepth(1);
