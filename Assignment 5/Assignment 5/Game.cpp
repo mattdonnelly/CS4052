@@ -10,8 +10,6 @@
 #include "AudioManager.h"
 #include "LightSource.h"
 
-#define FPS 60
-
 #define NUM_POINTS 8
 #define NUM_TREES 20
 
@@ -74,8 +72,6 @@ void Game::start() {
     
     shader_program->use();
     window->setShaderProgram(shader_program);
-    
-    double last_tick = window->getTime();
 
     while (!window->shouldClose()) {
         window->clear();
@@ -112,9 +108,6 @@ void Game::start() {
         
         window->pollEvents();
         window->swapBuffers();
-        
-        while (window->getTime() < last_tick + 1 / FPS);
-        last_tick = window->getTime();
     }
     
     glfwTerminate();
