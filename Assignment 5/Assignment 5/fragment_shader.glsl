@@ -28,7 +28,7 @@ vec3 create_light(LightSource light) {
     vec3 light_position_eye = vec3(view_mat * vec4(light.position, 1.0));
     
     float dist = length(light_position_eye - position_eye);
-    
+
     vec3 L = normalize(light_position_eye - position_eye);
     vec3 E = normalize(-position_eye);
     vec3 R = normalize(-reflect(L, normal_eye));

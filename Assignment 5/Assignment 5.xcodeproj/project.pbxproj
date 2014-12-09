@@ -10,12 +10,6 @@
 		8B0469A61A367723009CCA54 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0469A41A367723009CCA54 /* LightSource.cpp */; };
 		8B0FF6081A36336700A0E3A8 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6061A36336700A0E3A8 /* Tree.cpp */; };
 		8B0FF60B1A363C8100A0E3A8 /* DistanceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */; };
-		8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
-		8B1703FD1A33CAA80090D431 /* ikpMP3.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */; };
-		8B1704001A33CAC10090D431 /* ikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
-		8B1704011A33CAC10090D431 /* ikpMP3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */; };
-		8B1704031A33CAFD0090D431 /* libirrklang.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1704021A33CAFD0090D431 /* libirrklang.dylib */; };
-		8B1704041A33CB010090D431 /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704021A33CAFD0090D431 /* libirrklang.dylib */; };
 		8B1704071A34A6860090D431 /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */; };
 		8B1704091A34A69E0090D431 /* libIL.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1704081A34A69E0090D431 /* libIL.1.dylib */; };
 		8B1704191A34CD8E0090D431 /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B1704171A34CD8E0090D431 /* AudioManager.cpp */; };
@@ -30,6 +24,12 @@
 		8B4975E31A33775600B300EA /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E11A33775600B300EA /* Window.cpp */; };
 		8B4975E61A33A11A00B300EA /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975E41A33A11A00B300EA /* Player.cpp */; };
 		8B4975F61A33BE4000B300EA /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B4975F41A33BE4000B300EA /* text.cpp */; };
+		8B55759D1A3715CF003E306F /* libikpMP3.dylib in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 8B55759B1A3715CF003E306F /* libikpMP3.dylib */; };
+		8B55759F1A3715D9003E306F /* libikpFLAC.dylib in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 8B55759E1A3715D9003E306F /* libikpFLAC.dylib */; };
+		8B5575A01A3715EB003E306F /* libikpFLAC.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B55759E1A3715D9003E306F /* libikpFLAC.dylib */; };
+		8B5575A11A3715EB003E306F /* libikpMP3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B55759B1A3715CF003E306F /* libikpMP3.dylib */; };
+		8B5575A41A3716B6003E306F /* libirrklang.dylib in Copy Files (2 items) */ = {isa = PBXBuildFile; fileRef = 8B5575A31A3716B6003E306F /* libirrklang.dylib */; };
+		8B5575A51A3716BA003E306F /* libirrklang.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5575A31A3716B6003E306F /* libirrklang.dylib */; };
 		8B6458F01A3512B00034A437 /* Animatable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6458EE1A3512B00034A437 /* Animatable.cpp */; };
 		8B6458F31A352B5F0034A437 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6458F11A352B5F0034A437 /* Game.cpp */; };
 		8B6AC9CD1A3713D000AD0F38 /* Collidable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AC9CB1A3713D000AD0F38 /* Collidable.cpp */; };
@@ -42,17 +42,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8B34C38E1A10000C00B981A6 /* Copy Files */ = {
+		8B34C38E1A10000C00B981A6 /* Copy Files (2 items) */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */,
-				8B1703FD1A33CAA80090D431 /* ikpMP3.dylib in Copy Files */,
-				8B1704031A33CAFD0090D431 /* libirrklang.dylib in Copy Files */,
+				8B55759D1A3715CF003E306F /* libikpMP3.dylib in Copy Files (2 items) */,
+				8B55759F1A3715D9003E306F /* libikpFLAC.dylib in Copy Files (2 items) */,
+				8B5575A41A3716B6003E306F /* libirrklang.dylib in Copy Files (2 items) */,
 			);
-			name = "Copy Files";
+			name = "Copy Files (2 items)";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -64,9 +64,6 @@
 		8B0FF6071A36336700A0E3A8 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
 		8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceManager.cpp; sourceTree = "<group>"; };
 		8B0FF60A1A363C8100A0E3A8 /* DistanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceManager.h; sourceTree = "<group>"; };
-		8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpFLAC.dylib; path = irrKlang/lib/ikpFLAC.dylib; sourceTree = "<group>"; };
-		8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ikpMP3.dylib; path = irrKlang/lib/ikpMP3.dylib; sourceTree = "<group>"; };
-		8B1704021A33CAFD0090D431 /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 		8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.3.1.1.dylib; path = ../../../../../../usr/local/Cellar/assimp/3.1.1/lib/libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 		8B1704081A34A69E0090D431 /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = ../../../../../../usr/local/Cellar/devil/1.7.8_1/lib/libIL.1.dylib; sourceTree = "<group>"; };
 		8B1704101A34B7980090D431 /* GLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLError.h; sourceTree = "<group>"; };
@@ -92,6 +89,9 @@
 		8B4975F01A33BE2C00B300EA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		8B4975F41A33BE4000B300EA /* text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
 		8B4975F51A33BE4000B300EA /* text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
+		8B55759B1A3715CF003E306F /* libikpMP3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpMP3.dylib; path = irrKlang/lib/libikpMP3.dylib; sourceTree = "<group>"; };
+		8B55759E1A3715D9003E306F /* libikpFLAC.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libikpFLAC.dylib; path = irrKlang/lib/libikpFLAC.dylib; sourceTree = "<group>"; };
+		8B5575A31A3716B6003E306F /* libirrklang.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libirrklang.dylib; path = irrKlang/lib/libirrklang.dylib; sourceTree = "<group>"; };
 		8B6458EE1A3512B00034A437 /* Animatable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animatable.cpp; sourceTree = "<group>"; };
 		8B6458EF1A3512B00034A437 /* Animatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animatable.h; sourceTree = "<group>"; };
 		8B6458F11A352B5F0034A437 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
@@ -119,14 +119,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */,
 				8B1704091A34A69E0090D431 /* libIL.1.dylib in Frameworks */,
 				8B1704071A34A6860090D431 /* libassimp.3.1.1.dylib in Frameworks */,
-				8B1704041A33CB010090D431 /* libirrklang.dylib in Frameworks */,
-				8B34C39F1A10007800B981A6 /* OpenGL.framework in Frameworks */,
+				8B5575A01A3715EB003E306F /* libikpFLAC.dylib in Frameworks */,
+				8B5575A11A3715EB003E306F /* libikpMP3.dylib in Frameworks */,
 				8B34C39C1A10006E00B981A6 /* libGLEW.dylib in Frameworks */,
 				8B34C39D1A10006E00B981A6 /* libglfw3.dylib in Frameworks */,
-				8B1704001A33CAC10090D431 /* ikpFLAC.dylib in Frameworks */,
-				8B1704011A33CAC10090D431 /* ikpMP3.dylib in Frameworks */,
+				8B5575A51A3716BA003E306F /* libirrklang.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,14 +180,14 @@
 		8B34C3A01A10008200B981A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B34C39E1A10007800B981A6 /* OpenGL.framework */,
 				8B1704081A34A69E0090D431 /* libIL.1.dylib */,
 				8B1704061A34A6860090D431 /* libassimp.3.1.1.dylib */,
-				8B34C39E1A10007800B981A6 /* OpenGL.framework */,
 				8B34C39A1A10006E00B981A6 /* libGLEW.dylib */,
 				8B34C39B1A10006E00B981A6 /* libglfw3.dylib */,
-				8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */,
-				8B1703FB1A33CAA80090D431 /* ikpMP3.dylib */,
-				8B1704021A33CAFD0090D431 /* libirrklang.dylib */,
+				8B55759E1A3715D9003E306F /* libikpFLAC.dylib */,
+				8B55759B1A3715CF003E306F /* libikpMP3.dylib */,
+				8B5575A31A3716B6003E306F /* libirrklang.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 			buildPhases = (
 				8B34C38C1A10000C00B981A6 /* Sources */,
 				8B34C38D1A10000C00B981A6 /* Frameworks */,
-				8B34C38E1A10000C00B981A6 /* Copy Files */,
+				8B34C38E1A10000C00B981A6 /* Copy Files (2 items) */,
 			);
 			buildRules = (
 			);
@@ -403,6 +403,7 @@
 					"\"$(SRCROOT)/irrKlang/lib\"",
 					/usr/local/Cellar/assimp/3.1.1/lib,
 					/usr/local/Cellar/devil/1.7.8_1/lib,
+					"$(PROJECT_DIR)/irrKlang/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -428,6 +429,7 @@
 					"\"$(SRCROOT)/irrKlang/lib\"",
 					/usr/local/Cellar/assimp/3.1.1/lib,
 					/usr/local/Cellar/devil/1.7.8_1/lib,
+					"$(PROJECT_DIR)/irrKlang/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

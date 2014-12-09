@@ -106,8 +106,8 @@ void Game::start() {
             reset();
         }
         else if (player->won()) {
-            next_wave();
             AudioManager::sharedManager()->playWon();
+            next_wave();
         }
         
         window->pollEvents();
