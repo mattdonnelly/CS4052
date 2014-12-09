@@ -112,7 +112,7 @@ void Player::update_position_in_bounds(glm::vec3 new_position) {
     glm::vec3 new_poisitionZ = glm::vec3(position.x, position.y, new_position.z);
     for (unsigned i = 0; i < collidables.size(); i++) {
         Collidable *obj = collidables[i];
-        
+    
         if (obj->locationWillCollide(new_poisitionZ)) {
             collided = true;
         }

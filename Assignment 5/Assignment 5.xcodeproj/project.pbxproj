@@ -195,9 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				8B4975D61A336C0100B300EA /* Drawable.h */,
+				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B0469A51A367723009CCA54 /* LightSource.h */,
 				8B0469A41A367723009CCA54 /* LightSource.cpp */,
-				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B6458EF1A3512B00034A437 /* Animatable.h */,
 				8B6458EE1A3512B00034A437 /* Animatable.cpp */,
 				8B8F0DA71A195FC900B2B611 /* GLCamera.h */,
