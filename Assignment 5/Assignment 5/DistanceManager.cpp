@@ -22,7 +22,9 @@ void DistanceManager::addCollidables(std::vector<Collidable *> collidables) {
     _collidables.insert(_collidables.end(), collidables.begin(), collidables.end());
 }
 
-void DistanceManager::checkCollisions() {
+bool DistanceManager::checkCollisions() {
+    bool collided = false;
+
     for (unsigned i = 0; i < _collidables.size(); i++) {
         Collidable *obj = _collidables[i];
         
@@ -30,7 +32,10 @@ void DistanceManager::checkCollisions() {
             if (obj->locationWillCollide(main_object->collidableLocation())) {
                 main_object->collide(obj);
                 obj->collide(main_object);
+                collided = true;
             }
         }
     }
+    
+    return collided;
 }

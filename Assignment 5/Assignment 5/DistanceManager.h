@@ -14,12 +14,12 @@
 class DistanceManager {
 public:
     DistanceManager();
-    
+
     Collidable *main_object;
     void addCollidable(Collidable *c);
     void addCollidables(std::vector<Collidable *> collidables);
 
-    void checkCollisions();
+    bool checkCollisions();
 
 private:
     std::vector<Collidable *> _collidables;

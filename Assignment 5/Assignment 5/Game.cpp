@@ -97,7 +97,7 @@ void Game::start() {
         }
         
         player->drawText(shader_program);
-        
+
         point_collision_manager->checkCollisions();
         gem_collision_manager->checkCollisions();
         
