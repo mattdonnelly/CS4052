@@ -8,9 +8,10 @@ uniform sampler2D tex;
 
 struct LightSource {
     vec3 position;
-    vec4 ambient;
-    vec4 diffuse;
-    vec4 specular;
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float attenuation;
 };
 
 const int max_lights = 8;
@@ -27,33 +28,24 @@ const float fog_density = 0.05;
 
 out vec4 fragment_colour;
 
-vec3 create_light(LightSource l) {
-    vec3 Ls = l.specular.xyz;
-    vec3 Ld = l.diffuse.xyz;
-    vec3 La = l.ambient.xyz;
-    
-    vec3 light_position_eye = vec3(view_mat * vec4(l.position, 1.0));
+vec3 create_light(LightSource light) {
+    vec3 light_position_eye = vec3(view_mat * vec4(light.position, 1.0));
     vec3 direction_to_light_eye = normalize(light_position_eye - position_eye);
-
-    float distance_from_light_to_position = length(light_position_eye - position_eye);
-    float light_intensityA = min(max(1.0 / pow(distance_from_light_to_position / l.ambient.w, 2.0), 0.0), 1.0);
-    float light_intensityD = min(max(1.0 / pow(distance_from_light_to_position / l.diffuse.w, 2.0), 0.0), 1.0);
-    float light_intensityS = min(max(1.0 / pow(distance_from_light_to_position / l.specular.w, 2.0), 0.0), 1.0);
-
-    vec3 Ia = La * Ka * light_intensityA;
-
-    float dot_prod = dot(direction_to_light_eye, normal_eye);
-    dot_prod = max(dot_prod, 0.0);
-    vec3 Id = Ld * Kd * dot_prod  * light_intensityD;
-
-    vec3 reflection_eye = reflect(-direction_to_light_eye, normal_eye);
-    vec3 surface_to_viewer_eye = normalize(-position_eye);
-    float dot_prod_specular = dot(reflection_eye, surface_to_viewer_eye);
-    dot_prod_specular = max(dot_prod_specular, 0.0);
-    float specular_factor = pow(dot_prod_specular, specular_exponent);
-    vec3 Is = Ls * Ks * specular_factor * light_intensityS;
+    float dist = length(light_position_eye - position_eye);
     
-    return Is + Id + Ia;
+    float intensity = min(max(1.0 / pow(dist / light.attenuation, 2.0), 0.0), 1.0);
+    
+    vec3 Ia = light.ambient * intensity;
+    
+    float dot_prod = max(dot(direction_to_light_eye, normal_eye), 0.0);
+
+    vec3 Id = light.diffuse * dot_prod * intensity;
+    //Id = clamp(Id, 0.0, 1.0);
+    
+    vec3 Is = light.specular * specular_exponent * intensity;
+    //Is = clamp(Is, 0.0, 1.0);
+
+    return Ia + Id + Is;
 }
 
 void main () {

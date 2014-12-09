@@ -11,9 +11,10 @@
 #include <iostream>
 
 Gem::Gem(glm::vec3 location) : Drawable(location), light(location,
-                                                         glm::vec4(0.8f, 0.0f, 0.0f, 1.0f),
-                                                         glm::vec4(0.0f, 0.0f, 0.0f, 15.0f),
-                                                         glm::vec4(1.0f, 1.0f, 1.0f, 10.0f)) {
+                                                         glm::vec3(0.8f, 0.0f, 0.0f),
+                                                         glm::vec3(0.0f, 0.0f, 0.0f),
+                                                         glm::vec3(1.0f, 1.0f, 1.0f),
+                                                         1.0f) {
     vao = new GLVertexArray::GLVertexArray("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/obj/gem.obj");
     texture = new GLTexture::GLTexture("/Users/mattdonnelly/Documents/College/Computer Graphics/Assignment 5/tex/gem.png");
 }

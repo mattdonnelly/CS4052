@@ -13,13 +13,15 @@
 
 class LightSource {
 public:
-    LightSource(glm::vec3 position, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular);
+    LightSource(glm::vec3 position, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float attenuation);
     
     glm::vec3 position;
     
-    glm::vec4 ambient;
-    glm::vec4 diffuse;
-    glm::vec4 specular;
+    glm::vec3 ambient;
+    glm::vec3 diffuse;
+    glm::vec3 specular;
+
+    float attenuation;
     
     void render_light_source(GLProgram *shader_program);
     
@@ -28,10 +30,10 @@ private:
     static int _count;
     
     const GLchar *getUniformName(const char *name);
-    
+
     const GLchar *_position_name;
-    
     const GLchar *_ambient_name;
     const GLchar *_diffuse_name;
     const GLchar *_specular_name;
+    const GLchar *_attenuation_name;
 };
