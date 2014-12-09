@@ -93,16 +93,32 @@ void Player::drawText(GLProgram *shader_program) {
 
 void Player::update_position_in_bounds(glm::vec3 new_position) {
     bool collided = false;
+
+    glm::vec3 new_poisitionX = glm::vec3(new_position.x, position.y, position.z);
     for (unsigned i = 0; i < collidables.size(); i++) {
         Collidable *obj = collidables[i];
         
-        if (obj->locationWillCollide(new_position)) {
+        if (obj->locationWillCollide(new_poisitionX)) {
             collided = true;
         }
     }
     
     if (!collided) {
         position.x = new_position.x;
+    }
+    
+    collided = false;
+    
+    glm::vec3 new_poisitionZ = glm::vec3(position.x, position.y, new_position.z);
+    for (unsigned i = 0; i < collidables.size(); i++) {
+        Collidable *obj = collidables[i];
+        
+        if (obj->locationWillCollide(new_poisitionZ)) {
+            collided = true;
+        }
+    }
+    
+    if (!collided) {
         position.z = new_position.z;
     }
 }
