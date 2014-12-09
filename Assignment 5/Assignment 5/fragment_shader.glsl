@@ -26,24 +26,22 @@ out vec4 fragment_colour;
 
 vec3 create_light(LightSource light) {
     vec3 light_position_eye = vec3(view_mat * vec4(light.position, 1.0));
-    vec3 direction_to_light_eye = normalize(light_position_eye - position_eye);
+    
     float dist = length(light_position_eye - position_eye);
+    
+    vec3 L = normalize(light_position_eye - position_eye);
+    vec3 E = normalize(-position_eye);
+    vec3 R = normalize(-reflect(L, normal_eye));
 
     float intensity = min(max(1.0 / pow(dist / light.attenuation, 2.0), 0.0), 1.0);
     
     vec3 Ia = light.ambient * intensity;
-    
-    float dot_prod = max(dot(direction_to_light_eye, normal_eye), 0.0);
 
-    vec3 Id = light.diffuse * dot_prod * intensity;
+    vec3 Id = light.diffuse * max(dot(normal_eye, L), 0.0) * intensity;
+    Id = clamp(Id, 0.0, 1.0);
     
-    vec3 reflection_eye = reflect(-direction_to_light_eye, normal_eye);
-    vec3 surface_to_viewer_eye = normalize(-position_eye);
-    float dot_prod_specular = dot(reflection_eye, surface_to_viewer_eye);
-    dot_prod_specular = max(dot_prod_specular, 0.0);
-    float specular_factor = pow(dot_prod_specular, light.shininess);
-
-    vec3 Is = light.specular * specular_factor * intensity;
+    vec3 Is = light.specular * pow(max(dot(R, E), 0.0), 0.3 * light.shininess);
+    Is = clamp(Is, 0.0, 1.0);
 
     return Ia + Id + Is;
 }
@@ -53,12 +51,10 @@ void main () {
     for (int i = 0; i < num_lights; i++) {
         light += create_light(light_sources[i]);
     }
-
-    vec4 texture_light = vec4(light, 1.0) * texture(tex, frag_tex_coord);
     
     float dist = length(-position_eye);
-    
     float fog_factor = 1.0 / exp((dist * fog_density) * (dist * fog_density));
     fog_factor = clamp(fog_factor, 0.0, 1.0);
-    fragment_colour = mix(fog_color, texture_light, fog_factor);
+    
+    fragment_colour = mix(fog_color, vec4(light, 1.0) * texture(tex, frag_tex_coord), fog_factor);
 }
