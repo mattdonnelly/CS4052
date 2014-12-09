@@ -123,6 +123,16 @@ void GLProgram::setUniform(const GLchar *name, const glm::vec4& v) {
     glUniform4fv(uniform(name), 1, glm::value_ptr(v));
 }
 
+void GLProgram::setUniform(const GLchar *name, const double v) {
+    assert(isInUse());
+    glUniform1d(uniform(name), v);
+}
+
+void GLProgram::setUniform(const GLchar *name, const float v) {
+    assert(isInUse());
+    glUniform1f(uniform(name), v);
+}
+
 void GLProgram::setUniform(const GLchar *name, const int v) {
     assert(isInUse());
     glUniform1i(uniform(name), v);
@@ -156,6 +166,16 @@ void GLProgram::setUniform(const GLint loc, const glm::vec3 &v) {
 void GLProgram::setUniform(const GLint loc, const glm::vec4& v) {
     assert(isInUse());
     glUniform4fv(loc, 1, glm::value_ptr(v));
+}
+
+void GLProgram::setUniform(const GLint loc, const double v) {
+    assert(isInUse());
+    glUniform1d(loc, v);
+}
+
+void GLProgram::setUniform(const GLint loc, const float v) {
+    assert(isInUse());
+    glUniform1f(loc, v);
 }
 
 void GLProgram::setUniform(const GLint loc, const int v) {

@@ -37,6 +37,8 @@ public:
     void setUniform(const GLchar *uniformName, const glm::vec2 &v);
     void setUniform(const GLchar *uniformName, const glm::vec3 &v);
     void setUniform(const GLchar *uniformName, const glm::vec4 &v);
+    void setUniform(const GLchar *uniformName, const double value);
+    void setUniform(const GLchar *uniformName, const float value);
     void setUniform(const GLchar *uniformName, const int value);
     
     void setUniform(const GLint loc, const glm::mat2 &m, GLboolean transpose=GL_FALSE);
@@ -45,6 +47,8 @@ public:
     void setUniform(const GLint loc, const glm::vec2 &v);
     void setUniform(const GLint loc, const glm::vec3 &v);
     void setUniform(const GLint loc, const glm::vec4 &v);
+    void setUniform(const GLint loc, const double value);
+    void setUniform(const GLint loc, const float value);
     void setUniform(const GLint loc, const int value);
     
 private:
