@@ -10,6 +10,7 @@
 
 #include "Drawable.h"
 #include "Collidable.h"
+#include "LightSource.h"
 
 class Gem : public Drawable, public Collidable {
 public:
@@ -20,4 +21,7 @@ public:
     glm::vec3 collidableLocation() const;
     bool locationWillCollide(glm::vec3 location) const;
     int tag();
+    
+private:
+    LightSource light;
 };

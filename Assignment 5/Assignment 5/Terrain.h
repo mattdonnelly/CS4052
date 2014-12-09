@@ -10,10 +10,16 @@
 
 #include "Drawable.h"
 #include "Collidable.h"
+#include "LightSource.h"
 
 class Terrain : public Drawable, public Collidable {
 public:
     Terrain();
     
+    void draw(GLProgram *shader_program);
+
     bool locationWillCollide(glm::vec3 location) const;
+    
+private:
+    LightSource light;
 };

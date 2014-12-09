@@ -9,7 +9,10 @@
 #include "Player.h"
 #include "text.h"
 #include "AudioManager.h"
-#include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
+
+#define BOUNCE_HEIGHT 0.5
+#define BOUNCE_SPEED 5
 
 #define MAX_HEALTH 100.0f
 
@@ -48,7 +51,21 @@ bool Player::dead() const {
     return _health < 1;
 }
 
+glm::mat4 Player::getViewMatrix() {
+    glm::vec3 position_bounce;
+    if (_moving) {
+        position_bounce = glm::vec3(position.x, position.y + _bounce, position.z);
+
+    }
+    else {
+        position_bounce = glm::vec3(position.x, position.y, position.z);
+    }
+    return glm::lookAt(position_bounce, position_bounce + forward_direction, up_direction);
+}
+
 void Player::drawText(GLProgram *shader_program) {
+    _bounce = fabs(sin(glfwGetTime() * BOUNCE_SPEED) * BOUNCE_HEIGHT);
+    
     if (regenerating) {
         update_health(_health + 20.0f * delta());
 
@@ -66,6 +83,10 @@ void Player::drawText(GLProgram *shader_program) {
     shader_program->use();
     
     _won = false;
+    
+    if (fabs(_bounce) < 0.1) {
+        _moving = false;
+    }
 }
 
 void Player::update_position_in_bounds(glm::vec3 new_position) {
@@ -79,19 +100,22 @@ void Player::update_position_in_bounds(glm::vec3 new_position) {
     }
     
     if (!collided) {
-        position = glm::vec3(new_position.x, position.y, position.z);
-        position = glm::vec3(position.x, position.y, new_position.z);
+        position.x = new_position.x;
+        position.z = new_position.z;
     }
 }
 
 void Player::moveForward(float delta) {
     glm::vec3 new_position = position + (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
+
     update_position_in_bounds(new_position);
+    _moving = true;
 }
 
 void Player::moveBackward(float delta) {
     glm::vec3 new_position = position - (speed * delta * glm::vec3(forward_direction.x, 0.0f, forward_direction.z));
     update_position_in_bounds(new_position);
+    _moving = true;
 }
 
 void Player::moveLeft(float delta) {

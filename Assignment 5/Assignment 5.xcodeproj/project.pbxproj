@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0469A61A367723009CCA54 /* LightSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0469A41A367723009CCA54 /* LightSource.cpp */; };
 		8B0FF6081A36336700A0E3A8 /* Tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6061A36336700A0E3A8 /* Tree.cpp */; };
 		8B0FF60B1A363C8100A0E3A8 /* DistanceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */; };
 		8B1703FC1A33CAA80090D431 /* ikpFLAC.dylib in Copy Files */ = {isa = PBXBuildFile; fileRef = 8B1703FA1A33CAA80090D431 /* ikpFLAC.dylib */; };
@@ -56,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B0469A41A367723009CCA54 /* LightSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightSource.cpp; sourceTree = "<group>"; };
+		8B0469A51A367723009CCA54 /* LightSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightSource.h; sourceTree = "<group>"; };
 		8B0FF6061A36336700A0E3A8 /* Tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tree.cpp; sourceTree = "<group>"; };
 		8B0FF6071A36336700A0E3A8 /* Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tree.h; sourceTree = "<group>"; };
 		8B0FF6091A363C8100A0E3A8 /* DistanceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceManager.cpp; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				8B4975D61A336C0100B300EA /* Drawable.h */,
+				8B0469A51A367723009CCA54 /* LightSource.h */,
+				8B0469A41A367723009CCA54 /* LightSource.cpp */,
 				8B4975D51A336C0100B300EA /* Drawable.cpp */,
 				8B6458EF1A3512B00034A437 /* Animatable.h */,
 				8B6458EE1A3512B00034A437 /* Animatable.cpp */,
@@ -275,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B1704191A34CD8E0090D431 /* AudioManager.cpp in Sources */,
+				8B0469A61A367723009CCA54 /* LightSource.cpp in Sources */,
 				8B6458F01A3512B00034A437 /* Animatable.cpp in Sources */,
 				8B8F0D891A194AE300B2B611 /* GLTexture.cpp in Sources */,
 				8B4975E31A33775600B300EA /* Window.cpp in Sources */,

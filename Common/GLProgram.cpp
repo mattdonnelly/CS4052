@@ -89,7 +89,7 @@ GLint GLProgram::uniform(const GLchar *uniformName) const {
     if (uniform == -1) {
         throw std::runtime_error(std::string("Program uniform not found: ") + uniformName);
     }
-    
+
     return uniform;
 }
 

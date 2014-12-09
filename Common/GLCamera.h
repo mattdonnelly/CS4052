@@ -25,7 +25,7 @@ public:
     glm::vec3 forward_direction;
     glm::vec3 up_direction;
     
-    glm::mat4 getViewMatrix();
+    virtual glm::mat4 getViewMatrix();
 
     virtual void mouseUpdate(float deltaX, float deltaY);
     
