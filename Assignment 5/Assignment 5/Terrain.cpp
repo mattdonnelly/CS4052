@@ -9,8 +9,8 @@
 #include "Terrain.h"
 
 Terrain::Terrain() : Drawable(0.0f, 0.0f, 0.0f), light(glm::vec3(0.0f, 15.0f, 0.0f),
-                                                       glm::vec3(0.1f, 0.2f,  0.2f),
-                                                       glm::vec3(0.6f, 0.7f,  0.6f),
+                                                       glm::vec3(0.2f, 0.4f,  0.4f),
+                                                       glm::vec3(0.9f, 1.0f,  0.9f),
                                                        glm::vec3(1.0f, 1.0f,  1.0f),
                                                        200.0f)
 {

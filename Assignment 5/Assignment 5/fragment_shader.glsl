@@ -12,16 +12,12 @@ struct LightSource {
     vec3 diffuse;
     vec3 specular;
     float attenuation;
+    float shininess;
 };
 
 const int max_lights = 8;
 uniform int num_lights;
 uniform LightSource light_sources[max_lights];
-
-const vec3 Ks = vec3(1.0, 1.0, 1.0);
-const vec3 Kd = vec3(2.0, 2.0, 2.0);
-const vec3 Ka = vec3(1.5, 1.5, 1.5);
-const float specular_exponent = 100.0;
 
 const vec4 fog_color = vec4(0.05, 0.1, 0.1, 1.0);
 const float fog_density = 0.06;
@@ -35,19 +31,19 @@ vec3 create_light(LightSource light) {
 
     float intensity = min(max(1.0 / pow(dist / light.attenuation, 2.0), 0.0), 1.0);
     
-    vec3 Ia = light.ambient * Ka * intensity;
+    vec3 Ia = light.ambient * intensity;
     
     float dot_prod = max(dot(direction_to_light_eye, normal_eye), 0.0);
 
-    vec3 Id = light.diffuse * Kd * dot_prod * intensity;
+    vec3 Id = light.diffuse * dot_prod * intensity;
     
     vec3 reflection_eye = reflect(-direction_to_light_eye, normal_eye);
     vec3 surface_to_viewer_eye = normalize(-position_eye);
     float dot_prod_specular = dot(reflection_eye, surface_to_viewer_eye);
     dot_prod_specular = max(dot_prod_specular, 0.0);
-    float specular_factor = pow(dot_prod_specular, specular_exponent);
+    float specular_factor = pow(dot_prod_specular, light.shininess);
 
-    vec3 Is = light.specular * Ks * specular_factor * intensity;
+    vec3 Is = light.specular * specular_factor * intensity;
 
     return Ia + Id + Is;
 }

@@ -13,7 +13,7 @@
 
 class LightSource {
 public:
-    LightSource(glm::vec3 position, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float attenuation);
+    LightSource(glm::vec3 position, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float attenuation, float shininess = 100.0f);
     
     glm::vec3 position;
     
@@ -22,6 +22,7 @@ public:
     glm::vec3 specular;
 
     float attenuation;
+    float shininess;
     
     void render_light_source(GLProgram *shader_program);
     
@@ -36,4 +37,5 @@ private:
     const GLchar *_diffuse_name;
     const GLchar *_specular_name;
     const GLchar *_attenuation_name;
+    const GLchar *_shininess_name;
 };
