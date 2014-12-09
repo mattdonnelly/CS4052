@@ -26,6 +26,8 @@ Player::Player(int win_points) : GLCamera(), Animatable() {
     
     regenerating = false;
     
+    _health_drain_speed = 5.0f;
+    
     _points = 0;
     _health = MAX_HEALTH;
     
@@ -138,6 +140,7 @@ void Player::collide(Collidable *obj) {
         if (_points >= _win_points) {
             _won = true;
             _win_points += _orig_win_points;
+            _health_drain_speed += 1.0f;
         }
     }
     else if (obj->tag() == 1) {

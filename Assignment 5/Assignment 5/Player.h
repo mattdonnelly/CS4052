@@ -52,6 +52,8 @@ private:
     int _win_points;
     bool _won;
     
+    double _health_drain_speed;
+    
     void update_position_in_bounds(glm::vec3 new_position);
     
     int _points;
